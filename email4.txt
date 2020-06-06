@@ -1,0 +1,29 @@
+Message-ID: <18783465.1283855379871.JavaMail.evans@thyme>
+Date: Thu, 16 Jan 2020 06:20:00 -0700 (PDT)
+From: jane.doe@deutschebank.com
+To: joe.allen@citisingapore.com
+Subject: Acc 103838 Update
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-From: Jane Doe
+X-To: Joe Allen
+X-cc: 
+X-bcc: 
+
+Joe, 
+
+Please find attached details of failed payment and guide further. 
+
+DEUTSCHE BANK	
+103838	
+CitiBank Singapore	
+EUR	
+Receive	
+7325436	
+16-01-2020	
+Rejected	
+9934360	
+
+
+Thanks.

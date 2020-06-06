@@ -1,0 +1,18 @@
+Message-ID: <18783456.1075855378111.JavaMail.evans@thyme>
+Date: Mon, 20 Apr 2020 17:15:00 -0700 (PDT)
+From: phil.al@bnymellon.com
+To: tom.bell@citinewyork.com
+Subject: Update on Acc 101498
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-From: Phil Al
+X-To: Tom Bell 
+X-cc: 
+X-bcc: 
+
+Hi Tom,
+
+This is to inform you that BNY Mellon has partially paid 44866916 GBP to Account ID 101498 on 20-04-2020
+
+Thanks.

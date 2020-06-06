@@ -1,0 +1,18 @@
+Message-ID: <18782981.1075855378111.JavaMail.evans@thyme>
+Date: Wed, 15 Jan 2020 17:15:00 -0700 (PDT)
+From: phil.al@bnymellon.com
+To: tom.bell@citinewyork.com
+Subject: Payment in Progress Acc 104276
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-From: Phil Al
+X-To: Tom Bell 
+X-cc: 
+X-bcc: 
+
+Hi Tom,
+
+This is to inform you that BNY Mellon has fully paid 80517212 USD to Account ID 104276 on 15-01-2020. 
+
+Thanks.

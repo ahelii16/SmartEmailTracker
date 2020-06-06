@@ -1,0 +1,28 @@
+Message-ID: <18783465.1075855379871.JavaMail.evans@thyme>
+Date: Wed, 15 Jan 2020 17:15:00 -0700 (PDT)
+From: john.smith@hsbc.com
+To: cho.chang@citihongkong.com
+Subject: Acc 103285 Update
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-From: John Smith
+X-To: Cho Chang
+X-cc: 
+X-bcc: 
+
+Greetings Cho,
+Please find attached details
+
+Client Name : HSBC	
+Account ID: 103285	
+Legal Entity: CitiBank HongKong	
+Currency: CAD	
+Payment Type: Receive	
+Paid Amount: 56327540	
+Payment Date: 16-10-2019	
+Payment Status: Processing	
+Pending Amount: 2564636	
+
+
+Thanks.
