@@ -1,0 +1,101 @@
+Client Name,Account ID,Legal Entity,Currency,Payment Type,Paid Amount,Payment Date,Payment Status,Pending Amount,Comments
+BNY Mellon,104961,CitiBank Singapore,GBP,Deliver,52946291,0404-0404-20202020,Partially Paid,8757785,Payment is in progress
+BNY Mellon,107587,CitiBank New York Branch,"EUR,",Receive,34644007,0707-0303-20202020,Processing,3342046,Payment Failed
+J P Morgan,105205,CitiBank Singapore,USD,Receive,10124974,1515-0404-20202020,Processing,5192236,Waiting for pending amount
+HSBC,105762,CitiBank London,GBP,Receive,99797636,1515-1111-19191919,Processing,1418637,Transaction complete
+DEUTSCHE BANK,109821,CitiBank New York Branch,"EUR,",Receive,96588445,2727-0101-20202020,Rejected,6099290,Waiting for pending amount
+BNY Mellon,107926,CitiBank London,USD,Receive,85332213,1919-0808-19191919,Processing,2035702,Payment Failed
+DEUTSCHE BANK,103039,CitiBank Singapore,GBP,Deliver,39657702,0909-1111-19191919,Processing,7714861,Payment Failed
+HSBC,102235,CitiBank New York Branch,GBP,Receive,44698067,0808-0505-20202020,Rejected,1548441,Payment is in progress
+DEUTSCHE BANK,104029,CitiBank New York Branch,CAD,Receive,3155823,2828-0606-19191919,Partially Paid,612430,Payment is in progress
+HSBC,104762,CitiBank New York Branch,"EUR,",Receive,19674118,3030-0505-19191919,Processing,7690794,Payment is in progress
+J P Morgan,103842,CitiBank HongKong,"EUR,",Deliver,7536525,0303-0404-19191919,Partially Paid,2984263,Payment is in progress
+J P Morgan,104797,CitiBank New York Branch,"EUR,",Receive,99743649,2323-0606-19191919,Rejected,1696759,Payment is in progress
+J P Morgan,109779,CitiBank New York Branch,"EUR,",Receive,80517839,1616-1212-19191919,Processing,7391577,Payment Failed
+BNY Mellon,109932,CitiBank HongKong,GBP,Receive,79963738,2727-1212-19191919,Fully paid,8666812,Payment is in progress
+BNY Mellon,100588,CitiBank London,USD,Receive,64731796,2525-0606-19191919,Processing,166714,Payment Failed
+J P Morgan,101080,CitiBank HongKong,"EUR,",Receive,92984663,1616-0404-20202020,Processing,7461722,Waiting for pending amount
+BNY Mellon,103502,CitiBank Singapore,GBP,Receive,66675116,2222-0101-20202020,Processing,9629227,Payment is in progress
+HSBC,104502,CitiBank New York Branch,CAD,Deliver,67207258,0505-0606-20202020,Partially Paid,6045236,Payment Failed
+BNY Mellon,101582,CitiBank Singapore,CAD,Receive,84251797,3030-0404-20202020,Partially Paid,5885868,Transaction complete
+BNY Mellon,106037,CitiBank New York Branch,USD,Deliver,52179562,0404-1212-19191919,Rejected,2790764,Payment Failed
+DEUTSCHE BANK,106939,CitiBank London,CAD,Deliver,86356318,0808-0505-20202020,Partially Paid,5101214,Waiting for pending amount
+BNY Mellon,106357,CitiBank Singapore,GBP,Deliver,34953035,3030-0505-19191919,Fully paid,2164989,Waiting for pending amount
+HSBC,102875,CitiBank Singapore,GBP,Deliver,4705005,0202-0707-19191919,Rejected,1717333,Payment is in progress
+HSBC,100089,CitiBank New York Branch,CAD,Deliver,60566907,2323-1010-19191919,Fully paid,6293537,Waiting for pending amount
+DEUTSCHE BANK,109743,CitiBank New York Branch,GBP,Deliver,68128819,2727-0202-20202020,Processing,7142434,Payment Failed
+BNY Mellon,104530,CitiBank HongKong,"EUR,",Receive,79335104,1919-0404-20202020,Rejected,1151348,Waiting for pending amount
+DEUTSCHE BANK,103305,CitiBank London,"EUR,",Receive,69602970,1212-0808-19191919,Partially Paid,298765,Transaction complete
+DEUTSCHE BANK,109272,CitiBank London,GBP,Deliver,14094732,1616-1212-19191919,Fully paid,7667072,Waiting for pending amount
+HSBC,104984,CitiBank London,GBP,Deliver,34644650,1111-0505-19191919,Processing,6554331,Payment is in progress
+HSBC,104084,CitiBank HongKong,USD,Deliver,78440526,2727-0606-19191919,Fully paid,905691,Payment is in progress
+HSBC,105080,CitiBank HongKong,USD,Receive,12383133,2323-1010-19191919,Processing,2557023,Payment Failed
+HSBC,104101,CitiBank HongKong,GBP,Receive,83018576,2424-1212-19191919,Rejected,432752,Payment Failed
+DEUTSCHE BANK,101058,CitiBank Singapore,CAD,Deliver,71475417,1313-0404-19191919,Rejected,3948703,Waiting for pending amount
+DEUTSCHE BANK,104022,CitiBank London,GBP,Deliver,16505742,0303-1010-19191919,Processing,3862674,Payment Failed
+HSBC,107200,CitiBank Singapore,USD,Receive,13235966,1212-0909-19191919,Processing,8088045,Payment is in progress
+HSBC,100941,CitiBank London,"EUR,",Deliver,4509276,2222-1212-19191919,Partially Paid,3621098,Waiting for pending amount
+J P Morgan,106570,CitiBank London,CAD,Deliver,20207864,1919-1212-19191919,Processing,1698449,Waiting for pending amount
+BNY Mellon,100992,CitiBank New York Branch,"EUR,",Receive,86774824,2323-0909-19191919,Rejected,9637997,Payment is in progress
+HSBC,105072,CitiBank Singapore,CAD,Deliver,78123306,3030-0404-19191919,Partially Paid,8457129,Transaction complete
+HSBC,109354,CitiBank Singapore,"EUR,",Deliver,50388706,2828-0101-20202020,Processing,8295043,Waiting for pending amount
+HSBC,104851,CitiBank New York Branch,"EUR,",Receive,66062160,2626-0505-19191919,Partially Paid,6344361,Payment is in progress
+BNY Mellon,109863,CitiBank London,GBP,Deliver,76594766,0707-0606-20202020,Partially Paid,8032727,Payment is in progress
+HSBC,101833,CitiBank New York Branch,CAD,Deliver,28593512,1313-0101-20202020,Processing,8402151,Payment is in progress
+DEUTSCHE BANK,100121,CitiBank Singapore,CAD,Receive,43324940,1515-0909-19191919,Processing,9644119,Payment is in progress
+J P Morgan,106271,CitiBank HongKong,CAD,Receive,44897820,3030-0505-19191919,Rejected,985274,Payment Failed
+J P Morgan,105671,CitiBank Singapore,"EUR,",Deliver,8084172,0101-0101-20202020,Rejected,3546558,Payment Failed
+J P Morgan,104754,CitiBank HongKong,USD,Deliver,34075023,2020-0606-19191919,Fully paid,6518985,Payment Failed
+HSBC,109838,CitiBank New York Branch,GBP,Deliver,38314695,1515-0404-20202020,Fully paid,5209029,Transaction complete
+BNY Mellon,104911,CitiBank Singapore,CAD,Receive,44639652,1616-0606-19191919,Fully paid,9526792,Transaction complete
+HSBC,102304,CitiBank New York Branch,CAD,Receive,40249739,0505-0909-19191919,Rejected,1959933,Waiting for pending amount
+BNY Mellon,101044,CitiBank HongKong,USD,Receive,85137934,0808-1212-19191919,Fully paid,6167538,Transaction complete
+BNY Mellon,102020,CitiBank Singapore,"EUR,",Deliver,54739913,1212-1212-19191919,Processing,5680993,Transaction complete
+HSBC,103543,CitiBank New York Branch,CAD,Receive,37476756,0808-1212-19191919,Processing,8062081,Payment Failed
+HSBC,106192,CitiBank London,USD,Deliver,44000118,1111-0707-19191919,Processing,1836827,Waiting for pending amount
+BNY Mellon,100587,CitiBank HongKong,USD,Deliver,2888775,2727-0808-19191919,Processing,7688901,Transaction complete
+HSBC,103938,CitiBank HongKong,"EUR,",Receive,88831830,2626-0404-19191919,Rejected,4852643,Payment is in progress
+J P Morgan,108522,CitiBank New York Branch,GBP,Deliver,31526281,0808-0202-20202020,Partially Paid,670524,Transaction complete
+DEUTSCHE BANK,104456,CitiBank Singapore,USD,Deliver,21948471,1919-0707-19191919,Processing,2397172,Payment is in progress
+DEUTSCHE BANK,108686,CitiBank London,GBP,Receive,21386528,3131-0101-20202020,Rejected,951200,Payment Failed
+DEUTSCHE BANK,107886,CitiBank London,"EUR,",Deliver,40303786,2222-0808-19191919,Partially Paid,7633789,Waiting for pending amount
+DEUTSCHE BANK,100076,CitiBank New York Branch,USD,Deliver,2205882,1414-0606-19191919,Processing,732075,Waiting for pending amount
+DEUTSCHE BANK,109537,CitiBank New York Branch,GBP,Deliver,47478475,1010-0808-19191919,Processing,6022157,Payment Failed
+BNY Mellon,104031,CitiBank Singapore,CAD,Deliver,37042027,0707-0202-20202020,Processing,2427818,Payment Failed
+BNY Mellon,102554,CitiBank HongKong,"EUR,",Deliver,33744137,1515-0101-20202020,Processing,9170883,Transaction complete
+BNY Mellon,101776,CitiBank Singapore,USD,Receive,97764652,2424-1212-19191919,Partially Paid,3459767,Transaction complete
+J P Morgan,108346,CitiBank HongKong,USD,Receive,82373372,2020-0404-19191919,Fully paid,1849265,Transaction complete
+DEUTSCHE BANK,101765,CitiBank Singapore,USD,Receive,93677589,1515-1212-19191919,Rejected,5715711,Transaction complete
+DEUTSCHE BANK,107906,CitiBank HongKong,"EUR,",Receive,16993538,2929-0101-20202020,Rejected,8062029,Waiting for pending amount
+J P Morgan,100447,CitiBank HongKong,"EUR,",Deliver,51658639,1818-0606-19191919,Processing,1081561,Waiting for pending amount
+DEUTSCHE BANK,108018,CitiBank New York Branch,CAD,Deliver,25376567,0404-0404-20202020,Fully paid,1689323,Payment is in progress
+BNY Mellon,105121,CitiBank HongKong,"EUR,",Receive,78680687,0101-0606-20202020,Rejected,1135697,Payment is in progress
+DEUTSCHE BANK,108794,CitiBank New York Branch,"EUR,",Receive,64719630,2525-0404-20202020,Processing,8425363,Waiting for pending amount
+HSBC,109685,CitiBank New York Branch,GBP,Receive,16720771,1515-1010-19191919,Partially Paid,9063914,Waiting for pending amount
+HSBC,103068,CitiBank HongKong,"EUR,",Deliver,88013511,0808-0404-20202020,Rejected,9311334,Transaction complete
+J P Morgan,107935,CitiBank London,CAD,Receive,72687522,0202-0202-20202020,Rejected,8023012,Payment Failed
+DEUTSCHE BANK,105750,CitiBank HongKong,GBP,Receive,68738304,0202-0808-19191919,Partially Paid,8237698,Transaction complete
+HSBC,109358,CitiBank HongKong,"EUR,",Deliver,68166704,2323-0505-19191919,Rejected,5449896,Payment is in progress
+BNY Mellon,102843,CitiBank Singapore,CAD,Deliver,58186123,2828-0808-19191919,Fully paid,7279771,Payment Failed
+HSBC,103257,CitiBank New York Branch,"EUR,",Deliver,76809547,0303-0101-20202020,Partially Paid,2801887,Payment Failed
+J P Morgan,107596,CitiBank HongKong,CAD,Deliver,3936144,1111-0303-20202020,Processing,1869216,Payment Failed
+DEUTSCHE BANK,104390,CitiBank HongKong,GBP,Receive,49814301,0202-0505-20202020,Fully paid,4510929,Payment Failed
+DEUTSCHE BANK,101272,CitiBank Singapore,CAD,Receive,20962158,1919-0909-19191919,Rejected,5873040,Waiting for pending amount
+HSBC,106078,CitiBank New York Branch,GBP,Deliver,47965119,0202-1212-19191919,Fully paid,4748332,Waiting for pending amount
+HSBC,108797,CitiBank HongKong,GBP,Deliver,73655013,1313-0505-20202020,Partially Paid,1156776,Transaction complete
+BNY Mellon,108133,CitiBank New York Branch,USD,Deliver,73982133,1818-0606-19191919,Rejected,2352010,Payment is in progress
+DEUTSCHE BANK,102916,CitiBank New York Branch,CAD,Deliver,39133691,2626-0808-19191919,Rejected,2899161,Waiting for pending amount
+DEUTSCHE BANK,106244,CitiBank Singapore,CAD,Receive,32953198,0101-0606-19191919,Rejected,2095578,Payment is in progress
+J P Morgan,106795,CitiBank Singapore,CAD,Receive,95972515,0101-0404-19191919,Fully paid,2004597,Waiting for pending amount
+J P Morgan,100375,CitiBank London,CAD,Receive,81895327,0606-1111-19191919,Partially Paid,9041238,Transaction complete
+J P Morgan,109223,CitiBank HongKong,CAD,Deliver,46939120,1010-1212-19191919,Fully paid,9564878,Payment Failed
+HSBC,104607,CitiBank Singapore,"EUR,",Receive,78208638,1616-0808-19191919,Processing,4377486,Payment is in progress
+J P Morgan,107720,CitiBank New York Branch,CAD,Deliver,12881175,2626-0505-19191919,Rejected,7241711,Transaction complete
+HSBC,103317,CitiBank HongKong,GBP,Deliver,79048705,2525-0101-20202020,Fully paid,521189,Payment Failed
+HSBC,105985,CitiBank HongKong,CAD,Deliver,82453013,1919-0909-19191919,Fully paid,9197810,Transaction complete
+DEUTSCHE BANK,100039,CitiBank New York Branch,CAD,Receive,30598964,1212-0808-19191919,Rejected,4485429,Payment is in progress
+BNY Mellon,105924,CitiBank London,CAD,Receive,38272637,2626-0303-20202020,Rejected,8498889,Payment is in progress
+J P Morgan,106618,CitiBank Singapore,CAD,Receive,24844232,1313-1212-19191919,Fully paid,7370523,Payment is in progress
+HSBC,108782,CitiBank London,"EUR,",Deliver,40582224,2525-0303-19191919,Partially Paid,9673707,Payment is in progress
+BNY Mellon,105547,CitiBank HongKong,USD,Receive,85990270,1010-0404-20202020,Fully paid,367648,Payment Failed
+J P Morgan,106141,CitiBank Singapore,CAD,Receive,71102641,1616-1010-19191919,Rejected,6408582,Payment is in progress
