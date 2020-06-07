@@ -1,0 +1,301 @@
+From,To,Subject,Body,Class(output),Payment Date
+Adam@HSBC.com,Dipesh@CitiBankLondon.com,Urgent : need transaction details for 845967,We have received your request and will be sending you the details of acc 845967 soon.,D,2020-04-04
+Phillip@CitiBankLondon.com,Dipesh@CitiBankHingKong.com,Payment Failed for 572172,Payment of USD 188399 has been cancelled as per your request.,A,2019-05-10
+Mike@DEUTSCHEBANK.com,Anthony@CitiBankLondon.com,Update on payment request for 296938,Kindly provide the details for Acc no. 296938 at the earliest,D,2019-04-29
+Morgan@DEUTSCHEBANK.com,Dipesh@CitiBankPune.com,Update on payment request for 942151,Please find the details of your account 942151 attached,D,2019-09-16
+Spike@CitiBankNewYork.com,Shai@CitiBankNewYork.com,Transaction Failed for 537968,"Due to lack of funds, cheque no. 275522392695212859538574 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-03-06
+Stacy@CitiBankNewYork.com,Shai@CitiBankNewYork.com,Transaction is in progress for 736887,Fund transfer for ACC No. 736887 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-02-16
+Adam@CitiBankNewYork.com,Isabella@CitiBankLondon.com,Payment Failed for 859184,Payment of EUR 451827 has been cancelled as per your request.,A,2019-06-12
+Phillip@BNYMellon.com,Anthony@CitiBankLondon.com,Acc 558635 Update,Payment 558635 will be completed within two days,B,2019-04-07
+Adam@CitiBankLondon.com,Dipesh@CitiBankHingKong.com,Urgent : need transaction details for 948218,Please find the details of your account 948218 attached,D,2019-10-17
+Adam@CitiBankLondon.com,Shai@CitiBankNewYork.com,Payment Received for 931794,The transaction of amount CAD 989476 has been received successfully.,C,2020-03-26
+Mike@CitiBankNewYork.com,Shai@CitiBankHingKong.com,Payment Failed for 558395,"Due to lack of funds, cheque no. 866581123875217254472761 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2020-01-07
+Stacy@BNYMellon.com,Anthony@CitiBankNewYork.com,Transaction is in progress for 927379,Due to server overflow transaction 927379 will be completed within seven to ten working days,B,2020-03-18
+Adam@CitiBankNewYork.com,Dipesh@CitiBankHingKong.com,Payment Failed for 866634,Payment of USD 619234 has been cancelled as per your request.,A,2020-02-18
+Morgan@BNYMellon.com,Shai@CitiBankLondon.com,Update on Acc 461978,Payment 461978 will be completed within two days,B,2019-05-05
+Mike@CitiBankNewYork.com,Dipesh@CitiBankNewYork.com,Transaction Complete for 455258,The transaction of amount EUR 917639 has been received successfully.,C,2019-10-24
+Phillip@HSBC.com,Anthony@CitiBankPune.com,Waiting for amount pending for 122775,The transaction 122775 is taking too long to be completed,B,2019-11-03
+Spike@DEUTSCHEBANK.com,Isabella@CitiBankLondon.com,Payment in Progress Acc 737865,Fund transfer for ACC No. 737865 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-02-11
+Adam@DEUTSCHEBANK.com,Anthony@CitiBankPune.com,Payment is in progress for 765836,Payment 765836 will be completed within two days,B,2019-12-27
+Morgan@HSBC.com,Anthony@CitiBankPune.com,Transaction Failed for 539115,"Due to unknown technical errors, your transaction for amount USD 818563 has been cancelled.",A,2020-04-06
+Mike@JPMorgan.com,Shai@CitiBankNewYork.com,Acc 326793 Update,Payment 326793 will be completed within two days,B,2019-03-16
+Mike@BNYMellon.com,Shai@CitiBankPune.com,Payment Failed for 859361,Payment of GBP 662869 has been cancelled as per your request.,A,2019-09-02
+Morgan@CitiBankLondon.com,Dipesh@CitiBankPune.com,Payment Failed for 935746,"Due to lack of funds, cheque no. 657629826175818814352947 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-05-23
+Mike@HSBC.com,Shai@CitiBankHingKong.com,Payment Failed for 648988,"Due to lack of funds, cheque no. 292415555436511619278269 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2020-03-31
+Morgan@CitiBankNewYork.com,Dipesh@CitiBankNewYork.com,Waiting for amount pending for 429498,Due to server overflow transaction 429498 will be completed within seven to ten working days,B,2019-06-19
+Spike@CitiBankLondon.com,Anthony@CitiBankLondon.com,Urgent : need transaction details for 597896,Please find the details of your account 597896 attached,D,2020-04-09
+Phillip@CitiBankLondon.com,Anthony@CitiBankPune.com,Urgent : need transaction details for 746941,We have received your request and will be sending you the details of acc 746941 soon.,D,2019-07-22
+Spike@BNYMellon.com,Anthony@CitiBankPune.com,Payment Failed for 897776,"Due to lack of funds, cheque no. 794873819242524995359794 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-12-16
+Adam@BNYMellon.com,Shai@CitiBankHingKong.com,Update on payment request for 812575,Kindly provide the details for Acc no. 812575 at the earliest,D,2019-03-01
+Stacy@BNYMellon.com,Shai@CitiBankNewYork.com,Payment in Progress Acc 228713,Due to server overflow transaction 228713 will be completed within seven to ten working days,B,2020-01-06
+Stacy@BNYMellon.com,Isabella@CitiBankPune.com,Transaction Complete for 176433,The transaction of amount GBP 255855 has been received successfully.,C,2019-05-23
+Morgan@HSBC.com,Dipesh@CitiBankPune.com,Update on Acc 926972,Due to server overflow transaction 926972 will be completed within seven to ten working days,B,2019-11-10
+Adam@CitiBankLondon.com,Anthony@CitiBankSingapore.com,Payment is in progress for 266838,Due to server overflow transaction 266838 will be completed within seven to ten working days,B,2019-06-19
+Stacy@DEUTSCHEBANK.com,Shai@CitiBankHingKong.com,Transaction is in progress for 561896,Fund transfer for ACC No. 561896 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-04-05
+Morgan@BNYMellon.com,Shai@CitiBankNewYork.com,Update on Acc 815559,Due to server overflow transaction 815559 will be completed within seven to ten working days,B,2019-01-15
+Jason@HSBC.com,Shai@CitiBankHingKong.com,Acc 283265 Update,Fund transfer for ACC No. 283265 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-10-18
+Adam@CitiBankNewYork.com,Dipesh@CitiBankNewYork.com,Acc 744341 Update,The transaction 744341 is taking too long to be completed,B,2020-01-28
+Adam@HSBC.com,Shai@CitiBankSingapore.com,Payment Status for 261796,We have received your request and will be sending you the details of acc 261796 soon.,D,2020-01-26
+Adam@JPMorgan.com,Shai@CitiBankSingapore.com,Transaction Complete for 323627,The transaction for amount EUR 665738 related to investment funds has been successfully completed.,C,2020-04-23
+Stacy@BNYMellon.com,Shai@CitiBankHingKong.com,Transaction Complete for 167324,Full payment for amount EUR 294566 has been successfully received.,C,2019-08-05
+Stacy@JPMorgan.com,Shai@CitiBankSingapore.com,Payment Failed for 597387,"Due to unknown technical errors, your transaction for amount EUR 198228 has been cancelled.",A,2020-05-02
+Spike@BNYMellon.com,Isabella@CitiBankSingapore.com,Payment Status for 937473,Kindly provide the details for Acc no. 937473 at the earliest,D,2019-04-03
+Adam@CitiBankNewYork.com,Dipesh@CitiBankLondon.com,Transaction Complete for 791275,Full payment for amount CAD 353368 has been successfully received.,C,2019-05-16
+Morgan@CitiBankLondon.com,Dipesh@CitiBankNewYork.com,Waiting for amount pending for 969557,The transaction 969557 is taking too long to be completed,B,2018-12-17
+Morgan@DEUTSCHEBANK.com,Shai@CitiBankHingKong.com,Update on Acc 113293,Due to server overflow transaction 113293 will be completed within seven to ten working days,B,2019-02-07
+Jason@HSBC.com,Dipesh@CitiBankLondon.com,Transaction Complete for 299742,Full payment for amount EUR 126974 has been successfully received.,C,2019-10-02
+Spike@DEUTSCHEBANK.com,Anthony@CitiBankPune.com,Payment Failed for 692315,"Due to lack of funds, cheque no. 284767219686129967131876 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-07-07
+Phillip@JPMorgan.com,Dipesh@CitiBankSingapore.com,Update on Acc 873179,Payment 873179 will be completed within two days,B,2019-02-19
+Stacy@CitiBankNewYork.com,Isabella@CitiBankPune.com,Update on Acc 478415,The transaction 478415 is taking too long to be completed,B,2019-06-26
+Adam@DEUTSCHEBANK.com,Shai@CitiBankSingapore.com,Waiting for amount pending for 517724,Payment 517724 will be completed within two days,B,2019-02-07
+Morgan@BNYMellon.com,Anthony@CitiBankPune.com,Transaction Failed for 413255,"Due to lack of funds, cheque no. 163544255764772685237544 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2020-01-28
+Adam@DEUTSCHEBANK.com,Shai@CitiBankPune.com,Urgent : need transaction details for 755658,Please find the details of your account 755658 attached,D,2020-02-20
+Morgan@HSBC.com,Anthony@CitiBankPune.com,Transaction Complete for 921268,The transaction for amount GBP 669944 related to investment funds has been successfully completed.,C,2019-12-26
+Adam@CitiBankNewYork.com,Shai@CitiBankSingapore.com,Payment Status for 649818,Please find the details of your account 649818 attached,D,2019-10-26
+Jason@HSBC.com,Dipesh@CitiBankPune.com,Update on payment request for 157368,Please find the details of your account 157368 attached,D,2019-08-01
+Jason@BNYMellon.com,Isabella@CitiBankSingapore.com,Transaction Failed for 363978,Payment of USD 756932 has been cancelled as per your request.,A,2019-02-03
+Mike@BNYMellon.com,Dipesh@CitiBankPune.com,Transaction Failed for 554549,"Due to lack of funds, cheque no. 169414185531824747796767 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-01-05
+Morgan@CitiBankNewYork.com,Dipesh@CitiBankNewYork.com,Payment Failed for 322666,"Due to unknown technical errors, your transaction for amount GBP 619919 has been cancelled.",A,2019-06-25
+Adam@CitiBankLondon.com,Dipesh@CitiBankLondon.com,Payment Received for 782165,The transaction of amount GBP 614513 has been received successfully.,C,2019-10-30
+Spike@HSBC.com,Dipesh@CitiBankNewYork.com,Transaction Complete for 258764,The transaction of amount USD 679357 has been received successfully.,C,2020-03-17
+Adam@HSBC.com,Isabella@CitiBankSingapore.com,Waiting for amount pending for 582699,Fund transfer for ACC No. 582699 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-07-30
+Morgan@BNYMellon.com,Isabella@CitiBankSingapore.com,Update on Acc 687958,The transaction 687958 is taking too long to be completed,B,2019-09-06
+Mike@HSBC.com,Anthony@CitiBankLondon.com,Waiting for amount pending for 881337,The transaction 881337 is taking too long to be completed,B,2019-12-31
+Adam@HSBC.com,Isabella@CitiBankNewYork.com,Update on Acc 538987,Due to server overflow transaction 538987 will be completed within seven to ten working days,B,2018-12-06
+Morgan@BNYMellon.com,Isabella@CitiBankSingapore.com,Urgent : need transaction details for 827192,We have received your request and will be sending you the details of acc 827192 soon.,D,2019-06-04
+Phillip@DEUTSCHEBANK.com,Anthony@CitiBankHingKong.com,Waiting for amount pending for 839958,Due to server overflow transaction 839958 will be completed within seven to ten working days,B,2018-12-30
+Spike@CitiBankNewYork.com,Dipesh@CitiBankSingapore.com,Payment Failed for 936844,Payment of EUR 333472 has been cancelled as per your request.,A,2020-03-12
+Jason@DEUTSCHEBANK.com,Dipesh@CitiBankSingapore.com,Update on payment request for 197734,We have received your request and will be sending you the details of acc 197734 soon.,D,2020-03-27
+Phillip@HSBC.com,Dipesh@CitiBankSingapore.com,Waiting for amount pending for 231468,The transaction 231468 is taking too long to be completed,B,2019-12-10
+Jason@CitiBankLondon.com,Shai@CitiBankHingKong.com,Payment Status for 194973,Please find the details of your account 194973 attached,D,2019-09-05
+Spike@JPMorgan.com,Anthony@CitiBankNewYork.com,Payment is in progress for 862538,The transaction 862538 is taking too long to be completed,B,2020-03-02
+Phillip@HSBC.com,Shai@CitiBankNewYork.com,Payment in Progress Acc 287251,The transaction 287251 is taking too long to be completed,B,2019-12-03
+Spike@CitiBankLondon.com,Anthony@CitiBankPune.com,Payment Status for 417822,We have received your request and will be sending you the details of acc 417822 soon.,D,2019-01-23
+Spike@DEUTSCHEBANK.com,Isabella@CitiBankNewYork.com,Acc 432384 Update,Fund transfer for ACC No. 432384 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-05-09
+Phillip@BNYMellon.com,Anthony@CitiBankNewYork.com,Waiting for amount pending for 591785,Fund transfer for ACC No. 591785 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-05-27
+Jason@HSBC.com,Anthony@CitiBankHingKong.com,Update on payment request for 933135,We have received your request and will be sending you the details of acc 933135 soon.,D,2020-01-02
+Stacy@CitiBankNewYork.com,Shai@CitiBankNewYork.com,Transaction Complete for 927865,The transaction for amount GBP 735686 related to investment funds has been successfully completed.,C,2019-10-05
+Phillip@BNYMellon.com,Anthony@CitiBankHingKong.com,Acc 937838 Update,Fund transfer for ACC No. 937838 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2018-12-08
+Adam@DEUTSCHEBANK.com,Isabella@CitiBankHingKong.com,Acc 642956 Update,The transaction 642956 is taking too long to be completed,B,2020-03-04
+Phillip@CitiBankNewYork.com,Dipesh@CitiBankSingapore.com,Transaction Failed for 387881,Payment of USD 295573 has been cancelled as per your request.,A,2019-12-18
+Morgan@CitiBankLondon.com,Isabella@CitiBankSingapore.com,Payment is in progress for 355296,Due to server overflow transaction 355296 will be completed within seven to ten working days,B,2019-01-12
+Stacy@DEUTSCHEBANK.com,Anthony@CitiBankLondon.com,Waiting for amount pending for 388187,The transaction 388187 is taking too long to be completed,B,2019-09-12
+Morgan@CitiBankNewYork.com,Anthony@CitiBankHingKong.com,Transaction Failed for 895588,Payment of CAD 845324 has been cancelled as per your request.,A,2019-02-02
+Jason@JPMorgan.com,Anthony@CitiBankLondon.com,Payment is in progress for 243868,Payment 243868 will be completed within two days,B,2019-02-15
+Mike@CitiBankNewYork.com,Shai@CitiBankHingKong.com,Payment Received for 558716,The transaction for amount CAD 336299 related to investment funds has been successfully completed.,C,2020-02-23
+Adam@DEUTSCHEBANK.com,Isabella@CitiBankHingKong.com,Payment in Progress Acc 752841,Payment 752841 will be completed within two days,B,2019-05-07
+Spike@DEUTSCHEBANK.com,Shai@CitiBankNewYork.com,Update on Acc 754846,Fund transfer for ACC No. 754846 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-01-14
+Adam@BNYMellon.com,Anthony@CitiBankHingKong.com,Transaction Complete for 248964,Full payment for amount EUR 197758 has been successfully received.,C,2020-02-19
+Phillip@CitiBankLondon.com,Dipesh@CitiBankNewYork.com,Urgent : need transaction details for 981889,Kindly provide the details for Acc no. 981889 at the earliest,D,2019-05-26
+Spike@DEUTSCHEBANK.com,Dipesh@CitiBankSingapore.com,Payment Received for 154746,The transaction of amount EUR 154181 has been received successfully.,C,2019-09-23
+Adam@CitiBankLondon.com,Dipesh@CitiBankHingKong.com,Payment in Progress Acc 944357,Fund transfer for ACC No. 944357 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2018-12-25
+Jason@BNYMellon.com,Anthony@CitiBankLondon.com,Payment Status for 351137,Kindly provide the details for Acc no. 351137 at the earliest,D,2018-12-01
+Jason@DEUTSCHEBANK.com,Isabella@CitiBankLondon.com,Transaction Failed for 338846,"Due to lack of funds, cheque no. 741785667926777974169839 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-09-01
+Phillip@CitiBankLondon.com,Anthony@CitiBankNewYork.com,Payment is in progress for 371252,The transaction 371252 is taking too long to be completed,B,2019-02-23
+Stacy@DEUTSCHEBANK.com,Shai@CitiBankSingapore.com,Payment in Progress Acc 263937,The transaction 263937 is taking too long to be completed,B,2019-01-21
+Mike@JPMorgan.com,Dipesh@CitiBankPune.com,Transaction Failed for 633184,"Due to unknown technical errors, your transaction for amount EUR 431489 has been cancelled.",A,2020-03-25
+Morgan@CitiBankLondon.com,Shai@CitiBankSingapore.com,Payment Failed for 934242,"Due to unknown technical errors, your transaction for amount USD 486794 has been cancelled.",A,2020-03-13
+Mike@CitiBankNewYork.com,Anthony@CitiBankNewYork.com,Update on Acc 395131,Due to server overflow transaction 395131 will be completed within seven to ten working days,B,2019-03-13
+Phillip@BNYMellon.com,Isabella@CitiBankNewYork.com,Acc 897148 Update,Fund transfer for ACC No. 897148 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-04-23
+Phillip@CitiBankNewYork.com,Isabella@CitiBankLondon.com,Transaction is in progress for 375551,Fund transfer for ACC No. 375551 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2018-12-24
+Stacy@CitiBankLondon.com,Dipesh@CitiBankSingapore.com,Payment Received for 969711,Full payment for amount EUR 717984 has been successfully received.,C,2019-09-30
+Adam@CitiBankLondon.com,Isabella@CitiBankLondon.com,Acc 945989 Update,Due to server overflow transaction 945989 will be completed within seven to ten working days,B,2020-01-22
+Morgan@HSBC.com,Anthony@CitiBankNewYork.com,Waiting for amount pending for 866737,Due to server overflow transaction 866737 will be completed within seven to ten working days,B,2019-07-29
+Mike@CitiBankLondon.com,Shai@CitiBankPune.com,Transaction is in progress for 499961,The transaction 499961 is taking too long to be completed,B,2019-08-19
+Jason@DEUTSCHEBANK.com,Anthony@CitiBankLondon.com,Payment Failed for 589821,"Due to lack of funds, cheque no. 647955936968888957484323 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-07-19
+Jason@HSBC.com,Isabella@CitiBankLondon.com,Update on Acc 336176,The transaction 336176 is taking too long to be completed,B,2019-07-24
+Adam@BNYMellon.com,Dipesh@CitiBankHingKong.com,Payment is in progress for 623541,The transaction 623541 is taking too long to be completed,B,2019-05-04
+Adam@HSBC.com,Dipesh@CitiBankLondon.com,Transaction Complete for 533158,Full payment for amount CAD 278223 has been successfully received.,C,2019-08-01
+Jason@JPMorgan.com,Isabella@CitiBankNewYork.com,Transaction Failed for 351424,"Due to lack of funds, cheque no. 299517436488293677186918 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2020-04-16
+Morgan@BNYMellon.com,Anthony@CitiBankPune.com,Transaction Complete for 319594,Full payment for amount CAD 362518 has been successfully received.,C,2020-04-21
+Stacy@CitiBankNewYork.com,Shai@CitiBankNewYork.com,Payment is in progress for 895281,Fund transfer for ACC No. 895281 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-06-28
+Spike@HSBC.com,Isabella@CitiBankSingapore.com,Payment Status for 982976,Please find the details of your account 982976 attached,D,2019-02-26
+Jason@CitiBankLondon.com,Shai@CitiBankHingKong.com,Transaction is in progress for 779619,The transaction 779619 is taking too long to be completed,B,2019-06-14
+Adam@CitiBankNewYork.com,Dipesh@CitiBankNewYork.com,Update on Acc 685459,Due to server overflow transaction 685459 will be completed within seven to ten working days,B,2018-12-06
+Mike@HSBC.com,Anthony@CitiBankNewYork.com,Payment Status for 117188,We have received your request and will be sending you the details of acc 117188 soon.,D,2019-02-09
+Stacy@BNYMellon.com,Shai@CitiBankNewYork.com,Urgent : need transaction details for 948335,We have received your request and will be sending you the details of acc 948335 soon.,D,2020-05-02
+Spike@BNYMellon.com,Anthony@CitiBankNewYork.com,Payment Received for 783644,The transaction for amount GBP 875356 related to investment funds has been successfully completed.,C,2019-10-24
+Adam@CitiBankLondon.com,Anthony@CitiBankSingapore.com,Payment Failed for 275593,"Due to lack of funds, cheque no. 925418799776526337775329 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2020-01-10
+Mike@HSBC.com,Anthony@CitiBankPune.com,Update on Acc 276843,Due to server overflow transaction 276843 will be completed within seven to ten working days,B,2019-06-07
+Phillip@DEUTSCHEBANK.com,Anthony@CitiBankPune.com,Payment Received for 929886,The transaction of amount USD 771532 has been received successfully.,C,2019-03-09
+Morgan@CitiBankLondon.com,Dipesh@CitiBankNewYork.com,Payment Received for 158147,The transaction of amount GBP 682452 has been received successfully.,C,2019-02-24
+Phillip@HSBC.com,Isabella@CitiBankPune.com,Transaction Failed for 351531,Payment of GBP 618728 has been cancelled as per your request.,A,2019-01-14
+Adam@DEUTSCHEBANK.com,Dipesh@CitiBankLondon.com,Update on Acc 311146,The transaction 311146 is taking too long to be completed,B,2019-06-04
+Morgan@JPMorgan.com,Shai@CitiBankLondon.com,Urgent : need transaction details for 877283,We have received your request and will be sending you the details of acc 877283 soon.,D,2020-03-26
+Spike@CitiBankNewYork.com,Shai@CitiBankNewYork.com,Update on payment request for 566583,Kindly provide the details for Acc no. 566583 at the earliest,D,2019-09-27
+Jason@JPMorgan.com,Shai@CitiBankSingapore.com,Acc 127812 Update,The transaction 127812 is taking too long to be completed,B,2020-02-29
+Phillip@CitiBankLondon.com,Shai@CitiBankHingKong.com,Payment is in progress for 816966,Payment 816966 will be completed within two days,B,2020-01-27
+Jason@DEUTSCHEBANK.com,Isabella@CitiBankNewYork.com,Transaction Failed for 348151,Payment of CAD 765545 has been cancelled as per your request.,A,2019-07-24
+Stacy@BNYMellon.com,Isabella@CitiBankLondon.com,Payment in Progress Acc 162311,Fund transfer for ACC No. 162311 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-06-05
+Jason@CitiBankNewYork.com,Anthony@CitiBankNewYork.com,Payment is in progress for 988618,Fund transfer for ACC No. 988618 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-04-24
+Mike@CitiBankNewYork.com,Shai@CitiBankHingKong.com,Payment Status for 463755,We have received your request and will be sending you the details of acc 463755 soon.,D,2020-02-16
+Stacy@HSBC.com,Shai@CitiBankPune.com,Payment Failed for 758752,Payment of USD 828984 has been cancelled as per your request.,A,2019-04-28
+Mike@CitiBankLondon.com,Dipesh@CitiBankSingapore.com,Payment is in progress for 859183,Payment 859183 will be completed within two days,B,2020-05-03
+Morgan@BNYMellon.com,Isabella@CitiBankPune.com,Payment in Progress Acc 824675,Payment 824675 will be completed within two days,B,2018-12-23
+Adam@JPMorgan.com,Shai@CitiBankHingKong.com,Payment Failed for 116518,Payment of GBP 713481 has been cancelled as per your request.,A,2019-08-24
+Mike@DEUTSCHEBANK.com,Shai@CitiBankNewYork.com,Payment is in progress for 913797,Due to server overflow transaction 913797 will be completed within seven to ten working days,B,2020-02-12
+Jason@HSBC.com,Anthony@CitiBankPune.com,Payment is in progress for 971161,Due to server overflow transaction 971161 will be completed within seven to ten working days,B,2019-01-29
+Morgan@DEUTSCHEBANK.com,Isabella@CitiBankLondon.com,Update on payment request for 219273,Kindly provide the details for Acc no. 219273 at the earliest,D,2019-06-05
+Jason@DEUTSCHEBANK.com,Shai@CitiBankNewYork.com,Acc 454249 Update,The transaction 454249 is taking too long to be completed,B,2019-02-25
+Jason@CitiBankLondon.com,Anthony@CitiBankLondon.com,Payment Received for 988241,The transaction of amount GBP 732575 has been received successfully.,C,2020-01-13
+Mike@CitiBankLondon.com,Isabella@CitiBankNewYork.com,Transaction is in progress for 262938,Payment 262938 will be completed within two days,B,2019-06-21
+Morgan@CitiBankNewYork.com,Shai@CitiBankHingKong.com,Urgent : need transaction details for 599276,We have received your request and will be sending you the details of acc 599276 soon.,D,2019-07-24
+Adam@HSBC.com,Dipesh@CitiBankNewYork.com,Transaction is in progress for 418922,Payment 418922 will be completed within two days,B,2019-05-23
+Spike@DEUTSCHEBANK.com,Anthony@CitiBankLondon.com,Payment Received for 522858,The transaction for amount CAD 987775 related to investment funds has been successfully completed.,C,2019-10-17
+Mike@DEUTSCHEBANK.com,Anthony@CitiBankSingapore.com,Transaction Complete for 717587,Full payment for amount CAD 274359 has been successfully received.,C,2019-05-06
+Spike@DEUTSCHEBANK.com,Shai@CitiBankPune.com,Update on payment request for 677277,Kindly provide the details for Acc no. 677277 at the earliest,D,2019-11-27
+Phillip@HSBC.com,Anthony@CitiBankLondon.com,Transaction is in progress for 529431,Payment 529431 will be completed within two days,B,2019-04-24
+Stacy@CitiBankNewYork.com,Dipesh@CitiBankLondon.com,Payment Received for 462844,Full payment for amount CAD 197734 has been successfully received.,C,2019-01-14
+Jason@CitiBankLondon.com,Anthony@CitiBankLondon.com,Update on Acc 112744,Due to server overflow transaction 112744 will be completed within seven to ten working days,B,2020-03-12
+Jason@BNYMellon.com,Isabella@CitiBankHingKong.com,Payment Received for 422613,Full payment for amount USD 139256 has been successfully received.,C,2020-03-11
+Adam@DEUTSCHEBANK.com,Isabella@CitiBankPune.com,Payment in Progress Acc 554316,Due to server overflow transaction 554316 will be completed within seven to ten working days,B,2020-02-17
+Mike@HSBC.com,Isabella@CitiBankSingapore.com,Waiting for amount pending for 349663,Fund transfer for ACC No. 349663 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-02-14
+Stacy@DEUTSCHEBANK.com,Dipesh@CitiBankPune.com,Payment Status for 138329,Please find the details of your account 138329 attached,D,2019-11-30
+Adam@BNYMellon.com,Anthony@CitiBankHingKong.com,Update on Acc 681844,The transaction 681844 is taking too long to be completed,B,2020-01-18
+Jason@HSBC.com,Dipesh@CitiBankLondon.com,Waiting for amount pending for 973773,Due to server overflow transaction 973773 will be completed within seven to ten working days,B,2019-06-19
+Jason@JPMorgan.com,Shai@CitiBankSingapore.com,Waiting for amount pending for 792529,The transaction 792529 is taking too long to be completed,B,2019-01-04
+Jason@HSBC.com,Dipesh@CitiBankSingapore.com,Transaction Complete for 189451,Full payment for amount CAD 713371 has been successfully received.,C,2020-04-03
+Mike@BNYMellon.com,Dipesh@CitiBankLondon.com,Transaction Failed for 754221,Payment of EUR 336783 has been cancelled as per your request.,A,2020-03-09
+Adam@CitiBankNewYork.com,Shai@CitiBankHingKong.com,Waiting for amount pending for 367331,Due to server overflow transaction 367331 will be completed within seven to ten working days,B,2019-01-13
+Spike@CitiBankNewYork.com,Isabella@CitiBankPune.com,Payment Status for 129295,Kindly provide the details for Acc no. 129295 at the earliest,D,2018-12-10
+Jason@CitiBankNewYork.com,Isabella@CitiBankSingapore.com,Payment in Progress Acc 629617,The transaction 629617 is taking too long to be completed,B,2019-12-25
+Morgan@BNYMellon.com,Shai@CitiBankSingapore.com,Transaction is in progress for 498295,Due to server overflow transaction 498295 will be completed within seven to ten working days,B,2019-03-19
+Stacy@CitiBankNewYork.com,Dipesh@CitiBankLondon.com,Urgent : need transaction details for 947537,Kindly provide the details for Acc no. 947537 at the earliest,D,2020-04-19
+Spike@CitiBankNewYork.com,Dipesh@CitiBankHingKong.com,Payment in Progress Acc 784337,Due to server overflow transaction 784337 will be completed within seven to ten working days,B,2019-08-07
+Mike@DEUTSCHEBANK.com,Shai@CitiBankNewYork.com,Payment Status for 253512,Kindly provide the details for Acc no. 253512 at the earliest,D,2019-09-07
+Morgan@JPMorgan.com,Dipesh@CitiBankPune.com,Payment in Progress Acc 551433,Payment 551433 will be completed within two days,B,2018-12-30
+Morgan@HSBC.com,Dipesh@CitiBankLondon.com,Update on payment request for 884732,Kindly provide the details for Acc no. 884732 at the earliest,D,2019-10-29
+Morgan@BNYMellon.com,Isabella@CitiBankSingapore.com,Urgent : need transaction details for 489266,We have received your request and will be sending you the details of acc 489266 soon.,D,2019-10-25
+Jason@CitiBankNewYork.com,Shai@CitiBankNewYork.com,Waiting for amount pending for 879919,Due to server overflow transaction 879919 will be completed within seven to ten working days,B,2019-09-04
+Phillip@CitiBankLondon.com,Isabella@CitiBankSingapore.com,Payment is in progress for 576211,Fund transfer for ACC No. 576211 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-03-23
+Mike@HSBC.com,Shai@CitiBankLondon.com,Waiting for amount pending for 521338,Fund transfer for ACC No. 521338 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-05-15
+Stacy@BNYMellon.com,Isabella@CitiBankSingapore.com,Urgent : need transaction details for 892118,We have received your request and will be sending you the details of acc 892118 soon.,D,2020-05-29
+Jason@JPMorgan.com,Anthony@CitiBankSingapore.com,Transaction Failed for 455686,Payment of EUR 752247 has been cancelled as per your request.,A,2019-01-28
+Adam@BNYMellon.com,Anthony@CitiBankLondon.com,Payment in Progress Acc 382648,Due to server overflow transaction 382648 will be completed within seven to ten working days,B,2020-01-18
+Stacy@CitiBankLondon.com,Isabella@CitiBankPune.com,Transaction is in progress for 962851,Fund transfer for ACC No. 962851 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2018-12-03
+Morgan@BNYMellon.com,Isabella@CitiBankSingapore.com,Payment Received for 965488,Full payment for amount EUR 516485 has been successfully received.,C,2019-05-04
+Jason@CitiBankLondon.com,Isabella@CitiBankHingKong.com,Transaction is in progress for 693674,The transaction 693674 is taking too long to be completed,B,2020-03-05
+Mike@DEUTSCHEBANK.com,Dipesh@CitiBankHingKong.com,Transaction Complete for 753454,The transaction for amount USD 248512 related to investment funds has been successfully completed.,C,2019-08-18
+Jason@HSBC.com,Dipesh@CitiBankHingKong.com,Acc 117378 Update,Payment 117378 will be completed within two days,B,2020-04-28
+Jason@BNYMellon.com,Isabella@CitiBankLondon.com,Acc 292282 Update,Due to server overflow transaction 292282 will be completed within seven to ten working days,B,2019-04-17
+Stacy@CitiBankNewYork.com,Shai@CitiBankLondon.com,Transaction Failed for 325438,"Due to unknown technical errors, your transaction for amount CAD 381763 has been cancelled.",A,2019-05-24
+Adam@JPMorgan.com,Shai@CitiBankLondon.com,Waiting for amount pending for 536421,Fund transfer for ACC No. 536421 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-10-29
+Stacy@JPMorgan.com,Dipesh@CitiBankLondon.com,Transaction is in progress for 244587,Due to server overflow transaction 244587 will be completed within seven to ten working days,B,2020-02-12
+Jason@DEUTSCHEBANK.com,Dipesh@CitiBankSingapore.com,Payment Status for 683839,We have received your request and will be sending you the details of acc 683839 soon.,D,2019-02-08
+Morgan@DEUTSCHEBANK.com,Dipesh@CitiBankPune.com,Update on payment request for 251539,Please find the details of your account 251539 attached,D,2018-12-24
+Phillip@BNYMellon.com,Anthony@CitiBankNewYork.com,Waiting for amount pending for 791422,The transaction 791422 is taking too long to be completed,B,2019-07-03
+Jason@HSBC.com,Anthony@CitiBankSingapore.com,Payment in Progress Acc 515858,Payment 515858 will be completed within two days,B,2019-05-29
+Jason@CitiBankLondon.com,Dipesh@CitiBankPune.com,Transaction is in progress for 576963,The transaction 576963 is taking too long to be completed,B,2019-08-10
+Jason@HSBC.com,Shai@CitiBankNewYork.com,Update on Acc 238716,Due to server overflow transaction 238716 will be completed within seven to ten working days,B,2020-03-14
+Spike@JPMorgan.com,Isabella@CitiBankLondon.com,Payment Status for 589384,Please find the details of your account 589384 attached,D,2019-11-14
+Phillip@JPMorgan.com,Anthony@CitiBankNewYork.com,Payment is in progress for 532668,Fund transfer for ACC No. 532668 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-05-22
+Adam@DEUTSCHEBANK.com,Shai@CitiBankLondon.com,Transaction Complete for 768927,The transaction for amount USD 478366 related to investment funds has been successfully completed.,C,2019-10-01
+Spike@CitiBankNewYork.com,Shai@CitiBankLondon.com,Payment Received for 165495,Full payment for amount GBP 354316 has been successfully received.,C,2019-10-04
+Stacy@HSBC.com,Shai@CitiBankPune.com,Transaction is in progress for 694168,Payment 694168 will be completed within two days,B,2020-05-26
+Phillip@HSBC.com,Dipesh@CitiBankPune.com,Update on payment request for 211211,Kindly provide the details for Acc no. 211211 at the earliest,D,2020-03-18
+Spike@CitiBankNewYork.com,Shai@CitiBankHingKong.com,Payment Failed for 328149,Payment of GBP 897975 has been cancelled as per your request.,A,2019-03-10
+Stacy@CitiBankNewYork.com,Dipesh@CitiBankPune.com,Waiting for amount pending for 153964,The transaction 153964 is taking too long to be completed,B,2019-10-31
+Phillip@HSBC.com,Isabella@CitiBankPune.com,Update on Acc 846738,Due to server overflow transaction 846738 will be completed within seven to ten working days,B,2019-10-28
+Morgan@CitiBankNewYork.com,Isabella@CitiBankHingKong.com,Waiting for amount pending for 251797,The transaction 251797 is taking too long to be completed,B,2019-06-09
+Morgan@CitiBankNewYork.com,Shai@CitiBankPune.com,Transaction Failed for 668566,"Due to unknown technical errors, your transaction for amount USD 163938 has been cancelled.",A,2019-09-07
+Adam@CitiBankLondon.com,Anthony@CitiBankLondon.com,Transaction Failed for 397287,"Due to unknown technical errors, your transaction for amount CAD 138435 has been cancelled.",A,2020-01-27
+Adam@CitiBankLondon.com,Anthony@CitiBankNewYork.com,Transaction Failed for 517458,"Due to unknown technical errors, your transaction for amount EUR 786799 has been cancelled.",A,2019-10-26
+Spike@BNYMellon.com,Dipesh@CitiBankLondon.com,Acc 397172 Update,Due to server overflow transaction 397172 will be completed within seven to ten working days,B,2019-12-09
+Adam@BNYMellon.com,Isabella@CitiBankLondon.com,Payment is in progress for 881173,Fund transfer for ACC No. 881173 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-11-21
+Phillip@CitiBankLondon.com,Anthony@CitiBankNewYork.com,Update on payment request for 995774,We have received your request and will be sending you the details of acc 995774 soon.,D,2020-02-19
+Stacy@BNYMellon.com,Isabella@CitiBankHingKong.com,Transaction Complete for 243913,The transaction of amount USD 876941 has been received successfully.,C,2019-01-17
+Mike@DEUTSCHEBANK.com,Anthony@CitiBankHingKong.com,Update on payment request for 142446,Kindly provide the details for Acc no. 142446 at the earliest,D,2019-10-30
+Adam@BNYMellon.com,Shai@CitiBankNewYork.com,Payment Failed for 626998,"Due to lack of funds, cheque no. 454571169174843125991267 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-05-11
+Phillip@CitiBankLondon.com,Dipesh@CitiBankSingapore.com,Update on Acc 779568,Due to server overflow transaction 779568 will be completed within seven to ten working days,B,2020-05-29
+Morgan@JPMorgan.com,Shai@CitiBankNewYork.com,Acc 541147 Update,The transaction 541147 is taking too long to be completed,B,2020-05-22
+Mike@JPMorgan.com,Anthony@CitiBankSingapore.com,Transaction Failed for 498458,"Due to lack of funds, cheque no. 622738469721151687148836 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-03-10
+Jason@DEUTSCHEBANK.com,Isabella@CitiBankSingapore.com,Update on payment request for 673713,Please find the details of your account 673713 attached,D,2020-04-10
+Jason@CitiBankLondon.com,Isabella@CitiBankLondon.com,Transaction Failed for 387986,"Due to lack of funds, cheque no. 137374953747352755187113 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-08-25
+Adam@DEUTSCHEBANK.com,Isabella@CitiBankPune.com,Update on Acc 298746,Due to server overflow transaction 298746 will be completed within seven to ten working days,B,2019-05-20
+Morgan@JPMorgan.com,Shai@CitiBankNewYork.com,Payment in Progress Acc 448455,Due to server overflow transaction 448455 will be completed within seven to ten working days,B,2019-07-20
+Adam@HSBC.com,Dipesh@CitiBankPune.com,Payment is in progress for 922348,Payment 922348 will be completed within two days,B,2019-02-01
+Morgan@BNYMellon.com,Anthony@CitiBankSingapore.com,Transaction Failed for 427937,"Due to unknown technical errors, your transaction for amount CAD 311129 has been cancelled.",A,2019-01-20
+Morgan@BNYMellon.com,Isabella@CitiBankSingapore.com,Waiting for amount pending for 277925,Due to server overflow transaction 277925 will be completed within seven to ten working days,B,2019-11-01
+Adam@CitiBankNewYork.com,Dipesh@CitiBankNewYork.com,Update on Acc 213865,Payment 213865 will be completed within two days,B,2020-03-20
+Phillip@CitiBankLondon.com,Isabella@CitiBankHingKong.com,Payment is in progress for 785118,Fund transfer for ACC No. 785118 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2018-12-10
+Stacy@DEUTSCHEBANK.com,Anthony@CitiBankSingapore.com,Update on Acc 388511,The transaction 388511 is taking too long to be completed,B,2019-07-13
+Adam@BNYMellon.com,Anthony@CitiBankLondon.com,Transaction Complete for 821414,The transaction for amount CAD 324938 related to investment funds has been successfully completed.,C,2019-05-10
+Spike@JPMorgan.com,Dipesh@CitiBankPune.com,Transaction Complete for 144724,The transaction for amount EUR 319554 related to investment funds has been successfully completed.,C,2020-05-06
+Mike@DEUTSCHEBANK.com,Isabella@CitiBankNewYork.com,Update on payment request for 283422,Kindly provide the details for Acc no. 283422 at the earliest,D,2019-04-18
+Stacy@CitiBankNewYork.com,Isabella@CitiBankHingKong.com,Urgent : need transaction details for 286723,We have received your request and will be sending you the details of acc 286723 soon.,D,2019-05-22
+Morgan@JPMorgan.com,Isabella@CitiBankSingapore.com,Waiting for amount pending for 595665,Due to server overflow transaction 595665 will be completed within seven to ten working days,B,2019-09-28
+Adam@BNYMellon.com,Shai@CitiBankNewYork.com,Update on Acc 882189,Due to server overflow transaction 882189 will be completed within seven to ten working days,B,2019-10-10
+Adam@HSBC.com,Dipesh@CitiBankSingapore.com,Transaction Complete for 736741,The transaction of amount USD 474816 has been received successfully.,C,2018-12-24
+Mike@CitiBankNewYork.com,Anthony@CitiBankHingKong.com,Transaction Complete for 697276,The transaction of amount GBP 422328 has been received successfully.,C,2019-12-07
+Spike@CitiBankNewYork.com,Anthony@CitiBankNewYork.com,Payment Failed for 372639,"Due to unknown technical errors, your transaction for amount GBP 472517 has been cancelled.",A,2019-11-16
+Mike@JPMorgan.com,Shai@CitiBankHingKong.com,Update on Acc 118293,Fund transfer for ACC No. 118293 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-05-01
+Spike@BNYMellon.com,Shai@CitiBankPune.com,Acc 836716 Update,The transaction 836716 is taking too long to be completed,B,2019-09-13
+Jason@HSBC.com,Shai@CitiBankLondon.com,Transaction is in progress for 775778,Due to server overflow transaction 775778 will be completed within seven to ten working days,B,2020-01-30
+Adam@JPMorgan.com,Isabella@CitiBankSingapore.com,Payment in Progress Acc 159673,Fund transfer for ACC No. 159673 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-01-24
+Mike@HSBC.com,Anthony@CitiBankPune.com,Update on payment request for 652323,Please find the details of your account 652323 attached,D,2020-03-05
+Phillip@DEUTSCHEBANK.com,Dipesh@CitiBankPune.com,Urgent : need transaction details for 324698,Please find the details of your account 324698 attached,D,2019-01-15
+Adam@BNYMellon.com,Anthony@CitiBankHingKong.com,Transaction is in progress for 637666,Payment 637666 will be completed within two days,B,2020-02-16
+Stacy@HSBC.com,Shai@CitiBankPune.com,Acc 796556 Update,Due to server overflow transaction 796556 will be completed within seven to ten working days,B,2019-05-29
+Jason@BNYMellon.com,Isabella@CitiBankNewYork.com,Transaction is in progress for 545134,The transaction 545134 is taking too long to be completed,B,2020-05-17
+Adam@JPMorgan.com,Dipesh@CitiBankSingapore.com,Acc 828937 Update,Payment 828937 will be completed within two days,B,2018-12-07
+Mike@JPMorgan.com,Isabella@CitiBankNewYork.com,Transaction is in progress for 328246,Payment 328246 will be completed within two days,B,2019-01-23
+Mike@JPMorgan.com,Dipesh@CitiBankSingapore.com,Transaction is in progress for 539988,Due to server overflow transaction 539988 will be completed within seven to ten working days,B,2019-01-09
+Spike@JPMorgan.com,Dipesh@CitiBankNewYork.com,Transaction Failed for 333371,"Due to unknown technical errors, your transaction for amount GBP 167988 has been cancelled.",A,2019-08-23
+Morgan@BNYMellon.com,Isabella@CitiBankSingapore.com,Update on Acc 917579,The transaction 917579 is taking too long to be completed,B,2019-06-03
+Phillip@CitiBankLondon.com,Isabella@CitiBankSingapore.com,Update on payment request for 292955,Please find the details of your account 292955 attached,D,2019-06-23
+Mike@JPMorgan.com,Isabella@CitiBankNewYork.com,Transaction Failed for 516868,"Due to unknown technical errors, your transaction for amount GBP 363171 has been cancelled.",A,2019-07-27
+Stacy@HSBC.com,Isabella@CitiBankHingKong.com,Acc 597219 Update,Payment 597219 will be completed within two days,B,2019-05-05
+Stacy@HSBC.com,Dipesh@CitiBankSingapore.com,Transaction is in progress for 469932,Fund transfer for ACC No. 469932 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-04-17
+Phillip@HSBC.com,Shai@CitiBankNewYork.com,Payment Received for 615875,The transaction for amount USD 699514 related to investment funds has been successfully completed.,C,2019-11-15
+Spike@JPMorgan.com,Isabella@CitiBankLondon.com,Transaction Failed for 754241,"Due to unknown technical errors, your transaction for amount CAD 387526 has been cancelled.",A,2018-12-21
+Jason@JPMorgan.com,Shai@CitiBankPune.com,Transaction Complete for 231444,The transaction of amount GBP 445248 has been received successfully.,C,2019-07-03
+Jason@CitiBankNewYork.com,Isabella@CitiBankLondon.com,Update on payment request for 388171,Please find the details of your account 388171 attached,D,2019-12-26
+Stacy@CitiBankLondon.com,Isabella@CitiBankPune.com,Acc 435271 Update,Fund transfer for ACC No. 435271 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-01-02
+Stacy@CitiBankNewYork.com,Anthony@CitiBankSingapore.com,Payment Status for 728338,Kindly provide the details for Acc no. 728338 at the earliest,D,2018-12-21
+Spike@JPMorgan.com,Anthony@CitiBankSingapore.com,Acc 791648 Update,The transaction 791648 is taking too long to be completed,B,2019-07-14
+Adam@CitiBankLondon.com,Isabella@CitiBankLondon.com,Update on payment request for 348562,We have received your request and will be sending you the details of acc 348562 soon.,D,2019-02-16
+Adam@HSBC.com,Isabella@CitiBankPune.com,Transaction is in progress for 195957,Fund transfer for ACC No. 195957 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2020-02-29
+Phillip@CitiBankLondon.com,Shai@CitiBankNewYork.com,Waiting for amount pending for 268577,Fund transfer for ACC No. 268577 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-04-13
+Stacy@CitiBankLondon.com,Dipesh@CitiBankNewYork.com,Payment Failed for 251729,Payment of EUR 445376 has been cancelled as per your request.,A,2019-05-01
+Mike@HSBC.com,Isabella@CitiBankLondon.com,Transaction is in progress for 125385,The transaction 125385 is taking too long to be completed,B,2019-10-09
+Morgan@DEUTSCHEBANK.com,Dipesh@CitiBankHingKong.com,Update on payment request for 748271,Kindly provide the details for Acc no. 748271 at the earliest,D,2018-12-07
+Mike@CitiBankNewYork.com,Anthony@CitiBankSingapore.com,Transaction Complete for 968698,The transaction of amount CAD 197581 has been received successfully.,C,2019-01-14
+Morgan@HSBC.com,Dipesh@CitiBankPune.com,Payment Received for 992844,Full payment for amount CAD 384489 has been successfully received.,C,2020-05-27
+Spike@HSBC.com,Isabella@CitiBankLondon.com,Transaction Failed for 681787,Payment of USD 279823 has been cancelled as per your request.,A,2019-07-14
+Phillip@BNYMellon.com,Shai@CitiBankNewYork.com,Payment in Progress Acc 685378,Due to server overflow transaction 685378 will be completed within seven to ten working days,B,2019-11-02
+Spike@CitiBankLondon.com,Dipesh@CitiBankSingapore.com,Urgent : need transaction details for 679353,Kindly provide the details for Acc no. 679353 at the earliest,D,2019-04-29
+Jason@BNYMellon.com,Shai@CitiBankLondon.com,Payment in Progress Acc 155849,Payment 155849 will be completed within two days,B,2019-07-30
+Morgan@CitiBankNewYork.com,Isabella@CitiBankLondon.com,Transaction is in progress for 595637,Payment 595637 will be completed within two days,B,2019-10-04
+Mike@HSBC.com,Shai@CitiBankSingapore.com,Update on payment request for 571245,Please find the details of your account 571245 attached,D,2019-03-26
+Mike@HSBC.com,Anthony@CitiBankLondon.com,Payment Failed for 795349,"Due to unknown technical errors, your transaction for amount USD 573238 has been cancelled.",A,2019-11-17
+Stacy@CitiBankLondon.com,Dipesh@CitiBankLondon.com,Waiting for amount pending for 338359,Payment 338359 will be completed within two days,B,2019-07-29
+Jason@CitiBankNewYork.com,Anthony@CitiBankSingapore.com,Transaction is in progress for 953238,The transaction 953238 is taking too long to be completed,B,2019-06-23
+Spike@BNYMellon.com,Dipesh@CitiBankHingKong.com,Transaction is in progress for 161921,Due to server overflow transaction 161921 will be completed within seven to ten working days,B,2019-09-09
+Mike@CitiBankLondon.com,Anthony@CitiBankPune.com,Payment Received for 475128,Full payment for amount CAD 981738 has been successfully received.,C,2018-12-19
+Adam@JPMorgan.com,Isabella@CitiBankHingKong.com,Payment Failed for 538698,"Due to lack of funds, cheque no. 176595659423552234961824 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-06-22
+Stacy@CitiBankNewYork.com,Anthony@CitiBankSingapore.com,Payment is in progress for 888499,Fund transfer for ACC No. 888499 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-04-04
+Stacy@HSBC.com,Shai@CitiBankNewYork.com,Payment in Progress Acc 113813,Payment 113813 will be completed within two days,B,2019-10-16
+Phillip@HSBC.com,Anthony@CitiBankSingapore.com,Transaction Complete for 172928,The transaction for amount EUR 524354 related to investment funds has been successfully completed.,C,2019-04-02
+Adam@DEUTSCHEBANK.com,Anthony@CitiBankSingapore.com,Update on Acc 629112,Payment 629112 will be completed within two days,B,2019-11-20
+Mike@HSBC.com,Isabella@CitiBankPune.com,Acc 483395 Update,Fund transfer for ACC No. 483395 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-04-12
+Adam@DEUTSCHEBANK.com,Anthony@CitiBankNewYork.com,Payment Status for 712183,We have received your request and will be sending you the details of acc 712183 soon.,D,2019-01-13
+Morgan@BNYMellon.com,Dipesh@CitiBankLondon.com,Update on Acc 572452,Due to server overflow transaction 572452 will be completed within seven to ten working days,B,2019-04-25
+Mike@HSBC.com,Anthony@CitiBankHingKong.com,Payment Status for 193817,We have received your request and will be sending you the details of acc 193817 soon.,D,2019-03-30
+Mike@BNYMellon.com,Shai@CitiBankSingapore.com,Update on payment request for 829638,Kindly provide the details for Acc no. 829638 at the earliest,D,2020-02-21
+Jason@BNYMellon.com,Dipesh@CitiBankNewYork.com,Transaction Failed for 781299,"Due to unknown technical errors, your transaction for amount GBP 815962 has been cancelled.",A,2019-03-30
+Phillip@JPMorgan.com,Anthony@CitiBankSingapore.com,Acc 863866 Update,Due to server overflow transaction 863866 will be completed within seven to ten working days,B,2020-01-10
+Stacy@DEUTSCHEBANK.com,Shai@CitiBankNewYork.com,Urgent : need transaction details for 584279,Please find the details of your account 584279 attached,D,2019-10-09
+Phillip@BNYMellon.com,Dipesh@CitiBankHingKong.com,Payment Failed for 982945,"Due to unknown technical errors, your transaction for amount CAD 285851 has been cancelled.",A,2019-03-02
+Spike@DEUTSCHEBANK.com,Shai@CitiBankHingKong.com,Transaction Complete for 673845,The transaction for amount USD 435114 related to investment funds has been successfully completed.,C,2019-04-12
+Adam@CitiBankLondon.com,Isabella@CitiBankNewYork.com,Payment is in progress for 514912,Due to server overflow transaction 514912 will be completed within seven to ten working days,B,2019-08-14
+Spike@CitiBankNewYork.com,Shai@CitiBankLondon.com,Payment Failed for 731952,Payment of GBP 586181 has been cancelled as per your request.,A,2019-12-12
+Stacy@HSBC.com,Isabella@CitiBankNewYork.com,Payment Failed for 199352,"Due to unknown technical errors, your transaction for amount GBP 161316 has been cancelled.",A,2019-12-24
+Phillip@CitiBankLondon.com,Shai@CitiBankLondon.com,Update on payment request for 635539,Kindly provide the details for Acc no. 635539 at the earliest,D,2020-02-03
+Mike@DEUTSCHEBANK.com,Isabella@CitiBankSingapore.com,Transaction Complete for 251661,Full payment for amount GBP 114611 has been successfully received.,C,2019-01-21
+Stacy@JPMorgan.com,Dipesh@CitiBankHingKong.com,Payment is in progress for 445258,Fund transfer for ACC No. 445258 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-05-13
+Spike@DEUTSCHEBANK.com,Anthony@CitiBankLondon.com,Payment is in progress for 986968,Fund transfer for ACC No. 986968 has partially stopped due to unknown technical error. We regret the inconvenience.,B,2019-07-16
+Jason@JPMorgan.com,Anthony@CitiBankHingKong.com,Transaction Failed for 939823,"Due to lack of funds, cheque no. 463237479327462962853246 has bounced. Kindly ensure that you have enough funds and then submit a new cheque at the earliest.",A,2019-04-28
+Phillip@DEUTSCHEBANK.com,Dipesh@CitiBankLondon.com,Payment Status for 135946,We have received your request and will be sending you the details of acc 135946 soon.,D,2019-02-16
+Mike@BNYMellon.com,Isabella@CitiBankPune.com,Urgent : need transaction details for 376864,Please find the details of your account 376864 attached,D,2019-11-12
+Adam@CitiBankNewYork.com,Isabella@CitiBankNewYork.com,Transaction is in progress for 352942,Due to server overflow transaction 352942 will be completed within seven to ten working days,B,2019-07-14
+Morgan@CitiBankNewYork.com,Dipesh@CitiBankHingKong.com,Transaction Failed for 251971,Payment of EUR 184129 has been cancelled as per your request.,A,2019-08-14
