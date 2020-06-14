@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <h2>Project 2 - Email Classification</h2>
+      <hr/>
+
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger">
+            {{ message }}
+         </div>
+      {%- endfor %}
+
+      <form action = "{{ request.path }}" method = "post">
+        <p>
+         <label for = "mfrom">From: </label><br>
+         <input type = "text" name = "mfrom" placeholder = "Mail From" /><br>
+       </p>
+       <p>
+         <label for = "mto">To: </label><br>
+         <input type = "text" name = "mto" placeholder = "Mail To" /><br>
+       </p>
+       <p>
+         <label for = "msubject">Subject: </label><br>
+         <input name = "msubject" placeholder = "Mail Subject"><br>
+       </p>
+       <p>
+         <label for = "mbody">Email Body</label><br>
+         <textarea name = "mbody" placeholder = "Mail Body" /></textarea><br>
+       </p>
+         <input type = "submit" value = "Submit" />
+      </form>
+   </body>
+</html>
