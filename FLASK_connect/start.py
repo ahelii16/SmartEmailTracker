@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, abort, request, redirect, url
 from ReadClassify import Preprocess
 from funct import add, temp, pred
 from testing import regressor
-from ProcessEmail import ProcessNewEmail
+from junecheckone import inputfunc
 
 app = Flask(__name__)
 
@@ -30,10 +30,11 @@ def welcome():
             "Subject": request.form['Subject'],
             "Message": request.form['Message']
         }
-        m = ProcessNewEmail(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
+        m = inputfunc(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
+        print(m)
         return redirect(url_for('cls', mesg=m))
     else:
-        return render_template("home.html")
+        return render_template("index.html")
 
 
 @app.route("/test", methods=["GET", "POST"])
