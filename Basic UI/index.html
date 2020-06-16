@@ -45,6 +45,16 @@
 		<p>
 			The email belongs to class :
 		</p>
+		<p>Was the right class predicted?</p>
+		<button type="submit">Yes</button>
+		<span></span>
+		<button type="submit" onclick="myfunc()">No </button>
+        <p id="demo"></p>
 	</div>
+	<script>
+		function myfunc(){
+			document.getElementById("demo").innerHTML = "<iframe id='myHtml' src='dropdown.html'></iframe>";
+        }
+    </script>
 </body>
 </html>
