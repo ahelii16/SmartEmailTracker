@@ -68,6 +68,16 @@ def clean(text):
 #    df['Text_Data'] = (df['Subject'] + " " + df['Body'])
 
 
+def findNum(st):
+    a = []
+    for word in st.split():
+        try:
+            a.append(float(word))
+        except ValueError:
+            pass
+    return str(a[0])
+
+
 def converter(x):
     try:
         return ' '.join([x.lower() for x in str(x).split()])
@@ -130,6 +140,9 @@ Y = le.fit_transform(classes)
 
 
 def inputfunc(to,fr,input_subj,input_bod):
+    ID = findNum(input_subj)
+    print(ID)
+    print(type(ID))
     s1 = converter(input_bod + " " + input_subj)
     s = clean(s1)
     encoded_mail = t.texts_to_sequences([s])
@@ -143,7 +156,7 @@ def inputfunc(to,fr,input_subj,input_bod):
     model_glove.load_weights("model_glove.h5")
     y_pred = model_glove.predict(padded_input)
     k = le.inverse_transform(y_pred)
-    return k[0][0]
+    return k[0][0],ID
 
 inr=inputfunc('a','b',"Transaction failed for ID: 3437386475674385","Hi, your payment with ID: 3437386475674385 for 98, 453 GBP was failed and amount will be transferred back in 3-5 business days.")
 print(inr)

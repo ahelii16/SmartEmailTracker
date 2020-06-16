@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+     <style>
+     table, th, td {
+       border: 1px solid black;
+       border-collapse: collapse;
+     }
+     th, td {
+        padding: 5px;
+      }
+      th {
+        text-align: left;
+      }
+     </style>
+   </head>
+   <body>
+      <h3>
+         <a href = "{{ url_for('show_all') }}">Email Classification Review </a>
+      </h3>
+
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+
+      <h3>All Mails in DB (<a href = "{{ url_for('welcome') }}">Enter New Mail
+      </a>)</h3>
+
+      <table style="width:100%">
+         <thead>
+            <tr>
+               <th>serial No.</th>
+               <th>From</th>
+               <th>To</th>
+               <th>Transction ID</th>
+               <th>Subject</th>
+               <th>Body</th>
+               <th>Predicted Class</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for mail in mails %}
+               <tr>
+                  <td>{{ mail.id }}</td>
+                  <td>{{ mail.mfrom }}</td>
+                  <td>{{ mail.mto }}</td>
+                  <td>{{ mail.mdate }}</td>
+                  <td>{{ mail.msubject }}</td>
+                  <td>{{ mail.mbody }}</td>
+                  <td>{{ mail.m_class }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </body>
+</html>
