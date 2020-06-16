@@ -1,17 +1,14 @@
-from ReadClassify import Preprocess
 import pickle
 import numpy as np
 
-def temp(inputvalues):
-    m = Preprocess(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['msgBody'])
-    return m
-#print(m)
 
 def add(n,m):
     s=n+m
     return s
 
+
 model=pickle.load(open('test_model.pkl','rb'))
+
 
 def pred(a,b,c):
     a = np.asarray(a, dtype='float64')
