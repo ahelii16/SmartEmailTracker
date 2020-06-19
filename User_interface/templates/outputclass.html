@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Email has been classified </title>
+    <link rel="stylesheet" type="text/css" href={{url_for('static',filename='style.css')}}>
+</head>
+<body>
+    <div class="output">
+		<h2>Predicted Output</h2>
+		<p>
+			The email belongs to class : {{m}}
+		</p>
+		<p>Was the right class predicted?</p>
+		<!--<button type="submit">Yes</button>-->
+        <button>
+               <a href="{{url_for('right')}}">
+                    Yes
+                </a>
+        </button>
+		<span></span>
+        <button>
+               <a href="{{url_for('wrong')}}">
+                    NO
+                </a>
+        </button>
+		<span></span>
+		<button type="submit" onclick="myfunc()">No </button>
+        <p id="demo"></p>
+	</div>
+    <script>
+		function myfunc(){
+			document.getElementById("demo").innerHTML = "<iframe src='dropdown.html'></iframe>";
+        }
+    </script>
+    <p>
+        <button>
+               <a href="{{url_for('welcome')}}">
+                    Next Entry
+                </a>
+        </button>
+    </p>
+</body>
+</html>

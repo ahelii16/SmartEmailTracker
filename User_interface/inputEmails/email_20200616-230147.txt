@@ -1,0 +1,7 @@
+To: abc@abc.com 
+From: xyz@xyz.com 
+ID 12345.0
+Subject: what is the status of my transaction: 12345 
+
+Email_Body: hello 
+class: Request 
