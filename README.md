@@ -10,39 +10,57 @@ The current project has lots of content in emails post which the ops user has to
 
 - Based on the event type received in the email the system will take the desired actions like booking a collateral or resolve the dispute etc.
 
-
 ## For Checkpoint 1:
-We have used biLSTM model to classify incoming emails as 'Complete', 'Failed', 'Pending', 'Request', 'Processing', 'General', in regards to payment data. 
 
-### How to run: 
+We have used biLSTM model to classify incoming emails as 'Complete', 'Failed', 'Pending', 'Request', 'Processing', 'General', in regards to payment data.
+
+# How to run:
 
 Go to directory ListenerUIFlask
 
-pip install flask <br>
-pip install flask-sqlalchemy <br>
+pip install flask
+pip install flask-sqlalchemy
 
-- run listener.py (command: python listener.py) <br>
-- run mailworking.py (command: python mailworking.py) <br>
-
-UI will be rendered on localhost:5000 <br>
-So, both listener.py and mailworking.py have to be run together. <br>
+run listener.py (command: python listener.py)
+run mailworking.py (command: python mailworking.py)
+UI will be rendered on localhost:5000
+So, both listener.py and mailworking.py have to be run together.
 Input can given from HTML form or directly as a txt file in inputEmails directory
 
-### Files required in same directory are:
+# Files required in same directory are:
+
 - runbiLSTM.py
 - glove.6B.300d.txt (can be downloaded from Kaggle)
 - model_glove.json
 - model_glove.h5
 - emaildataset.csv
 - inputEmails directory
+- static
+- templates
 
-### Email Format assumed:
+# Input Format for Live-User-Input and class prediction:
 
-To: Rahul@CitiBankPune.com <br>
-From: Mike@BNYMellon.com <br>
-Subject: Transaction 608234 Complete <br>
-Hi, <br>
-Hope you are well. <br>
-Wanted to inform you that transaction has been completed successfully. <br>
-Thanks for your assistance! <br>
-Mike <br>
+- Files needed from github:-"User-Interface"
+- software: 1- pycharm or sublime text editor
+- Libraries- pip install "(missing library-name)"
+
+## type command:
+```
+export FLASK_APP=start.py
+export FLASK_ENV=development
+flask run
+```
+
+- If directory not found showing, at those place-write absolute path that file in your laptop
+- open "User-Interface" file from master(gitHub) and run the above commands
+
+# Email Format assumed:
+
+To: Rahul@CitiBankPune.com
+From: Mike@BNYMellon.com
+Subject: Transaction 608234 Complete
+Hi,
+Hope you are well.
+Wanted to inform you that transaction has been completed successfully.
+Thanks for your assistance!
+Mike
