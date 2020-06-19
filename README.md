@@ -29,27 +29,29 @@ Input can given from HTML form or directly as a txt file in inputEmails director
 
 # Files required in same directory are:
 
-runbiLSTM.py
-glove.6B.300d.txt (can be downloaded from Kaggle)
-model_glove.json
-model_glove.h5
-emaildataset.csv
-inputEmails directory
-static
-templates
+- runbiLSTM.py
+- glove.6B.300d.txt (can be downloaded from Kaggle)
+- model_glove.json
+- model_glove.h5
+- emaildataset.csv
+- inputEmails directory
+- static
+- templates
 
-## Input Format for Live-User-Input and class prediction:
+# Input Format for Live-User-Input and class prediction:
 
-Files needed from github:-"User-Interface"
-software: 1- pycharm or sublime text editor
-Libraries- pip install "(missing library-name)"
-# type command:
+- Files needed from github:-"User-Interface"
+- software: 1- pycharm or sublime text editor
+- Libraries- pip install "(missing library-name)"
 
+## type command:
+```
 export FLASK_APP=start.py
 export FLASK_ENV=development
 flask run
-	#If directory not found showing, at those place-write absolute path for 	that file in your laptop
-	#open "User-Interface" file from master(gitHub) and run the above commands
+```
+	- If directory not found showing, at those place-write absolute path for 	   that file in your laptop
+	- open "User-Interface" file from master(gitHub) and run the above commands
 
 # Email Format assumed:
 
