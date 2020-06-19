@@ -50,8 +50,9 @@ export FLASK_APP=start.py
 export FLASK_ENV=development
 flask run
 ```
-	- If directory not found showing, at those place-write absolute path for 	   that file in your laptop
-	- open "User-Interface" file from master(gitHub) and run the above commands
+
+- If directory not found showing, at those place-write absolute path that file in your laptop
+- open "User-Interface" file from master(gitHub) and run the above commands
 
 # Email Format assumed:
 
