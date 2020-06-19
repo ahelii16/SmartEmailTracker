@@ -29,6 +29,7 @@ So, both listener.py and mailworking.py have to be run together. <br>
 Input can given from HTML form or directly as a txt file in inputEmails directory
 
 ### Files required in same directory are:
+- runbiLSTM.py
 - glove.6B.300d.txt (can be downloaded from Kaggle)
 - model_glove.json
 - model_glove.h5
