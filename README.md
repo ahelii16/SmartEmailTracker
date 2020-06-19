@@ -11,9 +11,11 @@ The current project has lots of content in emails post which the ops user has to
 - Based on the event type received in the email the system will take the desired actions like booking a collateral or resolve the dispute etc.
 
 ##For Checkpoint 1:
+
 We have used biLSTM model to classify incoming emails as 'Complete', 'Failed', 'Pending', 'Request', 'Processing', 'General', in regards to payment data.
 
 #How to run:
+
 Go to directory ListenerUIFlask
 
 pip install flask
@@ -26,6 +28,7 @@ So, both listener.py and mailworking.py have to be run together.
 Input can given from HTML form or directly as a txt file in inputEmails directory
 
 #Files required in same directory are:
+
 runbiLSTM.py
 glove.6B.300d.txt (can be downloaded from Kaggle)
 model_glove.json
@@ -36,10 +39,12 @@ static
 templates
 
 ##Input Format for Live-User-Input and class prediction:
+
 Files needed from github:-"User-Interface"
 software: 1- pycharm or sublime text editor
 Libraries- pip install "(missing library-name)"
 #type command:
+
 export FLASK_APP=start.py
 export FLASK_ENV=development
 flask run
@@ -47,6 +52,7 @@ flask run
 	#open "User-Interface" file from master(gitHub) and run the above commands
 
 #Email Format assumed:
+
 To: Rahul@CitiBankPune.com
 From: Mike@BNYMellon.com
 Subject: Transaction 608234 Complete
