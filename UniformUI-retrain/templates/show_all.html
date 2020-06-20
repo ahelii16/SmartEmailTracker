@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+     <style>
+     table, th, td {
+       border: 1px solid black;
+       border-collapse: collapse;
+     }
+     th, td {
+        padding: 5px;
+      }
+      th {
+        text-align: left;
+      }
+     </style>
+<style>
+.table-layout {
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family:"Trebuchet MS";
+    margin: 0 auto 0;
+}
+.table-layout td, .table-layout th {
+    border: 1px solid grey;
+    padding: 5px 5px 0;
+}
+.table-layout td {
+    text-align: left;
+}
+.selected {
+    color: red;
+}
+</style>
+
+   	<title>Smart Email Tracker</title>
+   	<link rel="stylesheet" type="text/css" href="../static/style.css">
+   </head>
+   <body>
+   	<h1>Smart Email Tracker</h1>
+   	<hr>
+   		<button>
+   			<a href="{{url_for('retrain')}}">
+   				Send Emails for Retraining
+   			</a>
+   		</button>
+      <button>
+        <a href="{{url_for('welcome')}}">
+          Enter New Email
+        </a>
+      </button>
+   		<button>
+   			<a href="{{url_for('findthread')}}">
+   				Find Email Thread
+   			</a>
+   		</button>
+   		<br>
+
+   	<hr>
+
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+
+      <h3>All Mails in DB </h3>
+
+      <table id="display-table" class="table-layout" style="width:100%" >
+         <thead>
+            <tr>
+               <th>Mail_ID</th>
+               <th>From</th>
+               <th>To</th>
+               <th>Received On</th>
+               <th>Transaction ID</th>
+               <th>Subject</th>
+               <th>Body</th>
+               <th>Predicted Class</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for mail in mails %}
+               <tr>
+                  <td>{{ mail.id }}</td>
+                  <td>{{ mail.mfrom }}</td>
+                  <td>{{ mail.mto }}</td>
+                  <td>{{ mail.mdate }}</td>
+                  <td>{{mail.tid}}</td>
+                  <td>{{ mail.msubject }}</td>
+                  <td>{{ mail.mbody }}</td>
+                  <td>{{ mail.mclass }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+   </body>
+</html>

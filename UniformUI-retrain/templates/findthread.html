@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      h3 {text-align: center;}
+    </style>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href={{url_for('static',filename='style.css')}}>
+</head>
+<body>
+  	<h1>Smart Email Tracker</h1>
+  	<hr>
+  		<button>
+  			<a href="{{url_for('show_all')}}">
+  				View All Emails
+  			</a>
+  		</button>
+  		<button>
+  			<a href="{{url_for('retrain')}}">
+  				Send Emails for Retraining
+  			</a>
+  		</button>
+  		<button>
+  			<a href="{{url_for('welcome')}}">
+  				Enter New Email
+  			</a>
+  		</button>
+  		<button>
+  			<a href="{{url_for('findthread')}}">
+  				Find Email Thread
+  			</a>
+  		</button>
+  		<br>
+  	<hr>
+    <h3>Enter the Transaction ID: </h3>
+    <form method="post">
+        <p>
+            <input type="text" name="transacid">
+        </p>
+         <button type="submit">Send</button>
+     </form>
+</body>
+</html>
