@@ -1,12 +1,12 @@
 from flask import Flask, render_template, jsonify, abort, request, redirect, url_for, flash
-from funct import add, pred
-from testing import regressor
+# from funct import add, pred
+# from testing import regressor
 from junecheckone import inputfunc
 from flask_sqlalchemy import SQLAlchemy
 import time
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mailss.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
 app.config['SECRET_KEY'] = "random string"
 
 db = SQLAlchemy(app)

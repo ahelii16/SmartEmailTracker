@@ -9,13 +9,7 @@ from tensorflow.keras.models import model_from_json
 
 
 ##%matplotlib inline
-
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
-
-import seaborn as sns;
-
-sns.set_style('whitegrid')
 
 # NLP
 from nltk.tokenize.regexp import RegexpTokenizer
