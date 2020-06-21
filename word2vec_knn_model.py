@@ -16,14 +16,13 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import accuracy_score
 from scipy import spatial
 
-from nltk.corpus import stopwords
+import re
+import spacy
+import en_core_web_sm
 
 model = api.load('word2vec-google-news-300')
 
-# df = pd.read_csv("./emaildataset.csv", usecols = ['Subject','Body', 'Class'])
-
-def get_only_chars(line):
-
+def get_only_chars(line):    
     clean_line = ""
 
     line = line.replace("’", "")
@@ -42,37 +41,45 @@ def get_only_chars(line):
     clean_line = re.sub(' +',' ',clean_line) #delete extra spaces
     if clean_line[0] == ' ':
         clean_line = clean_line[1:]
-    return clean_line
 
 
-num_classes = 2 # the number of classes we consider (since the dataset has many classes)
-sample_size = 3 # the number of labeled sampled we’ll require from the user
+    nlp_ = en_core_web_sm.load()
+    nlp = spacy.load('en')
+    my_stop = ["'d", "'ll", "'m", "'re", "'s", "'ve",'a','cc','subject','http', 'gbp', 'usd', 'eur', 'inr', 'cad', 'thanks', "acc", "id", 'account', 'regards', 'hi', 'hello', 'thank you', 'greetings', 'about','above', 'across','after','afterwards','against','alone','along','already','also','although','am','among', 'amongst','amount','an','and','another','any','anyhow','anyone','anything','anyway','anywhere','are','around','as', 'at','be','became','because','become','becomes','becoming','been','before','beforehand','behind','being','below', 'beside','besides','between','both','bottom','but','by','ca','call','can','could','did', 'do', 'does', 'doing', 'down', 'due', 'during', 'each', 'eight', 'either', 'eleven', 'else', 'elsewhere', 'every', 'everyone', 'everything', 'everywhere', 'fifteen', 'fifty', 'first', 'five', 'for', 'former', 'formerly', 'forty', 'four', 'from', 'front', 'further', 'get', 'give', 'go', 'had', 'has', 'have', 'he', 'hence', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'however', 'hundred', 'i', 'if', 'in', 'indeed', 'into', 'is', 'it', 'its', 'itself', 'just', 'keep', 'last', 'latter', 'latterly', 'least', 'less', 'made', 'make', 'many', 'may', 'me', 'meanwhile', 'might', 'mine', 'more', 'moreover', 'mostly', 'move', 'much', 'must', 'my', 'myself', 'name', 'namely', 'neither', 'nevertheless', 'next', 'nine', 'no', 'nobody', 'now', 'nowhere', 'of', 'off', 'often', 'on', 'once', 'one', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'part', 'per', 'perhaps', 'please', 'put', 'quite', 'rather', 're', 'really', 'regarding', 'same', 'say', 'see', 'seem', 'seemed', 'seeming', 'seems', 'serious', 'several', 'she', 'should', 'show', 'side', 'since', 'six', 'sixty', 'so', 'some', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhere', 'still', 'such', 'take', 'ten', 'than', 'that', 'the', 'their', 'them', 'themselves', 'then', 'thence', 'there', 'thereafter', 'thereby', 'therefore', 'therein', 'thereupon', 'these', 'they', 'third', 'this', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'top', 'toward', 'towards', 'twelve', 'twenty', 'two', 'under', 'unless', 'until', 'up', 'upon', 'us', 'used', 'using', 'various', 'very', 'via', 'was', 'we', 'well', 'were', 'whatever', 'whence', 'whenever', 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'whoever', 'whole', 'whom', 'whose', 'will', 'with', 'within', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', '‘d', '‘ll', '‘m', '‘re', '‘s', '‘ve', '’d', '’ll', '’m', '’re', '’s', '’ve']
+
+    line=line.rstrip()
+    line = re.sub(r'[^a-zA-Z]', ' ', line)
+    line = " ".join([i for i in line.split()])
+#     print(line)
+    
+    doc = nlp(line)
+    
+    normalized = " ".join(token.lemma_ for token in doc if token not in my_stop)
+    
+    doc = " ".join(token.orth_ for token in normalized if not token.is_punct | token.is_space)
+    return doc
+
+# num_classes = 2 # the number of classes we consider (since the dataset has many classes)
+# sample_size = 3 # the number of labeled sampled we’ll require from the user
 
 
-from sklearn.preprocessing import LabelEncoder 
+# # Generate samples that contains K samples of each class
 
-le = LabelEncoder()
-df['Class'] = le.fit_transform(df['Class'])
-# df['Class'] = df['Class'].apply(lambda x : x + 1)
+# def gen_sample(sample_size, num_classes):
 
+#     df_1 = df[(df["Class"] < num_classes+1)].reset_index().drop(["index"], axis=1).reset_index().drop(["index"], axis=1)
+#     train = df_1[df_1["Class"] == np.unique(df_1['Class'])[0]].sample(sample_size)
 
-# Generate samples that contains K samples of each class
+#     train_index = train.index.tolist()
 
-def gen_sample(sample_size, num_classes):
+#     for i in range(1,num_classes):
+#         train_2 = df_1[df_1["Class"] == np.unique(df_1['Class'])[i]].sample(sample_size)
+#         train = pd.concat([train, train_2], axis=0)
+#         train_index.extend(train_2.index.tolist())
 
-    df_1 = df[(df["Class"] < num_classes+1)].reset_index().drop(["index"], axis=1).reset_index().drop(["index"], axis=1)
-    train = df_1[df_1["Class"] == np.unique(df_1['Class'])[0]].sample(sample_size)
-
-    train_index = train.index.tolist()
-
-    for i in range(1,num_classes):
-        train_2 = df_1[df_1["Class"] == np.unique(df_1['Class'])[i]].sample(sample_size)
-        train = pd.concat([train, train_2], axis=0)
-        train_index.extend(train_2.index.tolist())
-
-    test = df_1[~df_1.index.isin(train_index)]
-    # return test
-    return train, test
+#     test = df_1[~df_1.index.isin(train_index)]
+#     # return test
+#     return train, test
 
 
 # Text processing (split, find token id, get embedidng)
@@ -111,12 +118,12 @@ import os
 
 def return_res_xgb(sample_size, num_classes=6):
 
-    train, test = gen_sample(sample_size, num_classes)
+    # train, test = gen_sample(sample_size, num_classes)
 
-    X_train = train['Text']
-    y_train = train['Class'].values
-    X_test = test['Text']
-    y_test = test['Class'].values
+    # X_train = train['Text']
+    # y_train = train['Class'].values
+    # X_test = test['Text']
+    # y_test = test['Class'].values
 
     X_train_mean = X_train.apply(lambda x : transform_sentence(x, model))
     X_test_mean = X_test.apply(lambda x : transform_sentence(x, model))
@@ -136,8 +143,10 @@ def return_res_xgb(sample_size, num_classes=6):
     joblib.dump(le, './pkl_objects/labelencoder.pkl')
     joblib.dump(clf, './pkl_objects/clf.pkl')
 
-    return le.inverse_transform(y_pred-1)
+    return le.inverse_transform(y_pred - 1)
 
 def inp(emailto, emailfrom, subj, bod):
     text = subj + " " + bod
     text = get_only_chars(text)
+
+    text_mean = 
