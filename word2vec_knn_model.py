@@ -1,22 +1,21 @@
-import pandas as pd
-import numpy as np
+# import pandas as pd
+# import numpy as np
 from random import seed
-from random import sample
+# from random import sample
 
 seed(42)
 np.random.seed(42)
 
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
+# from sklearn.model_selection import train_test_split
+# import matplotlib.pyplot as plt
 import re
 import gensim.downloader as api
 from gensim.models.keyedvectors import Word2VecKeyedVectors
 
 from sklearn.decomposition import PCA
-from sklearn.metrics import accuracy_score
+# from sklearn.metrics import accuracy_score
 from scipy import spatial
 
-import re
 import spacy
 import en_core_web_sm
 
@@ -59,28 +58,6 @@ def get_only_chars(line):
     doc = " ".join(token.orth_ for token in normalized if not token.is_punct | token.is_space)
     return doc
 
-# num_classes = 2 # the number of classes we consider (since the dataset has many classes)
-# sample_size = 3 # the number of labeled sampled we’ll require from the user
-
-
-# # Generate samples that contains K samples of each class
-
-# def gen_sample(sample_size, num_classes):
-
-#     df_1 = df[(df["Class"] < num_classes+1)].reset_index().drop(["index"], axis=1).reset_index().drop(["index"], axis=1)
-#     train = df_1[df_1["Class"] == np.unique(df_1['Class'])[0]].sample(sample_size)
-
-#     train_index = train.index.tolist()
-
-#     for i in range(1,num_classes):
-#         train_2 = df_1[df_1["Class"] == np.unique(df_1['Class'])[i]].sample(sample_size)
-#         train = pd.concat([train, train_2], axis=0)
-#         train_index.extend(train_2.index.tolist())
-
-#     test = df_1[~df_1.index.isin(train_index)]
-#     # return test
-#     return train, test
-
 
 # Text processing (split, find token id, get embedidng)
 
@@ -91,11 +68,6 @@ def transform_sentence(text, model):
     """
 
     def preprocess_text(raw_text, model=model):
-
-        """ 
-        Excluding unknown words and get corresponding token
-        """
-
         raw_text = raw_text.split()
 
         return list(filter(lambda x: x in model.vocab, raw_text))
@@ -110,43 +82,25 @@ def transform_sentence(text, model):
     return np.array(text_vector)
 
 
-"""## Pre-trained Word2Vec and ML algorithms"""
-
 import xgboost
 import joblib
-import os
+# import os
 
-def return_res_xgb(sample_size, num_classes=6):
 
-    # train, test = gen_sample(sample_size, num_classes)
+le = joblib.load('./pkl_objects/labelencoder.pkl')
+clf = joblib.load('./pkl_objects/clf.pkl')
 
-    # X_train = train['Text']
-    # y_train = train['Class'].values
-    # X_test = test['Text']
-    # y_test = test['Class'].values
-
-    X_train_mean = X_train.apply(lambda x : transform_sentence(x, model))
-    X_test_mean = X_test.apply(lambda x : transform_sentence(x, model))
-
-    X_train_mean = pd.DataFrame(X_train_mean)['Text'].apply(pd.Series)
-    X_test_mean = pd.DataFrame(X_test_mean)['Text'].apply(pd.Series)
-
-    # XG Boost
-    clf = xgboost.XGBClassifier()
-    clf.fit(X_train_mean, y_train)
-
-    y_pred = clf.predict(X_test_mean)
-
-    if not os.path.exists('./pkl_objects'):
-        os.mkdir('./pkl_objects')
-    
-    joblib.dump(le, './pkl_objects/labelencoder.pkl')
-    joblib.dump(clf, './pkl_objects/clf.pkl')
-
-    return le.inverse_transform(y_pred - 1)
 
 def inp(emailto, emailfrom, subj, bod):
     text = subj + " " + bod
     text = get_only_chars(text)
 
-    text_mean = 
+    X_test_mean = X_test.apply(lambda x : transform_sentence(x, model))
+    X_test_mean = pd.DataFrame(X_test_mean)['Text'].apply(pd.Series) 
+
+    y_pred = clf.predict(X_test_mean)
+
+    return le.inverse_transform(y_pred - 1)
+
+
+print(inp("fvf", "defrfg", "payment processed", "hi, the payment for acc 1234 for usd 3456 was paid successfully."))
