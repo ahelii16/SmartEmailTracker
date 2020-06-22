@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smart Email Tracker</title>
+	<!--<link rel="stylesheet" type="text/css" href={{url_for('static',filename='style.css')}}>-->
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+	<h1>Smart Email Tracker</h1>
+	<hr>
+
+		<button>
+			<a href="{{url_for('show_all')}}">
+				View All Emails
+			</a>
+		</button>
+		<button>
+			<a href="{{url_for('welcome')}}">
+				Enter New Email
+			</a>
+		</button>
+		<button>
+			<a href="{{url_for('findthread')}}">
+				Find Email Thread
+			</a>
+		</button>
+		<br>
+	<hr>
+	<div class="input">
+		<p>
+			Please enter the details below :
+		</p>
+		<form class="my-form" action="/" method="POST">
+			<div>
+				<label>From : </label>
+				<input type="text" name="From" placeholder="Enter sender email">
+			</div>
+			<br>
+			<div>
+				<label>To :    </label>
+				<input type="text" name="To" placeholder="Enter receiver email">
+			</div>
+			<br>
+			<div>
+				<label>Date : </label>
+				<input type="date" name="date">
+			</div>
+			<br>
+			<div>
+				<label>Subject : </label>
+				<input type="text" name="Subject" placeholder="Enter the subject">
+			</div>
+			<br>
+			<div>
+					<label>Body : </label>
+					<textarea name="Message"></textarea>
+			</div>
+			<br>
+			<input class="button" type="submit" name="submit" value="Submit">
+		</form>
+	</div>
+	<div class="output">
+		<h2>Status</h2>
+		<p>
+			 {{message}}
+		</p>
+		</span>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smart Email Tracker</title>
+	<!--<link rel="stylesheet" type="text/css" href={{url_for('static',filename='style.css')}}>-->
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+	<h1>Smart Email Tracker</h1>
+	<hr>
+
+		<button>
+			<a href="{{url_for('show_all')}}">
+				View All Emails
+			</a>
+		</button>
+		<button>
+			<a href="{{url_for('retrain')}}">
+				Send Emails for Retraining
+			</a>
+		</button>
+		<button>
+			<a href="{{url_for('welcome')}}">
+				Enter New Email
+			</a>
+		</button>
+		<button>
+			<a href="{{url_for('findthread')}}">
+				Find Email Thread
+			</a>
+		</button>
+		<br>
+	<hr>
+	<form name="class-selector" method="POST" enctype="multipart/form-data">
+		<!-- form name="class-selector" onsubmit="return myfunc()"-->
+		<label>Select the correct class : </label>
+		<br>
+		<br>
+		<select name='class'>
+			<option value='Complete'>Complete</option>
+			<option value='Processing'>Processing</option>
+			<option value='Failed'>Failed</option>
+			<option value='Pending'>Pending</option>
+			<option value='Request'>Request</option>
+			<option value='General'>General</option>
+			<option value='newclass'>Add a new class</option>
+		</select>
+		<br>
+		<br>
+		<input class="button" type="submit" name="submit" value="Submit">
+	</form>
+	<div id="container">
+		<p id="something"></p>
+		<!-- this part was commented earlier -->
+	</div> <!--
+	<script>
+		function myfunc() {
+			var x = document.forms["class-selector"]["class"].value;
+			if (x == 'newclass')
+			{
+				alert('1111112')
+				document.getElementById("something").innerHTML = "<form><label>Name of class : </label><input type='text' name='class'><br><br><input class='button' type='submit' name='submit' value='Submit'></form>";
+				const myform = document.createElement('form')
+
+				return false;
+	        }
+
+        }
+				function post(path, params, method='post') {
+
+  // The rest of this code assumes you are not using a library.
+  // It can be made less wordy if you use one.
+  const form = document.createElement('form');
+  form.method = method;
+  form.action = path;
+
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      const hiddenField = document.createElement('input');
+      hiddenField.type = 'hidden';
+      hiddenField.name = key;
+      hiddenField.value = params[key];
+
+      form.appendChild(hiddenField);
+    }
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+}
+	</script>
+-->
+</body>
+</html>

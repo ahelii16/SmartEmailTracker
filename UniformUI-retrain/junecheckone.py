@@ -1,15 +1,16 @@
+#loads biLSTM model
 import re
 import tensorflow as tf
-
 import matplotlib
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import model_from_json
-
-
-##%matplotlib inline
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
+import seaborn as sns;
+
+sns.set_style('whitegrid')
 
 # NLP
 from nltk.tokenize.regexp import RegexpTokenizer
@@ -26,6 +27,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, precision_recall_curve
 
 # emails_df = pd.read_csv('./emails.csv', nrows=20000)
+
+#read from emaildatasetnew.csv? but that doesn't have textdata combined
+#uncomment commented code
 df = pd.read_csv('./emaildataset.csv')
 
 nlp_ = en_core_web_sm.load()
@@ -62,14 +66,18 @@ def clean(text):
 #    df['Text_Data'] = (df['Subject'] + " " + df['Body'])
 
 
+#searches for transaction id in subject, returns '' if not found
 def findNum(st):
     a = []
     for word in st.split():
         try:
-            a.append(float(word))
+            a.append(int(word))
         except ValueError:
             pass
-    return str(a[0])
+
+    if (len(a)>0):
+        return str(a[0])
+    return ''
 
 
 def converter(x):
@@ -95,7 +103,10 @@ def converter(x):
 #    lengths.append(len(words))
 
 #avg = int(np.mean(lengths) + 2 * np.std(lengths))
+
+#will change when model is retrained
 avg=21
+
 embeddings_index = {}
 with open('./glove.6B.300d.txt', encoding='utf-8') as f:
     for line in f:
@@ -132,11 +143,11 @@ classes = df['Class'].values
 classes = classes.reshape(-1, 1)
 Y = le.fit_transform(classes)
 
-
+#returns transaction id and predicted class
 def inputfunc(to,fr,input_subj,input_bod):
     ID = findNum(input_subj)
-    print(ID)
-    print(type(ID))
+    #print(ID)
+    #print(type(ID))
     s1 = converter(input_bod + " " + input_subj)
     s = clean(s1)
     encoded_mail = t.texts_to_sequences([s])
@@ -150,10 +161,10 @@ def inputfunc(to,fr,input_subj,input_bod):
     model_glove.load_weights("model_glove.h5")
     y_pred = model_glove.predict(padded_input)
     k = le.inverse_transform(y_pred)
-    return k[0][0],ID
+    return k[0][0] ,ID
 
-inr=inputfunc('a','b',"Transaction failed for ID: 3437386475674385","Hi, your payment with ID: 3437386475674385 for 98, 453 GBP was failed and amount will be transferred back in 3-5 business days.")
-print(inr)
+#inr=inputfunc('a','b',"Transaction failed for ID: 3437386475674385","Hi, your payment with ID: 3437386475674385 for 98, 453 GBP was failed and amount will be transferred back in 3-5 business days.")
+#print(inr)
 #print(type(inr))
 #print(inr[0][0])
 #print(type(inr[0][0]))
