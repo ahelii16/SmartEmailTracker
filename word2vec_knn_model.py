@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from random import seed
 # from random import sample
+from wordfile import func
 
 seed(42)
 np.random.seed(42)
@@ -29,6 +30,9 @@ def get_only_chars(text):
 
     text=text.rstrip()
     text = re.sub(r'[^a-zA-Z]', ' ', text)
+    text = " ".join([func(i) for i in text.lower().split() if func(i) is not None])
+    print(text)
+    
     text = " ".join([i for i in text.lower().split()])
     # print(text)
     text = " ".join(token for token in text.split() if token not in my_stop)
