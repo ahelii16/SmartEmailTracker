@@ -76,6 +76,7 @@ clf = joblib.load('./pkl_objects/clf.pkl')
 def inp(emailto, emailfrom, subj, bod):
     text = subj + " " + bod
     text = get_only_chars(text)
+    X = pd.Series(text)
 
     X_test_mean = transform_sentence(text, model)
     X_test_mean = pd.DataFrame(X_test_mean)['Text'].apply(pd.Series) # not sure about this line
