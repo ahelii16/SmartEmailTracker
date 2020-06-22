@@ -1,21 +1,18 @@
 import pandas as pd
 import numpy as np
-from random import seed
-from random import sample
+import joblib
 from wordfile import func
-
-seed(42)
-np.random.seed(42)
-
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 import re
 import gensim.downloader as api
 from gensim.models.keyedvectors import Word2VecKeyedVectors
-
+import joblib
 from sklearn.decomposition import PCA
 from sklearn.metrics import accuracy_score
 from scipy import spatial
-
 import spacy
+import xgboost
 
 model = api.load('word2vec-google-news-300')
 nlp = spacy.load('en')
@@ -65,10 +62,6 @@ def transform_sentence(text, model):
     return np.array(text_vector)
 
 
-import xgboost
-import joblib
-
-
 le = joblib.load('./pkl_objects/labelencoder.pkl')
 clf = joblib.load('./pkl_objects/clf.pkl')
 
@@ -76,9 +69,9 @@ clf = joblib.load('./pkl_objects/clf.pkl')
 def inp(emailto, emailfrom, subj, bod):
     text = subj + " " + bod
     text = get_only_chars(text)
-    X = pd.Series(text)
+    X_test = pd.Series(text)
 
-    X_test_mean = transform_sentence(text, model)
+    X_test_mean = X_test.apply(lambda x : transform_sentence(x, model))
     X_test_mean = pd.DataFrame(X_test_mean)['Text'].apply(pd.Series) # not sure about this line
 
     y_pred = clf.predict(X_test_mean)
