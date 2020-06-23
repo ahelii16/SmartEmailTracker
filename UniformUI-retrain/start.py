@@ -4,14 +4,23 @@
 #replaced index1 with index3 here
 
 from flask import Flask, render_template, jsonify, abort, request, redirect, url_for, flash
+from werkzeug.utils import secure_filename
 from junecheckone import inputfunc
+from PDFMinerParser import parsePDF
+from listenerpdf import HandleNewEmail
 from flask_sqlalchemy import SQLAlchemy
 import time
+import os
+#UPLOAD_FOLDER
 import csv
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
 app.config['SECRET_KEY'] = "random string"
+app.config['UPLOAD_FOLDER'] = "inputEmails"
+
+global myDict, mclass, tid
 
 db = SQLAlchemy(app)
 
@@ -50,6 +59,33 @@ def write_mail(mail):
     #f.write("class: %s \n" % mail.m_class)
     f.close()
 
+@app.route('/upload')
+def upload_file():
+   return render_template('upload.html')
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file_1():
+    global myDict, mclass, tid
+    if request.method == 'POST':
+      f = request.files['file']
+      (secure_filename(f.filename))
+      timestr = time.strftime("%Y%m%d-%H%M%S")
+      fullname = str(timestr) + secure_filename(f.filename)
+      f.save(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
+      to_add, from_add, receivedDate, sub, id, body, m_class = HandleNewEmail('inputEmails/' + fullname)
+      myDict = {
+          "From": from_add,
+          "To": to_add,
+          "Subject": sub,
+          "Message": body,
+          "Date": receivedDate
+      }
+      mclass=m_class
+      tid=id
+      print( myDict['From'], myDict['To'], myDict['Date'], myDict['Subject'], tid, myDict['Message'], mclass)
+    return render_template("index3.html", m=m_class)
+
+    #return render_template('show_all.html', mails=mails.query.order_by(mails.id.desc()).all())
 
 @app.route('/retrain')
 def retrain():
@@ -73,9 +109,9 @@ def show_all():
 
 @app.route("/", methods=["GET", "POST"])
 def welcome():
-    global dict, mclass, tid
+    global myDict, mclass, tid
     if request.method == "POST":
-        dict=inputvalues = {
+        myDict=inputvalues = {
             "From": request.form['From'],
             "To": request.form['To'],
             "Subject": request.form['Subject'],
@@ -97,7 +133,8 @@ def wrong():
         if mclass == 'newclass':
             return redirect(url_for('new_class'))
         mail = mails()
-        __init__(mail, dict['From'], dict['To'], dict['Date'], dict['Subject'], tid, dict['Message'], mclass)
+        print( "222222",myDict['From'], myDict['To'], myDict['Date'], myDict['Subject'], tid, myDict['Message'], mclass)
+        __init__(mail, myDict['From'], myDict['To'], myDict['Date'], myDict['Subject'], tid, myDict['Message'], mclass)
         #write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -113,7 +150,7 @@ def new_class():
     if request.method == "POST":
         mclass = str(request.form['NewClass'])
         mail = mails()
-        __init__(mail, dict['From'], dict['To'], dict['Date'], dict['Subject'], tid, dict['Message'], mclass)
+        __init__(mail, myDict['From'], myDict['To'], myDict['Date'], myDict['Subject'], tid, myDict['Message'], mclass)
         #write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -127,7 +164,7 @@ def new_class():
 @app.route('/right')
 def right():
     mail = mails()
-    __init__(mail, dict['From'], dict['To'], dict['Date'], dict['Subject'], tid, dict['Message'], mclass)
+    __init__(mail, myDict['From'], myDict['To'], myDict['Date'], myDict['Subject'], tid, myDict['Message'], mclass)
     #write_mail(mail)
     db.session.add(mail)
     db.session.commit()
