@@ -5,8 +5,6 @@ from wordfile import func
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import re
-import gensim.downloader as api
-from gensim.models.keyedvectors import Word2VecKeyedVectors
 import joblib
 from sklearn.decomposition import PCA
 from sklearn.metrics import accuracy_score
@@ -14,7 +12,15 @@ from scipy import spatial
 import spacy
 import xgboost
 
-model = api.load('word2vec-google-news-300')
+embeddings_index = {}
+with open('../glove.6B.300d.txt',encoding='utf-8') as f:
+    for line in f:
+        values = line.split()
+        word = values[0]
+        coeffs = np.asarray(values[1:],dtype='float32')
+        embeddings_index[word] = coeffs
+    f.close()
+
 nlp = spacy.load('en')
 
 my_stop = ["'d", "'ll", "'m", "'re", "'s", "'ve",'a','cc','subject','http', 'gbp', 'usd', 'eur', 'inr', 'cad', 'thanks', "acc", "id", 'account', 'regards', 'hi', 'hello', 'thank you', 'greetings', 'about','above', 'across','after','afterwards','against','alone','along','already','also','although','am','among', 'amongst','amount','an','and','another','any','anyhow','anyone','anything','anyway','anywhere','are','around','as', 'at','be','became','because','become','becomes','becoming','been','before','beforehand','behind','being','below', 'beside','besides','between','both','bottom','but','by','ca','call','can','could','did', 'do', 'does', 'doing', 'down', 'due', 'during', 'each', 'eight', 'either', 'eleven', 'else', 'elsewhere', 'every', 'everyone', 'everything', 'everywhere', 'fifteen', 'fifty', 'first', 'five', 'for', 'former', 'formerly', 'forty', 'four', 'from', 'front', 'further', 'get', 'give', 'go', 'had', 'has', 'have', 'he', 'hence', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'however', 'hundred', 'i', 'if', 'in', 'indeed', 'into', 'is', 'it', 'its', 'itself', 'just', 'keep', 'last', 'latter', 'latterly', 'least', 'less', 'made', 'make', 'many', 'may', 'me', 'meanwhile', 'might', 'mine', 'more', 'moreover', 'mostly', 'move', 'much', 'must', 'my', 'myself', 'name', 'namely', 'neither', 'nevertheless', 'next', 'nine', 'no', 'nobody', 'now', 'nowhere', 'of', 'off', 'often', 'on', 'once', 'one', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'part', 'per', 'perhaps', 'please', 'put', 'quite', 'rather', 're', 'really', 'regarding', 'same', 'say', 'see', 'seem', 'seemed', 'seeming', 'seems', 'serious', 'several', 'she', 'should', 'show', 'side', 'since', 'six', 'sixty', 'so', 'some', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhere', 'still', 'such', 'take', 'ten', 'than', 'that', 'the', 'their', 'them', 'themselves', 'then', 'thence', 'there', 'thereafter', 'thereby', 'therefore', 'therein', 'thereupon', 'these', 'they', 'third', 'this', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'top', 'toward', 'towards', 'twelve', 'twenty', 'two', 'under', 'unless', 'until', 'up', 'upon', 'us', 'used', 'using', 'various', 'very', 'via', 'was', 'we', 'well', 'were', 'whatever', 'whence', 'whenever', 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'whoever', 'whole', 'whom', 'whose', 'will', 'with', 'within', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', '‘d', '‘ll', '‘m', '‘re', '‘s', '‘ve', '’d', '’ll', '’m', '’re', '’s', '’ve']
@@ -45,20 +51,20 @@ def get_only_chars(text):
     return doc
 
 
-def transform_sentence(text, model):
-    
-    def preprocess_text(raw_text, model=model):
-        raw_text = raw_text.split()
+def transform_sentence(text, embeddings_index):
 
-        return list(filter(lambda x: x in model.vocab, raw_text))
+    def preprocess_text(raw_text, model=embeddings_index):
+
+        raw_text = raw_text.split()
+        return list(filter(lambda x: x in embeddings_index.keys(), raw_text))
 
     tokens = preprocess_text(text)
 
     if not tokens:
-        return np.zeros(model.vector_size)
+        return np.zeros(300)
 
-    text_vector = np.mean(model[tokens], axis=0)
-
+    c = [embeddings_index[i] for i in tokens]
+    text_vector = np.mean(c, axis=0)
     return np.array(text_vector)
 
 
