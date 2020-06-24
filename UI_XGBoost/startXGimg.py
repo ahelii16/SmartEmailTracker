@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 #from junecheckone import inputfunc
 from word2vec_xgb import inp
 from Train_Word2vec_XGBoost1 import train
-from PDFMinerParser import parsePDF, ValidExt
+from PDFMinerParser import parsePDF, extractText, allowedExt
 from listenerpdfXG import HandleNewEmail, on_created
 
 
@@ -78,7 +78,7 @@ def upload_file_1():
     if request.method == 'POST':
 
       if not request.files.get('file', None):
-        msg = 'Empty email or invalid attachment - no prediction!'
+        msg = 'No file uploaded'
         return render_template('index2.html',message=msg)
 
       f = request.files['file']
@@ -88,12 +88,11 @@ def upload_file_1():
       timestr = time.strftime("%Y%m%d-%H%M%S")
       fullname = str(timestr) + "_" +  sfname
       f.save("./inputEmails/" + fullname)
-      '''
-      (secure_filename(f.filename))
-      timestr = time.strftime("%Y%m%d-%H%M%S")
-      fullname = str(timestr) + "_" + secure_filename(f.filename)
-      #f.save(os.path.join(app.config['UPLOAD_FOLDER'] fullname))
-      '''
+
+      if not allowedExt('inputEmails/' + fullname):
+          msg = 'Invalid file type - no prediction!'
+          return render_template('index2.html',message=msg)
+
 
       to_add, from_add, receivedDate, sub, id, body, m_class = HandleNewEmail('inputEmails/' + fullname)
       myDict = {
@@ -164,7 +163,7 @@ def welcome():
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
 
             #extract text from txt or pdf AND IMAGE, else "" returned
-            body1 = ValidExt(app.config['UPLOAD_FOLDER'] + '/' + fullname)
+            body1 = extractText(app.config['UPLOAD_FOLDER'] + '/' + fullname)
 
             if (body1!=""):
                 body1 = '\n-----------Extracted from Attachment-----------\n' + body1
