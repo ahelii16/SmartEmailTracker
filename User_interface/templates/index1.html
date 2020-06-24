@@ -22,6 +22,8 @@
 				<div class="navbar-nav mr-auto">
 				  <a class="nav-item nav-link" href="/">Home</a>
 				  <a class="nav-item nav-link" href="/show">Show All</a>
+				  <a class="nav-item nav-link" href="{{url_for('upload_file')}}">Upload Email File</a>
+				  <a class="nav-item nav-link" href="{{url_for('retrain')}}">Retrain</a>
 				</div>
 				<!-- Navbar Right Side -->
 				<div class="navbar-nav">
@@ -76,13 +78,16 @@
 						<textarea name="Message"></textarea>
 					</div>
 					<br>
+					<div>
+						<label>Add Attachment : </label>
+				 		<input type = "file" name = "file" />
+					</div>
 					<input class="button" type="submit" name="submit" value="Submit">
 				</form>
 			</div>
 			<div class="col-md-4">
 			  <div class="content-section">
-				<h3>Our Sidebar</h3>
-				<p class='text-muted'>You can put any information here you'd like.
+				<p class='text-muted'>
 				  <h2>Predicted Output</h2>
 				<p>
 				The email belongs to class : {{m}}
