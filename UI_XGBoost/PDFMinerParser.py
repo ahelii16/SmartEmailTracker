@@ -64,7 +64,13 @@ def parsePDF(mail_path):
 
 #text = parsePDF('pdf1.pdf')
 
-def ValidExt(mail_path):
+def allowedExt(mail_path):
+    if (mail_path.endswith('.png') or mail_path.endswith('.jpg') or mail_path.endswith('.jpeg') or (mail_path.endswith('.pdf')) or (mail_path.endswith('.txt')) ):
+         return True
+    else:
+        return False
+
+def extractText(mail_path):
     print(type(mail_path))
 
     #return empty string if file is not txt or pdf or image
