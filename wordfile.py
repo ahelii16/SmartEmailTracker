@@ -3,7 +3,7 @@ def func(k):
     words_list = {
         "ocean" : "collateral", 
         "le" : "legal entity",
-        "air":"assumed interest rate"
+        "air":"assumed interest rate",
 		"apr":"annual percentage rate",
 		"arm":"adjustable rate mortgage",
         "arpu": "average revenue per user",
