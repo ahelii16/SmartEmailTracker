@@ -1,9 +1,7 @@
+import csv
+import os
 
-from flask import Flask, render_template, jsonify, abort, request, redirect, url_for, flash
-# from funct import add, pred
-# from testing import regressor
-
-from junecheckone import inputfunc
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 import time
@@ -11,12 +9,17 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, email_validator, ValidationError
 from flask_login import LoginManager, login_user, UserMixin, current_user, login_required, logout_user
+from junecheckone import inputfunc
+from werkzeug.utils import secure_filename
+from PDFMinerParser import parsePDF, allowedExt, extractText
+from listenerpdfXG import HandleNewEmail
+#from Train_Word2vec_XGBoost1 import train
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///User.db'
-
 app.config['SECRET_KEY'] = "random string"
+app.config['UPLOAD_FOLDER'] = "inputEmails"
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -96,36 +99,126 @@ def write_mail(mail):
     f = open("./inputEmails/email_" + str(timestr) + '.txt', "w+")
     f.write("To: %s \n" % mail.mto)
     f.write("From: %s \n" % mail.mfrom)
-    f.write("ID %s\n" % mail.mdate)
     f.write("Subject: %s \n\n" % mail.msubject)
     f.write("Email_Body: %s \n" % mail.mbody)
     f.write("class: %s \n" % mail.m_class)
     f.close()
 
 
+@app.route('/upload')
+def upload_file():
+   return render_template('upload.html')
+
+
+@app.route('/retrain')
+def retrain():
+    with open('emaildataset.csv', 'a+') as f:
+        out = csv.writer(f)
+        ct=0
+        for mail in mails.query.all():
+            out.writerow([mail.mfrom, mail.mto,mail.msubject, mail.mbody, mail.mclass])
+            ct = ct +1
+        db.session.query(mails).delete()
+        db.session.commit()
+        f.close()
+        msg = '' + str(ct) + ' mail(s) sent for retraining successfully!'
+        # run model again
+        #train()
+    return render_template('retrained.html', message=msg)
+
+
 @app.route('/show')
 @login_required
 def show_all():
     return render_template('show_all.html', mails=mails.query.filter(mails.mto == current_user.email).all())
+    #return render_template('show_all.html', mails=mails.query.order_by(mails.id.desc()).all())
 
 
 @app.route("/", methods=["GET", "POST"])
 def welcome():
-    global dict, mclass, id
+    global myDict, mclass, tid
     if request.method == "POST":
-        dict=inputvalues = {
+        myDict=inputvalues = {
             "From": request.form['From'],
             "To": request.form['To'],
             "Subject": request.form['Subject'],
-            "Message": request.form['Message']
+            "Message": request.form['Message'],
         }
-        # mail = mails()
+
+        #handle file attachment in email from form
+        body1=""
+        if not request.files.get('file', None):
+            print('No file uploaded')
+        else:
+            f = request.files['file']
+            print('File Uploaded')
+
+            sfname = (secure_filename(f.filename))
+            timestr = time.strftime("%Y%m%d-%H%M%S")
+            fullname = str(timestr) + sfname
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
+
+            #extract text from txt or pdf AND IMAGE, else "" returned
+            body1 = extractText(app.config['UPLOAD_FOLDER'] + '/' + fullname)
+
+            if (body1!=""):
+                body1 = '\n-----------Extracted from Attachment-----------\n' + body1
+
+        #append attchment txt to message body for prediction
+        inputvalues['Message'] = inputvalues['Message'] + str(body1)
+        print(inputvalues['Message'])
+
+
+        if (inputvalues['Subject']=="" and inputvalues['Message']==""):
+            msg = 'Empty email or invalid attachment - no prediction!'
+            return render_template('retrained.html', message=msg)
+
+        #m_class, ID = inputfunc(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
         m_class, ID = inputfunc(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
         mclass = m_class
-        id = str(ID)
+        tid = ID
         return render_template("index1.html", m=m_class)
+
     else:
         return render_template("index1.html")
+
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_file_1():
+    global myDict, mclass, tid
+    if request.method == 'POST':
+
+      if not request.files.get('file', None):
+        msg = 'No file uploaded'
+        return render_template('retrained.html', message=msg)
+
+      f = request.files['file']
+      print('File Uploaded=====')
+      f = request.files['file']
+      sfname = (secure_filename(f.filename))
+      timestr = time.strftime("%Y%m%d-%H%M%S")
+      fullname = str(timestr) + "_" +  sfname
+      f.save("./inputEmails/" + fullname)
+
+      if not allowedExt('inputEmails/' + fullname):
+          msg = 'Invalid file type - no prediction!'
+          return render_template('retrained.html', message=msg)
+
+
+      to_add, from_add, receivedDate, sub, id, body, m_class = HandleNewEmail('inputEmails/' + fullname)
+      myDict = {
+          "From": from_add,
+          "To": to_add,
+          "Subject": sub,
+          "Message": body,
+          "Date": receivedDate
+      }
+      mclass=m_class
+      tid=id
+      return render_template("index1.html", m=m_class)
+
+    else:
+      return render_template("index1.html")
 
 
 @app.route('/newclass', methods=['Get', 'POST'])
@@ -133,8 +226,8 @@ def new_class():
     if request.method == "POST":
         mclass = str(request.form['NewClass'])
         mail = mails()
-        __init__(mail, dict['To'], dict['To'], id,
-                 dict['Subject'], dict['Message'], mclass)
+        __init__(mail, myDict['From'], myDict['To'], tid,
+                 myDict['Subject'], myDict['Message'], mclass)
         write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -152,8 +245,8 @@ def wrong():
         if mclass == 'newclass':
             return redirect(url_for('new_class'))
         mail = mails()
-        __init__(mail, dict['To'], dict['To'], id,
-                 dict['Subject'], dict['Message'], mclass)
+        __init__(mail, myDict['To'], myDict['To'], tid,
+                 myDict['Subject'], myDict['Message'], mclass)
         write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -167,8 +260,8 @@ def wrong():
 @app.route('/right')
 def right():
     mail = mails()
-    __init__(mail, dict['To'], dict['To'], id,
-             dict['Subject'], dict['Message'], mclass)
+    __init__(mail, myDict['From'], myDict['To'], tid,
+             myDict['Subject'], myDict['Message'], mclass)
     write_mail(mail)
     db.session.add(mail)
     db.session.commit()

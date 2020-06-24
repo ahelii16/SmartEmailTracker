@@ -9,7 +9,13 @@ from tensorflow.keras.models import model_from_json
 
 
 ##%matplotlib inline
+
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
+
+import seaborn as sns;
+
+sns.set_style('whitegrid')
 
 # NLP
 from nltk.tokenize.regexp import RegexpTokenizer
@@ -66,7 +72,7 @@ def findNum(st):
     a = []
     for word in st.split():
         try:
-            a.append(float(word))
+            a.append(int(word))
         except ValueError:
             pass
     return str(a[0])
@@ -134,26 +140,21 @@ Y = le.fit_transform(classes)
 
 
 def inputfunc(to,fr,input_subj,input_bod):
-    ID = findNum(input_subj)
-    print(ID)
-    print(type(ID))
+    ID = int(findNum(input_subj))
     s1 = converter(input_bod + " " + input_subj)
     s = clean(s1)
     encoded_mail = t.texts_to_sequences([s])
-    #print(encoded_mail)
-
-    # post padding
     padded_input = pad_sequences(encoded_mail, maxlen=avg, padding='post')
-    #padded_input.shape
     with open("model_glove.json", "r") as file:
         model_glove = model_from_json(file.read())
     model_glove.load_weights("model_glove.h5")
     y_pred = model_glove.predict(padded_input)
     k = le.inverse_transform(y_pred)
-    return k[0][0],ID
+    return k[0][0], str(ID)
 
-inr=inputfunc('a','b',"Transaction failed for ID: 3437386475674385","Hi, your payment with ID: 3437386475674385 for 98, 453 GBP was failed and amount will be transferred back in 3-5 business days.")
-print(inr)
+#inr, ID=inputfunc('a','b',"Transaction failed for ID: 343738","Hi, your payment with ID: 3437386475674385 for 98, 453 GBP was failed and amount will be transferred back in 3-5 business days.")
+#print(inr)
 #print(type(inr))
-#print(inr[0][0])
-#print(type(inr[0][0]))
+#print(inr[0])
+#print(type(inr[0]))
+#print(ID, type(ID))
