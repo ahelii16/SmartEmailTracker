@@ -8,8 +8,10 @@ from flask import Flask, render_template, jsonify, abort, request, redirect, url
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 #from junecheckone import inputfunc
-from word2vec_xgb import inp
-from Train_Word2vec_XGBoost1 import train
+#from word2vec_xgb import inp
+#from glove_xgb import inp
+#from Train_Word2vec_XGBoost1 import train
+from Glove_XGBoost import train, inp
 from PDFMinerParser import parsePDF, extractText, allowedExt
 from listenerpdfXG import HandleNewEmail, on_created
 
