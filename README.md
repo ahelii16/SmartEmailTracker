@@ -53,7 +53,7 @@ Run the main file:
 ```sh
 python start.py
 ```
-Open up localhost:5000 for live demo of the app.
+Open up localhost at http://127.0.0.1:5000/ for live demo of the app.
 
 Email input can given from the form or uploaded as a PDF, text file or an image.
  - NOTE: If directory not found showing, at those place-write absolute path that file in your laptop
@@ -61,10 +61,17 @@ Email input can given from the form or uploaded as a PDF, text file or an image.
 # Email Format assumed for PDF or txt file:
 
 To: Rahul@CitiBankPune.com 
+
 From: Mike@BNYMellon.com 
+
 Subject: Transaction 608234 Complete 
+
 Hi,
+
 Hope you are well.
+
 Wanted to inform you that transaction has been completed successfully.
+
 Thanks for your assistance!
+
 Mike
