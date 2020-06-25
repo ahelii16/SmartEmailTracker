@@ -20,19 +20,19 @@ from sklearn.metrics import accuracy_score
 from scipy import spatial
 import os
 import spacy
-
+from word2vec_XGB import embeddings_index
 
 # In[3]:
 
 
-embeddings_index = {}
-with open('./glove.6B.300d.txt',encoding='utf-8') as f:
-    for line in f:
-        values = line.split()
-        word = values[0]
-        coeffs = np.asarray(values[1:],dtype='float32')
-        embeddings_index[word] = coeffs
-    f.close()
+# embeddings_index = {}
+# with open('/home/aheli/glove.6B.300d.txt',encoding='utf-8') as f:
+#     for line in f:
+#         values = line.split()
+#         word = values[0]
+#         coeffs = np.asarray(values[1:],dtype='float32')
+#         embeddings_index[word] = coeffs
+#     f.close()
 
 
     # In[4]:
@@ -45,7 +45,7 @@ with open('./glove.6B.300d.txt',encoding='utf-8') as f:
     # In[5]:
 
 def train():
-    df = pd.read_csv("./emaildataset.csv", usecols = ['Subject','Body', 'Class'])
+    df = pd.read_csv("/home/aheli/SmartEmailTracker/emaildataset.csv", usecols = ['Subject','Body', 'Class'])
     df.head()
 
 
@@ -93,7 +93,7 @@ def train():
     # In[9]:
 
 
-    print(get_only_chars("hi i want info on le 12234."))
+    # print(get_only_chars("hi i want info on le 12234."))
 
 
     # In[10]:
@@ -119,15 +119,6 @@ def train():
     # In[12]:
 
 
-    text_clean=[]
-
-    for i in range(df.shape[0]):
-        text_clean.append(get_only_chars(df.loc[i]['Text']))
-
-
-    # In[13]:
-
-
     df['Text'] = df['Text'].apply(lambda x: get_only_chars(x))
 
 
@@ -137,7 +128,7 @@ def train():
     df = df.drop_duplicates('Text')
 
 
-    df.sample(frac=1).reset_index(drop=True)
+    # df.sample(frac=1).reset_index(drop=True)
 
 
     # In[17]:
@@ -145,7 +136,7 @@ def train():
 
     # set the by default to:
     num_classes = df.Class.unique() # the number of classes we consider (since the dataset has many classes)
-    sample_size = 2 # the number of labeled sampled we’ll require from the user
+    sample_size = 5 # the number of labeled sampled we’ll require from the user
 
 
     # In[18]:
@@ -208,6 +199,11 @@ def train():
 
     # In[54]:
 
+    if not os.path.exists('/home/aheli/SmartEmailTracker/pkl_objects'):
+        os.mkdir('/home/aheli/SmartEmailTracker/pkl_objects')
+
+    joblib.dump(le, '/home/aheli/SmartEmailTracker/pkl_objects/labelencoder.pkl')
+
 
     def return_score_xgb(sample_size, num_classes, df):
 
@@ -224,23 +220,36 @@ def train():
     #     XG Boost
         clf = xgboost.XGBClassifier()
         clf.fit(X_train_mean, y_train)
+        # eval_set = [(X_train_mean, y_train), (X_test_mean, y_test)]
+        # clf.fit(X_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)
+    
 
-        if not os.path.exists('./pkl_objects'):
-            os.mkdir('./pkl_objects')
-
-        joblib.dump(le, './pkl_objects/labelencoder.pkl')
-        joblib.dump(clf, './pkl_objects/clf.pkl')
+        joblib.dump(clf, '/home/aheli/SmartEmailTracker/pkl_objects/clf.pkl')
 
         y_pred = clf.predict(X_test_mean)
 
+        # evaluate predictions
+        accuracy = accuracy_score(y_pred, y_test)
+        print("Accuracy: %.2f%%" % (accuracy * 100.0))
+
         return accuracy_score(y_pred, y_test)
 
-    all_accuracy_xgb = {2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
 
-    for num_samples in range(1, 40):
 
-        for num_cl in range(2, 7):
-            all_accuracy_xgb[num_cl].append(return_score_xgb(num_samples, num_cl, df))
+    # all_accuracy_xgb = {2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
+
+    # for num_samples in range(1, 40):
+
+    #     for num_cl in range(2, 7):
+    #         all_accuracy_xgb[num_cl].append(return_score_xgb(num_samples, num_cl, df))
+
+
+
+    all_accuracy = {0: []}
+
+    for num_samples in range(1, 41):
+        all_accuracy[0].append(return_score_xgb(num_samples,len(df.Class.unique()), df))
+
 
 
 

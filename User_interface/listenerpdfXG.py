@@ -89,7 +89,7 @@ def addtoDB(to_add, from_add, receivedDate, sub, id, body, outputclass):
     #add email and class to DB
     conn = sqlite3.connect('mails.sqlite3')
     cur = conn.cursor()
-    cur.execute('''INSERT INTO mails (mto, mfrom, mdate, msubject, tid, mbody, mclass)
+    cur.execute('''INSERT INTO mails (mto, mfrom, mdate, msubject, ID, mbody, m_class)
                VALUES (?, ?, ?, ?, ?, ?, ?)''', (to_add, from_add, receivedDate, sub, id, body, outputclass))
     print("Inserted in DB\n")
     conn.commit()

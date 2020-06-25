@@ -14,7 +14,7 @@ import xgboost
 
 
 embeddings_index = {}
-with open('./glove.6B.300d.txt', encoding='utf-8') as f:
+with open('/home/aheli/glove.6B.300d.txt', encoding='utf-8') as f:
     for line in f:
         values = line.split()
         word = values[0]
@@ -94,24 +94,28 @@ def transform_sentence(text, embeddings_index):
     return np.array(text_vector)
 
 
-le = joblib.load('./pkl_objects/labelencoder.pkl')
-clf = joblib.load('./pkl_objects/clf.pkl')
+le = joblib.load('/home/aheli/SmartEmailTracker/pkl_objects/labelencoder.pkl')
+clf = joblib.load('/home/aheli/SmartEmailTracker/pkl_objects/clf.pkl')
 
 
 def findNum(st):
     a = []
+    k=''
     for word in st.split():
         try:
             a.append(float(word))
         except ValueError:
             pass
-    k=int(a[0])
+    if not a:
+        k='000000'
+    else:
+        k = int(a[0])
     return str(k)
 
 
 def inp(emailto, emailfrom, subj, bod):
     text = subj + " " + bod
-    ID = str(findNum(subj))
+    ID = str(findNum(text))
     text = get_only_chars(text)
     X_test_mean = np.array([transform_sentence(text, embeddings_index)])
 

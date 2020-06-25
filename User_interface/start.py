@@ -1,8 +1,9 @@
 import csv
 import os
 
-import datetime as dt
-date_ = dt.date.today
+from datetime import datetime
+
+date_=datetime.today().strftime('%Y-%m-%d')
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -19,7 +20,7 @@ from listenerpdfXG import HandleNewEmail
 from Glove_XGBoost import train
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///emails.sqlite3'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///User.db'
 app.config['SECRET_KEY'] = "random string"
 app.config['UPLOAD_FOLDER'] = "inputEmails"
@@ -85,18 +86,19 @@ class mails(db.Model):
     msubject = db.Column(db.String(200))
     mbody = db.Column(db.String(500))
     m_class = db.Column(db.String(50))
+    ID = db.Column(db.String(50))
 
 
-def __init__(self, mfrom, mto, mdate, msubject, mbody, m_class):
+def __init__(self, mfrom, mto, mdate, msubject, ID, mbody, m_class):
     self.mfrom = mfrom
     self.mto = mto
     self.mdate = mdate
     self.msubject = msubject
     self.mbody = mbody
     self.m_class = m_class
+    self.ID = ID
 
 
-# write form input to text file so that listener can detect, classify, move to output class directory, write to DB
 def write_mail(mail):
     timestr = time.strftime("%Y%m%d-%H%M%S")
     f = open("./inputEmails/email_" + str(timestr) + '.txt', "w+")
@@ -105,6 +107,7 @@ def write_mail(mail):
     f.write("Subject: %s \n\n" % mail.msubject)
     f.write("Email_Body: %s \n" % mail.mbody)
     f.write("class: %s \n" % mail.m_class)
+    f.write("Date: %s \n" % mail.mdate)
     f.close()
 
 
@@ -119,7 +122,7 @@ def retrain():
         out = csv.writer(f)
         ct=0
         for mail in mails.query.all():
-            out.writerow([mail.mfrom, mail.mto, mail.msubject, mail.mbody, date_,  mail.mclass])
+            out.writerow([mail.mfrom, mail.mto, mail.msubject, mail.mbody, mail.mdate,  mail.mclass])
             ct = ct +1
         db.session.query(mails).delete()
         db.session.commit()
@@ -146,6 +149,7 @@ def welcome():
             "To": request.form['To'],
             "Subject": request.form['Subject'],
             "Message": request.form['Message'],
+            "Date": date_
         }
 
         #handle file attachment in email from form
@@ -229,8 +233,8 @@ def new_class():
     if request.method == "POST":
         mclass = str(request.form['NewClass'])
         mail = mails()
-        __init__(mail, myDict['From'], myDict['To'], tid,
-                 myDict['Subject'], myDict['Message'], mclass)
+        __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
+                 myDict['Subject'], tid, myDict['Message'], mclass)
         write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -248,8 +252,8 @@ def wrong():
         if mclass == 'newclass':
             return redirect(url_for('new_class'))
         mail = mails()
-        __init__(mail, myDict['From'], myDict['To'], tid,
-                 myDict['Subject'], myDict['Message'], mclass)
+        __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
+                 myDict['Subject'], tid, myDict['Message'], mclass)
         write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -263,8 +267,8 @@ def wrong():
 @app.route('/right')
 def right():
     mail = mails()
-    __init__(mail, myDict['From'], myDict['To'], tid,
-             myDict['Subject'], myDict['Message'], mclass)
+    __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
+             myDict['Subject'], tid, myDict['Message'], mclass)
     write_mail(mail)
     db.session.add(mail)
     db.session.commit()

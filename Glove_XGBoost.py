@@ -26,7 +26,7 @@ import spacy
 
 
 embeddings_index = {}
-with open('../glove.6B.300d.txt',encoding='utf-8') as f:
+with open('/home/aheli/glove.6B.300d.txt',encoding='utf-8') as f:
     for line in f:
         values = line.split()
         word = values[0]
@@ -35,7 +35,7 @@ with open('../glove.6B.300d.txt',encoding='utf-8') as f:
     f.close()
 
 
-df = pd.read_csv("./emaildataset.csv", usecols = ['Subject','Body', 'Class'])
+df = pd.read_csv("/home/aheli/SmartEmailTracker/emaildataset.csv", usecols = ['Subject','Body', 'Class'])
 df.head()
 
 
@@ -109,10 +109,10 @@ df['Text'] = df['Text'].apply(converter)
 # In[11]:
 
 
-text_clean=[]
+# text_clean=[]
 
-for i in range(df.shape[0]):
-    text_clean.append(get_only_chars(df.loc[i]['Text']))
+# for i in range(df.shape[0]):
+#     text_clean.append(get_only_chars(df.loc[i]['Text']))
 
 
 # In[12]:
@@ -251,8 +251,6 @@ def return_score_xgb(sample_size, num_classes, df):
     clf = xgboost.XGBClassifier()
     
     eval_set = [(X_train_mean, y_train), (X_test_mean, y_test)]
-#     eval_metric = ["auc","error", "logloss"]
-    # get_ipython().run_line_magic('time', '')
     clf.fit(X_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)
     
 
