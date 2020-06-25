@@ -1,6 +1,9 @@
 import csv
 import os
 
+import datetime as dt
+date_ = dt.date.today
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -9,11 +12,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, email_validator, ValidationError
 from flask_login import LoginManager, login_user, UserMixin, current_user, login_required, logout_user
-from junecheckone import inputfunc
+from word2vec_XGB import inp
 from werkzeug.utils import secure_filename
 from PDFMinerParser import parsePDF, allowedExt, extractText
 from listenerpdfXG import HandleNewEmail
-#from Train_Word2vec_XGBoost1 import train
+from Glove_XGBoost import train
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
@@ -116,22 +119,22 @@ def retrain():
         out = csv.writer(f)
         ct=0
         for mail in mails.query.all():
-            out.writerow([mail.mfrom, mail.mto,mail.msubject, mail.mbody, mail.mclass])
+            out.writerow([mail.mfrom, mail.mto, mail.msubject, mail.mbody, date_,  mail.mclass])
             ct = ct +1
         db.session.query(mails).delete()
         db.session.commit()
         f.close()
         msg = '' + str(ct) + ' mail(s) sent for retraining successfully!'
         # run model again
-        #train()
+        train()
     return render_template('retrained.html', message=msg)
 
 
 @app.route('/show')
 @login_required
 def show_all():
-    return render_template('show_all.html', mails=mails.query.filter(mails.mto == current_user.email).all())
-    #return render_template('show_all.html', mails=mails.query.order_by(mails.id.desc()).all())
+    #return render_template('show_all.html', mails=mails.query.filter(mails.mto == current_user.email).all())
+    return render_template('show_all.html', mails=mails.query.order_by(mails.id.desc()).all())
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -174,7 +177,7 @@ def welcome():
             return render_template('retrained.html', message=msg)
 
         #m_class, ID = inputfunc(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
-        m_class, ID = inputfunc(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
+        m_class, ID = inp(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
         mclass = m_class
         tid = ID
         return render_template("index1.html", m=m_class)
@@ -245,7 +248,7 @@ def wrong():
         if mclass == 'newclass':
             return redirect(url_for('new_class'))
         mail = mails()
-        __init__(mail, myDict['To'], myDict['To'], tid,
+        __init__(mail, myDict['From'], myDict['To'], tid,
                  myDict['Subject'], myDict['Message'], mclass)
         write_mail(mail)
         db.session.add(mail)
