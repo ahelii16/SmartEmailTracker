@@ -115,7 +115,7 @@ def findNum(st):
 
 def inp(emailto, emailfrom, subj, bod):
     text = subj + " " + bod
-    ID = str(findNum(subj))
+    ID = str(findNum(text))
     text = get_only_chars(text)
     X_test_mean = np.array([transform_sentence(text, embeddings_index)])
 

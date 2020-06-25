@@ -94,7 +94,7 @@ def train():
     # In[9]:
 
 
-    print(get_only_chars("hi i want info on le 12234."))
+    # print(get_only_chars("hi i want info on le 12234."))
 
 
     # In[10]:
@@ -120,10 +120,10 @@ def train():
     # In[12]:
 
 
-    text_clean=[]
+    # text_clean=[]
 
-    for i in range(df.shape[0]):
-        text_clean.append(get_only_chars(df.loc[i]['Text']))
+    # for i in range(df.shape[0]):
+    #     text_clean.append(get_only_chars(df.loc[i]['Text']))
 
 
     # In[13]:
@@ -138,7 +138,7 @@ def train():
     df = df.drop_duplicates('Text')
 
 
-    df.sample(frac=1).reset_index(drop=True)
+    # df.sample(frac=1).reset_index(drop=True)
 
 
     # In[17]:
@@ -203,6 +203,12 @@ def train():
         text_vector = np.mean(c, axis=0)
         return np.array(text_vector)
 
+    
+    if not os.path.exists('./pkl_objects'):
+        os.mkdir('./pkl_objects')
+
+    joblib.dump(le, './pkl_objects/labelencoder.pkl')
+
 
     import xgboost
 
@@ -225,32 +231,33 @@ def train():
     #     XG Boost
         clf = xgboost.XGBClassifier()
         clf.fit(X_train_mean, y_train)
+        # eval_set = [(X_train_mean, y_train), (X_test_mean, y_test)]
+        # clf.fit(X_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)
 
-        if not os.path.exists('./pkl_objects'):
-            os.mkdir('./pkl_objects')
 
-        joblib.dump(le, './pkl_objects/labelencoder.pkl')
         joblib.dump(clf, './pkl_objects/clf.pkl')
 
         y_pred = clf.predict(X_test_mean)
 
+        # evaluate predictions
+        accuracy = accuracy_score(y_pred, y_test)
+        print("Accuracy: %.2f%%" % (accuracy * 100.0))
+
         return accuracy_score(y_pred, y_test)
 
-    all_accuracy_xgb = {2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
 
-    for num_samples in range(1, 40):
 
-        for num_cl in range(2, 7):
-            all_accuracy_xgb[num_cl].append(return_score_xgb(num_samples, num_cl, df))
+    # all_accuracy_xgb = {2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
 
-    #all_accuracy = {0: []}
+    # for num_samples in range(1, 40):
 
-    #for num_samples in range(1, 41):
-     #   all_accuracy[0].append(return_score_xgb(num_samples, len(df.Class.unique()), df))
+    #     for num_cl in range(2, 7):
+    #         all_accuracy_xgb[num_cl].append(return_score_xgb(num_samples, num_cl, df))
 
 
 
+    all_accuracy = {0: []}
 
-
-
+    for num_samples in range(1, 41):
+        all_accuracy[0].append(return_score_xgb(num_samples,len(df.Class.unique()), df))
 
