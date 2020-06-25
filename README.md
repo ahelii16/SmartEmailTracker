@@ -58,7 +58,7 @@ Open up localhost at http://127.0.0.1:5000/ for live demo of the app.
 Email input can given from the form or uploaded as a PDF, text file or an image.
  - NOTE: If any file is found to not be showing, please write the absolute path that file.
 
-# Email Format assumed for PDF or txt file:
+## Sample email format assumed for PDF or txt file:
 
 To: Rahul@CitiBankPune.com 
 
