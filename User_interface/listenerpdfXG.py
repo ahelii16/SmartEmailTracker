@@ -9,8 +9,7 @@ Created on Mon Jun 15 00:04:39 2020
 import numpy as np
 import pandas as pd
 import re
-#from word2vec_xgb import inp
-from junecheckone import inputfunc
+from word2vec_XGB import inp
 
 from PDFMinerParser import parsePDF
 from parseimage import ocr_core
@@ -78,7 +77,7 @@ def HandleNewEmail(mail_path):
         email.close()
         #print(encoded_mail)
 
-    outputclass , id = inputfunc(to_add,from_add,sub,body)
+    outputclass , id = inp(to_add,from_add,sub,body)
 
     #addtoDB(to_add, from_add, receivedDate, sub, id, body, outputclass)
     moveEmail(mail_path, outputclass)
