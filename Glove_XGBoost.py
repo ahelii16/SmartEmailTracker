@@ -252,7 +252,8 @@ def return_score_xgb(sample_size, num_classes, df):
     
     eval_set = [(X_train_mean, y_train), (X_test_mean, y_test)]
 #     eval_metric = ["auc","error", "logloss"]
-    get_ipython().run_line_magic('time', 'clf.fit(X_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)')
+    # get_ipython().run_line_magic('time', '')
+    clf.fit(X_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)
     
 
     joblib.dump(clf, './pkl_objects/clf.pkl')
