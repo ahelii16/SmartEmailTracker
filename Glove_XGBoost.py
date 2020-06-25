@@ -35,16 +35,6 @@ with open('../glove.6B.300d.txt',encoding='utf-8') as f:
     f.close()
 
 
-# In[3]:
-
-
-# from google.colab import files
-# uploaded = files.upload()
-
-
-# In[4]:
-
-
 df = pd.read_csv("./emaildataset.csv", usecols = ['Subject','Body', 'Class'])
 df.head()
 
@@ -137,14 +127,6 @@ df['Text'] = df['Text'].apply(lambda x: get_only_chars(x))
 df = df.drop_duplicates('Text')
 
 
-# In[15]:
-
-
-df.sample(frac=1).reset_index(drop=True)
-
-
-# In[16]:
-
 
 # set the by default to:
 num_classes = df.Class.unique() # the number of classes we consider (since the dataset has many classes)
@@ -189,6 +171,29 @@ le = LabelEncoder()
 df['Class'] = le.fit_transform(df['Class'])
 
 
+# In[20]:
+
+
+df.head(20)
+
+
+# In[21]:
+
+
+df.Class.value_counts()
+
+
+# In[22]:
+
+
+for i in range(0, 6):
+    print(i)
+    print(le.inverse_transform([i]))
+
+
+# In[23]:
+
+
 def transform_sentence(text, embeddings_index):
 
     def preprocess_text(raw_text, model=embeddings_index):
@@ -206,6 +211,15 @@ def transform_sentence(text, embeddings_index):
     return np.array(text_vector)
 
 
+# In[39]:
+
+
+if not os.path.exists('./pkl_objects'):
+        os.mkdir('./pkl_objects')
+    
+joblib.dump(le, './pkl_objects/labelencoder.pkl')
+
+
 # Install with below cell if you're not able to install on terminal
 
 # import sys
@@ -218,7 +232,7 @@ def transform_sentence(text, embeddings_index):
 import xgboost
 
 
-# In[26]:
+# In[53]:
 
 
 def return_score_xgb(sample_size, num_classes, df):
@@ -235,36 +249,28 @@ def return_score_xgb(sample_size, num_classes, df):
 
 #     XG Boost
     clf = xgboost.XGBClassifier()
-    clf.fit(X_train_mean, y_train)
-
-    if not os.path.exists('./pkl_objects'):
-        os.mkdir('./pkl_objects')
     
-    joblib.dump(le, './pkl_objects/labelencoder.pkl')
+    eval_set = [(X_train_mean, y_train), (X_test_mean, y_test)]
+#     eval_metric = ["auc","error", "logloss"]
+    get_ipython().run_line_magic('time', 'clf.fit(X_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)')
+    
+
     joblib.dump(clf, './pkl_objects/clf.pkl')
 
     y_pred = clf.predict(X_test_mean)
+    
+    # evaluate predictions
+    accuracy = accuracy_score(y_pred, y_test)
+    print("Accuracy: %.2f%%" % (accuracy * 100.0))
 
     return accuracy_score(y_pred, y_test)
 
 
-# ## Comparison of accuracies
 
-# In[27]:
+all_accuracy = {0: []}
 
-
-all_accuracy_xgb = {num:[] for num in range(2, len(df.Class.unique()) + 1)}
-
-
-# In[ ]:
-
-
-for num_samples in range(1, 40):
-
-    for num_cl in range(2, len(df.Class.unique()) + 1):
-
-        all_accuracy_xgb[num_cl].append(return_score_xgb(num_samples,num_cl, df))
-
+for num_samples in range(1, 41):
+    all_accuracy[0].append(return_score_xgb(num_samples,len(df.Class.unique()), df))
 
 
 le = joblib.load('./pkl_objects/labelencoder.pkl')
@@ -283,6 +289,7 @@ def inp(emailto, emailfrom, subj, bod):
     print(y_pred)
 
     return le.inverse_transform(y_pred)
+
 
 
 
