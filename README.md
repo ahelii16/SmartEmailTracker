@@ -10,11 +10,11 @@ The current project has lots of content in emails post which the ops user has to
 
 - Based on the event type received in the email the system will take the desired actions, i.e. classifying the emails as per the target classes.
 
-# For Checkpoint 1:
+## For Checkpoint 1:
 
 We have used BiLSTM model to classify incoming emails as 'Complete', 'Failed', 'Pending', 'Request', 'Processing', 'General', in regards to payment data.
 
-# For Checkpoint 2:
+## For Checkpoint 2:
 
 BiLSTM model, though highly accurate, is too robust for a small dataset like the one we are currently using. So we have switched to using XGBoost algorithm for making the predictions. The classifier when used with pre-trained Glove embeddings, gives accurate results (close to 100% accuracy, less overfitting) even with a smaller dataset. 
 
