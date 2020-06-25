@@ -9,8 +9,8 @@ Created on Mon Jun 15 00:04:39 2020
 import numpy as np
 import pandas as pd
 import re
-from word2vec_xgb import inp
-
+#from word2vec_xgb import inp
+from Glove_XGBoost import inp
 from PDFMinerParser import parsePDF
 from parseimage import ocr_core
 
@@ -30,7 +30,6 @@ import time
 def HandleNewEmail(mail_path):
     #Parse email to store in DB
     #print(type(mail_path))
-
     #added this for image remove if problematic
     if (mail_path.endswith('.png') or mail_path.endswith('.jpg') or mail_path.endswith('.jpeg')):
         #print('Email Image uploaded!!')
