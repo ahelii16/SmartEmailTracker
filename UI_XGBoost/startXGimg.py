@@ -4,7 +4,11 @@
 # allows one file attachment in email
 
 
-from flask import Flask, render_template, jsonify, abort, request, redirect, url_for, flash
+import time
+import os
+import csv
+
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 #from junecheckone import inputfunc
@@ -12,13 +16,9 @@ from werkzeug.utils import secure_filename
 #from glove_xgb import inp
 #from Train_Word2vec_XGBoost1 import train
 from Glove_XGBoost import train, inp
-from PDFMinerParser import parsePDF, extractText, allowedExt
-from listenerpdfXG import HandleNewEmail, on_created
+from file_parser import extract_text, allowed_ext
+from listenerpdfXG import HandleNewEmail
 
-
-import time
-import os
-import csv
 
 
 
@@ -38,7 +38,7 @@ class mails(db.Model):
     mto = db.Column(db.String(50))
     mdate = db.Column(db.String(20))
     msubject = db.Column(db.String(200))
-    tid=db.Column(db.String(10))
+    tid = db.Column(db.String(10))
     mbody = db.Column(db.String(500))
     mclass = db.Column(db.String(50))
 
@@ -48,13 +48,14 @@ def __init__(self, mfrom, mto, mdate, msubject, tid, mbody, mclass):
     self.mto = mto
     self.mdate = mdate
     self.msubject = msubject
-    self.tid=tid
+    self.tid = tid
     self.mbody = mbody
     self.mclass = mclass
 
 
 #not being used
-# write form input to text file so that listener can detect, classify, move to output class directory, write to DB
+# write form input to text file so that listener can
+#detect, classify, move to output class directory, write to DB
 def write_mail(mail):
     timestr = time.strftime("%Y%m%d-%H%M%S")
     f = open("./inputEmails/email_" + str(timestr) + '.txt', "w+")
@@ -71,10 +72,10 @@ def write_mail(mail):
 #To upload entrire email as a file
 @app.route('/upload')
 def upload_file():
-   return render_template('upload.html')
+    return render_template('upload.html')
 
 
-@app.route('/uploader', methods = ['GET', 'POST'])
+@app.route('/uploader', methods=['GET', 'POST'])
 def upload_file_1():
     global myDict, mclass, tid
     if request.method == 'POST':
@@ -89,14 +90,16 @@ def upload_file_1():
       sfname = (secure_filename(f.filename))
       timestr = time.strftime("%Y%m%d-%H%M%S")
       fullname = str(timestr) + "_" +  sfname
-      f.save("./inputEmails/" + fullname)
+      f.save(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
+      #f.save("./inputEmails/" + fullname)
 
-      if not allowedExt('inputEmails/' + fullname):
+      #if not allowedExt('inputEmails/' + fullname):
+      if not allowed_ext(os.path.join(app.config['UPLOAD_FOLDER'], fullname)):
           msg = 'Invalid file type - no prediction!'
           return render_template('index2.html',message=msg)
 
 
-      to_add, from_add, receivedDate, sub, id, body, m_class = HandleNewEmail('inputEmails/' + fullname)
+      to_add, from_add, receivedDate, sub, id, body, m_class = HandleNewEmail(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
       myDict = {
           "From": from_add,
           "To": to_add,
@@ -165,7 +168,7 @@ def welcome():
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
 
             #extract text from txt or pdf AND IMAGE, else "" returned
-            body1 = extractText(app.config['UPLOAD_FOLDER'] + '/' + fullname)
+            body1 = extract_text(app.config['UPLOAD_FOLDER'] + '/' + fullname)
 
             if (body1!=""):
                 body1 = '\n-----------Extracted from Attachment-----------\n' + body1
@@ -239,8 +242,7 @@ def findthread():
     if request.method == "POST":
         id = str(request.form['transacid'])
         return render_template('show_all.html', mails=mails.query.filter(mails.tid == id).all())
-    else :
-        return render_template('findthread.html')
+    return render_template('findthread.html')
 
 
 if __name__ == '__main__':

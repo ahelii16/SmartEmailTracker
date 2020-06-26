@@ -188,11 +188,11 @@ df.Class.value_counts()
 
 # In[22]:
 
-'''
+
 for i in range(0, 6):
     print(i)
     print(le.inverse_transform([i]))
-'''
+
 
 # In[23]:
 
@@ -271,7 +271,6 @@ def return_score_xgb(sample_size, num_classes, df):
 
 
 all_accuracy = {0: []}
-
 
 def train():
     for num_samples in range(1, 41):
