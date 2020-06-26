@@ -2,6 +2,8 @@
 Created on Wed Jun 24
 
 @author: divya
+
+PyLint Score: 10/10
 """
 # install tesseract first
 # from here
@@ -14,11 +16,11 @@ except ImportError:
     import Image
 import pytesseract
 
-def ocr_core(filename):
-
+def ocr(filename):
+    """
+    We'll use Pillow's Image class to open the image
+    and use pytesseract to detect the string in the image
+    """
     text = pytesseract.image_to_string(Image.open(filename))
-    # We'll use Pillow's Image class to open the image and pytesseract to detect the string in the image
     #print(f'Extracted from image {text}')
     return text
-
-#print(ocr_core('images/ocr_example_1.png'))

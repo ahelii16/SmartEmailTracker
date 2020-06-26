@@ -11,8 +11,8 @@ import pandas as pd
 import re
 #from word2vec_xgb import inp
 from Glove_XGBoost import inp
-from PDFMinerParser import parsePDF
-from parseimage import ocr_core
+from file_parser import parse
+from parseimage import ocr
 
 
 from watchdog.observers import Observer
@@ -33,12 +33,12 @@ def HandleNewEmail(mail_path):
     #added this for image remove if problematic
     if (mail_path.endswith('.png') or mail_path.endswith('.jpg') or mail_path.endswith('.jpeg')):
         #print('Email Image uploaded!!')
-        extracted_text = ocr_core(mail_path)
+        extracted_text = ocr(mail_path)
         email = extracted_text.split('\n')
 
     if (mail_path.endswith('.pdf')):
         #print('PDF received')
-        extracted_text = parsePDF(mail_path)
+        extracted_text = parse(mail_path)
         email = extracted_text.split('\n')
         #print(email)
 
