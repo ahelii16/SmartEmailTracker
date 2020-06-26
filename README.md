@@ -35,7 +35,7 @@ virtualenv venv
 ```
 Activate Your Virtual Environment
 ```sh
-. .venv/bin/activate
+venv/bin/activate
 ```
 Project installations can be done with `pip`:
 ```sh
