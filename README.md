@@ -10,6 +10,10 @@ The current project has lots of content in emails post which the ops user has to
 
 - Based on the event type received in the email the system will take the desired actions, i.e. classifying the emails as per the target classes.
 
+<p align="center">
+  For details on all the ML models tried and tested, model comparisons, UI features and better understanding of system workflow, please refer to <a href="https://docs.google.com/document/d/1qj_gYU47MPSgorbo-ho6osTHv2lS3V2bhjiXhigURFA/edit?usp=sharing">this document.</a>.
+</p>
+
 ## For Checkpoint 1:
 
 We have used BiLSTM model to classify incoming emails as 'Complete', 'Failed', 'Pending', 'Request', 'Processing', 'General', in regards to payment data.
