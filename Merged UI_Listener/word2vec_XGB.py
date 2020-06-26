@@ -14,7 +14,7 @@ import xgboost
 
 
 embeddings_index = {}
-with open('./glove.6B.300d.txt', encoding='utf-8') as f:
+with open('/home/aheli/glove.6B.300d.txt', encoding='utf-8') as f:
     for line in f:
         values = line.split()
         word = values[0]
