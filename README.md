@@ -56,7 +56,7 @@ python start.py
 Open up localhost at http://127.0.0.1:5000/ for live demo of the app.
 
 Email input can given from the form or uploaded as a PDF, text file or an image.
- - NOTE: If any file is found to not be showing, please write the absolute path that file.
+ - NOTE: If any file is found not to be showing, please write the absolute path for that file.
 
 ## Sample email format assumed for PDF or txt file:
 
