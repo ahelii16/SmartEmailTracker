@@ -3,7 +3,7 @@ import os
 
 from datetime import datetime
 
-date_=datetime.today().strftime('%Y-%m-%d')
+date_ = datetime.today().strftime('%Y-%m-%d')
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -113,16 +113,16 @@ def write_mail(mail):
 
 @app.route('/upload')
 def upload_file():
-   return render_template('upload.html')
+    return render_template('upload.html')
 
 
 @app.route('/retrain')
 def retrain():
     with open('emaildataset.csv', 'a+') as f:
         out = csv.writer(f)
-        ct=0
+        ct = 0
         for mail in mails.query.all():
-            out.writerow([mail.mfrom, mail.mto, mail.msubject, mail.mbody, mail.mdate,  mail.m_class])
+            out.writerow([mail.mfrom, mail.mto, mail.msubject, mail.mbody, mail.mdate, mail.m_class])
             ct = ct +1
         db.session.query(mails).delete()
         db.session.commit()
@@ -136,7 +136,6 @@ def retrain():
 @app.route('/show')
 @login_required
 def show_all():
-    #return render_template('show_all.html', mails=mails.query.filter(mails.mto == current_user.email).all())
     return render_template('show_all.html', mails=mails.query.order_by(mails.id.desc()).all())
 
 
@@ -144,7 +143,7 @@ def show_all():
 def welcome():
     global myDict, mclass, tid
     if request.method == "POST":
-        myDict=inputvalues = {
+        myDict = inputvalues = {
             "From": request.form['From'],
             "To": request.form['To'],
             "Subject": request.form['Subject'],
@@ -153,7 +152,7 @@ def welcome():
         }
 
         #handle file attachment in email from form
-        body1=""
+        body1 = ""
         if not request.files.get('file', None):
             print('No file uploaded')
         else:
@@ -168,7 +167,7 @@ def welcome():
             #extract text from txt or pdf AND IMAGE, else "" returned
             body1 = extractText(app.config['UPLOAD_FOLDER'] + '/' + fullname)
 
-            if (body1!=""):
+            if(body1 != ""):
                 body1 = '\n-----------Extracted from Attachment-----------\n' + body1
 
         #append attchment txt to message body for prediction
@@ -176,11 +175,10 @@ def welcome():
         print(inputvalues['Message'])
 
 
-        if (inputvalues['Subject']=="" and inputvalues['Message']==""):
+        if (inputvalues['Subject'] == "" and inputvalues['Message'] == ""):
             msg = 'Empty email or invalid attachment - no prediction!'
             return render_template('retrained.html', message=msg)
 
-        #m_class, ID = inputfunc(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
         m_class, ID = inp(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
         mclass = m_class
         tid = ID
@@ -190,7 +188,7 @@ def welcome():
         return render_template("index1.html")
 
 
-@app.route('/uploader', methods = ['GET', 'POST'])
+@app.route('/uploader', methods=['GET', 'POST'])
 def upload_file_1():
     global myDict, mclass, tid
     if request.method == 'POST':

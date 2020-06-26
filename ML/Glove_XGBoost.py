@@ -26,16 +26,16 @@ import spacy
 
 
 embeddings_index = {}
-with open('/home/aheli/glove.6B.300d.txt',encoding='utf-8') as f:
+with open('/home/aheli/glove.6B.300d.txt', encoding='utf-8') as f:
     for line in f:
         values = line.split()
         word = values[0]
-        coeffs = np.asarray(values[1:],dtype='float32')
+        coeffs = np.asarray(values[1:], dtype='float32')
         embeddings_index[word] = coeffs
     f.close()
 
 
-df = pd.read_csv("/home/aheli/SmartEmailTracker/emaildataset.csv", usecols = ['Subject','Body', 'Class'])
+df = pd.read_csv("/home/aheli/SmartEmailTracker/emaildataset.csv", usecols= ['Subject', 'Body', 'Class'])
 df.head()
 
 
@@ -59,23 +59,22 @@ def get_only_chars(text):
     text = text.replace("\t", " ")
     text = text.replace("\n", " ")
 
-    text=text.rstrip()
+    text= text.rstrip()
     text = re.sub(r'[^a-zA-Z]', ' ', text)
     t = ""
 
     for i in text.lower().split():
         if func(i) is not None:
             t += func(i) + " "
-        else :
+        else:
             t += i + " "
 
     t = t.rstrip()
-    
+
     text = " ".join([i for i in t.lower().split()])
     text = " ".join(token for token in text.split() if token not in my_stop)
 
     doc = nlp(text)
-    
     doc = " ".join(token.orth_ for token in doc if not token.is_punct | token.is_space)
     return doc
 
@@ -129,7 +128,7 @@ df = df.drop_duplicates('Text')
 
 
 # set the by default to:
-num_classes = df.Class.unique() # the number of classes we consider (since the dataset has many classes)
+num_classes = df.Class.unique() # the number of classes we consider(since the dataset has many classes)
 sample_size = 5 # the number of labeled sampled we’ll require from the user
 
 
@@ -145,15 +144,15 @@ smallest_sample_size = min(df['Class'].value_counts())
 # Generate samples that contains K samples of each class
 
 def gen_sample(sample_size, num_classes, df):
-    
+
     df = df.sample(frac=1).reset_index(drop=True)
 
     df_1 = df[(df["Class"] < num_classes+1)].reset_index().drop(["index"], axis=1).reset_index().drop(["index"], axis=1)
-    
+
     train = df_1[df_1["Class"] == np.unique(df_1['Class'])[0]].sample(sample_size)
     train_index = train.index.tolist()
 
-    for i in range(1,num_classes):
+    for i in range(1, num_classes):
         train_2 = df_1[df_1["Class"] == np.unique(df_1['Class'])[i]].sample(sample_size)
         train = pd.concat([train, train_2], axis=0)
         train_index.extend(train_2.index.tolist())
@@ -166,7 +165,6 @@ def gen_sample(sample_size, num_classes, df):
 
 
 from sklearn.preprocessing import LabelEncoder 
-
 le = LabelEncoder()
 df['Class'] = le.fit_transform(df['Class'])
 
@@ -215,8 +213,8 @@ def transform_sentence(text, embeddings_index):
 
 
 if not os.path.exists('./pkl_objects'):
-        os.mkdir('./pkl_objects')
-    
+    os.mkdir('./pkl_objects')
+
 joblib.dump(le, './pkl_objects/labelencoder.pkl')
 
 
@@ -269,7 +267,7 @@ def return_score_xgb(sample_size, num_classes, df):
 all_accuracy = {0: []}
 
 for num_samples in range(1, 41):
-    all_accuracy[0].append(return_score_xgb(num_samples,len(df.Class.unique()), df))
+    all_accuracy[0].append(return_score_xgb(num_samples, len(df.Class.unique()), df))
 
 
 le = joblib.load('./pkl_objects/labelencoder.pkl')
@@ -288,8 +286,3 @@ def inp(emailto, emailfrom, subj, bod):
     print(y_pred)
 
     return le.inverse_transform(y_pred)
-
-
-
-
-
