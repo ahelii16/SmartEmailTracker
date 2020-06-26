@@ -20,7 +20,7 @@ from listenerpdfXG import HandleNewEmail
 from Glove_XGBoost import train
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///User.db'
 app.config['SECRET_KEY'] = "random string"
 app.config['UPLOAD_FOLDER'] = "uploads"
@@ -101,13 +101,17 @@ def __init__(self, mfrom, mto, mdate, msubject, ID, mbody, m_class):
 
 def write_mail(mail):
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    f = open("./inputEmails/email_" + str(timestr) + '.txt', "w+")
+    fname = "./inputEmails/email_" + str(timestr) + '.txt'
+    f = open(fname, "w+")
     f.write("To: %s \n" % mail.mto)
     f.write("From: %s \n" % mail.mfrom)
     f.write("Subject: %s \n\n" % mail.msubject)
-    f.write("Email_Body: %s \n" % mail.mbody)
-    f.write("class: %s \n" % mail.m_class)
-    f.write("Date: %s \n" % mail.mdate)
+    f.write("%s \n" % mail.mbody)
+    #f.write("Email_Body: %s \n" % mail.mbody)
+    #f.write("Transaction ID: %s \n" % mail.ID)
+    #f.write("Class: %s \n" % mail.m_class)
+    #f.write("Date: %s \n" % mail.mdate)
+    print(mail.m_class)
     f.close()
 
 
@@ -241,7 +245,7 @@ def new_class():
         mail = mails()
         __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
                  myDict['Subject'], tid, myDict['Message'], mclass)
-        write_mail(mail)
+        #write_mail(mail)
         db.session.add(mail)
         db.session.commit()
         # time.sleep(4)
@@ -257,10 +261,12 @@ def wrong():
         mclass = str(request.form.get("class", None))
         if mclass == 'newclass':
             return redirect(url_for('new_class'))
+        #mclass = mclass.capitalize()
+        #print(mclass)
         mail = mails()
         __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
                  myDict['Subject'], tid, myDict['Message'], mclass)
-        write_mail(mail)
+        #write_mail(mail)
         db.session.add(mail)
         db.session.commit()
         #time.sleep(4)
@@ -275,7 +281,7 @@ def right():
     mail = mails()
     __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
              myDict['Subject'], tid, myDict['Message'], mclass)
-    write_mail(mail)
+    #write_mail(mail)
     db.session.add(mail)
     db.session.commit()
     time.sleep(4)
