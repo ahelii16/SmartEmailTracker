@@ -45,7 +45,7 @@ Project installations can be done with `pip`:
 ```sh
 pip install -r requirements.txt
 ```
-Install Glove embeddings (1 GB file) from: 
+Install glove.6B.300d.txt (1 GB file) from: 
 ```sh
 https://www.kaggle.com/thanakomsn/glove6b300dtxt
 ```
