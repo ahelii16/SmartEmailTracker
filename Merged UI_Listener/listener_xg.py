@@ -3,7 +3,7 @@ Created on Mon Jun 15 00:04:39 2020
 
 @author: divya
 
-renamed from listenerppdfXG to listener_xg
+renamed from listenerpdfXG.py to listener_xg.py
 
 PyLint Score : 9.89/10
 """
