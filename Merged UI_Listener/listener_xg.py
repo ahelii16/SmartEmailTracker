@@ -115,7 +115,9 @@ def move_email(mail_path, outputdir):
         os.makedirs(outputdir)
         print("created folder : ", outputdir)
     #move email to class output directory
-    shutil.move(mail_path, outputdir)
+    #shutil.move(mail_path, outputdir)
+    shutil.copy(mail_path, outputdir)
+    os.remove(mail_path)
     print("moved to folder : ", outputdir)
 
 def verify_class(outputclass):
