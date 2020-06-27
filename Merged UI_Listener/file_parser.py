@@ -5,7 +5,7 @@ Created on Mon Jun 22 00:04:39 2020
 
 Parses files added as attachment in email form - pdf, txt, png, jpg and jpeg
 
-PyLint Score: 9.79/10
+PyLint Score: 10/10
 """
 
 
@@ -82,7 +82,7 @@ def allowed_ext(mail_path):
     we have handled pdf, txt, jpg, jpeg and png
     """
     if (mail_path.endswith('.png') or mail_path.endswith('.jpg') or mail_path.endswith('.jpeg')
-        or (mail_path.endswith('.pdf')) or (mail_path.endswith('.txt'))):
+            or (mail_path.endswith('.pdf')) or (mail_path.endswith('.txt'))):
         return True
     return False
 

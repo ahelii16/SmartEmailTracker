@@ -1,22 +1,32 @@
+"""
+Flask Application to start Smart Email Tracker
+python start.py
+on localhost:5000
+"""
 import csv
 import os
-
+import time
 from datetime import datetime
-
-date_=datetime.today().strftime('%Y-%m-%d')
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-import time
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, email_validator, ValidationError
-from flask_login import LoginManager, login_user, UserMixin, current_user, login_required, logout_user
-from word2vec_XGB import inp
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from flask_login import LoginManager, login_user, UserMixin, current_user, \
+login_required, logout_user
 from werkzeug.utils import secure_filename
-from file_parser import parse, allowed_ext, extract_text
-from listenerpdfXG import HandleNewEmail
+
+
+date_ = datetime.today().strftime('%Y-%m-%d')
+
+
+
+from xgb_inp import inp
+from file_parser import allowed_ext, extract_text
+from listener_xg import handle_new_email
 from Glove_XGBoost import train
 
 app = Flask(__name__)
@@ -33,6 +43,9 @@ login_manager.login_message_category = 'info'
 
 
 class User(db.Model, UserMixin):
+    """
+    user database definition
+    """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -44,10 +57,16 @@ class User(db.Model, UserMixin):
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+    load user
+    """
     return User.query.get(int(user_id))
 
 
 class RegistrationForm(FlaskForm):
+    """
+    registration form
+    """
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
@@ -55,21 +74,33 @@ class RegistrationForm(FlaskForm):
     password = StringField('Password',
                            validators=[DataRequired(), Length(min=6, max=20)])
     confirm_password = StringField('Confirm Password',
-                                   validators=[DataRequired(), EqualTo('password')])
+                                   validators=[DataRequired(),
+                                               EqualTo('password')])
     submit = SubmitField('SignUp')
 
     def validate_username(self, username):
+        """
+        username validation
+        """
         user = User.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError('This username is already taken. Please choose a different username')
+            raise ValidationError('This username is already taken. \
+                                   Please choose a different username')
 
     def validate_email(self, email):
+        """
+        email validation
+        """
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError('This email is already taken. Please choose a different email-address')
+            raise ValidationError('This email is already taken. \
+                                   Please choose a different email-address')
 
 
 class LoginForm(FlaskForm):
+    """
+    login form
+    """
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = StringField('Password',
@@ -79,6 +110,9 @@ class LoginForm(FlaskForm):
 
 
 class mails(db.Model):
+    """
+    email table definition
+    """
     id = db.Column('mail_id', db.Integer, primary_key=True)
     mfrom = db.Column(db.String(50))
     mto = db.Column(db.String(50))
@@ -90,6 +124,9 @@ class mails(db.Model):
 
 
 def __init__(self, mfrom, mto, mdate, msubject, ID, mbody, m_class):
+    """
+    definition of mail object
+    """
     self.mfrom = mfrom
     self.mto = mto
     self.mdate = mdate
@@ -100,6 +137,9 @@ def __init__(self, mfrom, mto, mdate, msubject, ID, mbody, m_class):
 
 
 def write_mail(mail):
+    """
+    create txt copy of form mail
+    """
     timestr = time.strftime("%Y%m%d-%H%M%S")
     fname = "./inputEmails/email_" + str(timestr) + '.txt'
     f = open(fname, "w+")
@@ -117,20 +157,27 @@ def write_mail(mail):
 
 @app.route('/upload')
 def upload_file():
-   return render_template('upload.html')
+    """
+    renders page to upload email as a file
+    """
+    return render_template('upload.html')
 
 
 @app.route('/retrain')
 def retrain():
+    """
+    append DB emails to training dataset
+    call model from retraining
+    """
     with open('emaildataset.csv', 'a+') as f:
         f.write('\n')
         f.close()
         with open('emaildataset.csv', 'a+') as f:
             out = csv.writer(f)
-            ct=0
+            ct = 0
             for mail in mails.query.all():
                 out.writerow([mail.mfrom, mail.mto, mail.msubject, mail.mbody, mail.ID,
-                mail.mdate,  mail.m_class])
+                              mail.mdate, mail.m_class])
                 ct = ct +1
             db.session.query(mails).delete()
             db.session.commit()
@@ -144,15 +191,25 @@ def retrain():
 @app.route('/show')
 @login_required
 def show_all():
-    #return render_template('show_all.html', mails=mails.query.filter(mails.mto == current_user.email).all())
-    return render_template('show_all.html', mails=mails.query.order_by(mails.id.desc()).all())
+    """
+    display all emails currently in DB
+    """
+    #return render_template('show_all.html',
+    # mails=mails.query.filter(mails.mto == current_user.email).all())
+    return render_template('show_all.html',
+                           mails=mails.query.order_by(mails.id.desc()).all())
 
 
 @app.route("/", methods=["GET", "POST"])
 def welcome():
-    global myDict, mclass, tid
+    """
+    homepage
+    accept email with attachment from UI form
+    predict and display output class
+    """
+    global my_dict, mclass, tid
     if request.method == "POST":
-        myDict=inputvalues = {
+        my_dict = inputvalues = {
             "From": request.form['From'],
             "To": request.form['To'],
             "Subject": request.form['Subject'],
@@ -161,7 +218,7 @@ def welcome():
         }
 
         #handle file attachment in email from form
-        body1=""
+        body1 = ""
         if not request.files.get('file', None):
             print('No file uploaded')
         else:
@@ -176,7 +233,7 @@ def welcome():
             #extract text from txt or pdf AND IMAGE, else "" returned
             body1 = extract_text(app.config['UPLOAD_FOLDER'] + '/' + fullname)
 
-            if (body1!=""):
+            if body1 != "":
                 body1 = '\n-----------Extracted from Attachment-----------\n' + body1
 
         #append attchment txt to message body for prediction
@@ -184,12 +241,12 @@ def welcome():
         print(inputvalues['Message'])
 
 
-        if (inputvalues['Subject']=="" and inputvalues['Message']==""):
+        if (inputvalues['Subject'] == "" and inputvalues['Message'] == ""):
             msg = 'Empty email or invalid attachment - no prediction!'
             return render_template('retrained.html', message=msg)
 
-        #m_class, ID = inputfunc(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
-        m_class, ID = inp(inputvalues['To'], inputvalues['From'], inputvalues['Subject'], inputvalues['Message'])
+        m_class, ID = inp(inputvalues['To'], inputvalues['From'],
+                          inputvalues['Subject'], inputvalues['Message'])
         mclass = m_class
         tid = ID
         return render_template("index1.html", m=m_class)
@@ -198,14 +255,18 @@ def welcome():
         return render_template("index1.html")
 
 
-@app.route('/uploader', methods = ['GET', 'POST'])
+@app.route('/uploader', methods=['GET', 'POST'])
 def upload_file_1():
-    global myDict, mclass, tid
+    """
+    upload email as a file
+    pdf, txt, image
+    """
+    global my_dict, mclass, tid
     if request.method == 'POST':
 
       if not request.files.get('file', None):
-        msg = 'No file uploaded'
-        return render_template('retrained.html', message=msg)
+            msg = 'No file uploaded'
+            return render_template('retrained.html', message=msg)
 
       f = request.files['file']
       print('File Uploaded=====')
@@ -218,33 +279,37 @@ def upload_file_1():
 
       #if not allowedExt('inputEmails/' + fullname):
       if not allowed_ext(os.path.join(app.config['UPLOAD_FOLDER'], fullname)):
-          msg = 'Invalid file type - no prediction!'
-          return render_template('retrained.html',message=msg)
+            msg = 'Invalid file type - no prediction!'
+            return render_template('retrained.html', message=msg)
 
 
-      to_add, from_add, receivedDate, sub, id, body, m_class = HandleNewEmail(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
-      myDict = {
+      to_add, from_add, received_date, sub, id, body, m_class = handle_new_email(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
+      my_dict = {
           "From": from_add,
           "To": to_add,
           "Subject": sub,
           "Message": body,
-          "Date": receivedDate
+          "Date": received_date
       }
-      mclass=m_class
-      tid=id
+      mclass = m_class
+      tid = id
       return render_template("index1.html", m=m_class)
 
     else:
       return render_template("index1.html")
 
 
-@app.route('/newclass', methods=['Get', 'POST'])
+@app.route('/newclass', methods=['GET', 'POST'])
 def new_class():
+    """
+    manually correct predicted class
+    can enter a new class also
+    """
     if request.method == "POST":
         mclass = str(request.form['NewClass'])
         mail = mails()
-        __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
-                 myDict['Subject'], tid, myDict['Message'], mclass)
+        __init__(mail, my_dict['From'], my_dict['To'], my_dict['Date'],
+                 my_dict['Subject'], tid, my_dict['Message'], mclass)
         #write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -257,6 +322,11 @@ def new_class():
 
 @app.route('/wrong', methods=['GET', 'POST'])
 def wrong():
+    """
+    if predicted class is wrong
+    input new class
+    add to DB
+    """
     if request.method == "POST":
         mclass = str(request.form.get("class", None))
         if mclass == 'newclass':
@@ -264,8 +334,8 @@ def wrong():
         #mclass = mclass.capitalize()
         #print(mclass)
         mail = mails()
-        __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
-                 myDict['Subject'], tid, myDict['Message'], mclass)
+        __init__(mail, my_dict['From'], my_dict['To'], my_dict['Date'],
+                 my_dict['Subject'], tid, my_dict['Message'], mclass)
         #write_mail(mail)
         db.session.add(mail)
         db.session.commit()
@@ -278,9 +348,12 @@ def wrong():
 
 @app.route('/right')
 def right():
+    """
+    if predicted class is right, add mail to DB
+    """
     mail = mails()
-    __init__(mail, myDict['From'], myDict['To'], myDict['Date'],
-             myDict['Subject'], tid, myDict['Message'], mclass)
+    __init__(mail, my_dict['From'], my_dict['To'], my_dict['Date'],
+             my_dict['Subject'], tid, my_dict['Message'], mclass)
     #write_mail(mail)
     db.session.add(mail)
     db.session.commit()
@@ -289,18 +362,25 @@ def right():
     return redirect(url_for('welcome'))
 
 
-@app.route('/thread', methods = ['GET','POST'])
+@app.route('/thread', methods=['GET', 'POST'])
 @login_required
 def findthread():
+    """
+    find all emails with particular transaction id
+    """
     if request.method == "POST":
         id = str(request.form['transacid'])
-        return render_template('show_all.html', mails=mails.query.filter(mails.mdate == id and mails.mto == current_user.email).all())
-    else :
+        return render_template('show_all.html',
+                                mails=mails.query.filter(mails.ID == id and mails.mto == current_user.email).all())
+    else:
         return render_template('findthread.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    user login
+    """
     if current_user.is_authenticated:
         return redirect(url_for('welcome'))
     form = LoginForm()
@@ -317,12 +397,18 @@ def login():
 
 @app.route('/logout')
 def logout():
+    """
+    logout current signed in user, redirect to homepage
+    """
     logout_user()
     return redirect(url_for('welcome'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """
+    Register - create a new account
+    """
     if current_user.is_authenticated:
         return redirect(url_for('welcome'))
     form = RegistrationForm()
