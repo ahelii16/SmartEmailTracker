@@ -36,15 +36,20 @@ def HandleNewEmail(mail_path):
         extracted_text = ocr(mail_path)
         email = extracted_text.split('\n')
 
-    if (mail_path.endswith('.pdf')):
+    elif (mail_path.endswith('.pdf')):
         #print('PDF received')
         extracted_text = parse(mail_path)
         email = extracted_text.split('\n')
         #print(email)
 
-    if (mail_path.endswith('.txt')):
+    elif (mail_path.endswith('.txt')):
         #print('txt received')
         email=open(mail_path, "r")
+    else:
+        '''
+        UnHandled file type
+        '''
+        return '', '', '', '', '', '', ''
 
     to_add=''
     from_add=''
@@ -79,14 +84,15 @@ def HandleNewEmail(mail_path):
     outputclass , id = inp(to_add,from_add,sub,body)
 
     #addtoDB(to_add, from_add, receivedDate, sub, id, body, outputclass)
-    moveEmail(mail_path, outputclass)
+    #moveEmail(mail_path, outputclass)
     print(f'====>Event Processing completed')
 
     return to_add, from_add, receivedDate, sub, id, body, outputclass
 
 def addtoDB(to_add, from_add, receivedDate, sub, id, body, outputclass):
     #add email and class to DB
-    conn = sqlite3.connect('mails.sqlite3')
+    #conn = sqlite3.connect('mails.sqlite3')
+    conn = sqlite3.connect('User.db')
     cur = conn.cursor()
     cur.execute('''INSERT INTO mails (mto, mfrom, mdate, msubject, ID, mbody, m_class)
                VALUES (?, ?, ?, ?, ?, ?, ?)''', (to_add, from_add, receivedDate, sub, id, body, outputclass))
@@ -110,7 +116,9 @@ def moveEmail(mail_path, outputdir):
 def on_created(event):
     print(f"====>Event Received: {event.src_path} received!")
     to_add, from_add, receivedDate, sub, id, body, outputclass = HandleNewEmail(event.src_path)
-    addtoDB(to_add, from_add, receivedDate, sub, id, body, outputclass)
+    if outputclass!='':
+        addtoDB(to_add, from_add, receivedDate, sub, id, body, outputclass)
+        moveEmail(event.src_path, outputclass)
 
 if __name__ == "__main__":
     patterns = "*"
