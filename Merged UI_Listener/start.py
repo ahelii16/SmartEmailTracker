@@ -18,16 +18,14 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_login import LoginManager, login_user, UserMixin, current_user, \
 login_required, logout_user
 from werkzeug.utils import secure_filename
-
-
-date_ = datetime.today().strftime('%Y-%m-%d')
-
-
-
 from xgb_inp import inp
 from file_parser import allowed_ext, extract_text
 from listener_xg import handle_new_email
 from Glove_XGBoost import train
+
+
+date_ = datetime.today().strftime('%Y-%m-%d')
+
 
 app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mails.sqlite3'
@@ -264,39 +262,39 @@ def upload_file_1():
     global my_dict, mclass, tid
     if request.method == 'POST':
 
-      if not request.files.get('file', None):
+        if not request.files.get('file', None):
             msg = 'No file uploaded'
             return render_template('retrained.html', message=msg)
 
-      f = request.files['file']
-      print('File Uploaded=====')
-      f = request.files['file']
-      sfname = (secure_filename(f.filename))
-      timestr = time.strftime("%Y%m%d-%H%M%S")
-      fullname = str(timestr) + "_" +  sfname
-      f.save(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
-      #f.save("./inputEmails/" + fullname)
+        f = request.files['file']
+        print('File Uploaded=====')
+        f = request.files['file']
+        sfname = (secure_filename(f.filename))
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        fullname = str(timestr) + "_" +  sfname
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
+        #f.save("./inputEmails/" + fullname)
 
-      #if not allowedExt('inputEmails/' + fullname):
-      if not allowed_ext(os.path.join(app.config['UPLOAD_FOLDER'], fullname)):
+        #if not allowedExt('inputEmails/' + fullname):
+        if not allowed_ext(os.path.join(app.config['UPLOAD_FOLDER'], fullname)):
             msg = 'Invalid file type - no prediction!'
             return render_template('retrained.html', message=msg)
 
 
-      to_add, from_add, received_date, sub, id, body, m_class = handle_new_email(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
-      my_dict = {
-          "From": from_add,
-          "To": to_add,
-          "Subject": sub,
-          "Message": body,
-          "Date": received_date
-      }
-      mclass = m_class
-      tid = id
-      return render_template("index1.html", m=m_class)
+        to_add, from_add, received_date, sub, id, body, m_class = handle_new_email(os.path.join(app.config['UPLOAD_FOLDER'], fullname))
+        my_dict = {
+            "From": from_add,
+            "To": to_add,
+            "Subject": sub,
+            "Message": body,
+            "Date": received_date
+        }
+        mclass = m_class
+        tid = id
+        return render_template("index1.html", m=m_class)
 
     else:
-      return render_template("index1.html")
+        return render_template("index1.html")
 
 
 @app.route('/newclass', methods=['GET', 'POST'])
@@ -370,8 +368,7 @@ def findthread():
     """
     if request.method == "POST":
         id = str(request.form['transacid'])
-        return render_template('show_all.html',
-                                mails=mails.query.filter(mails.ID == id and mails.mto == current_user.email).all())
+        return render_template('show_all.html', mails=mails.query.filter(mails.ID == id and mails.mto == current_user.email).all())
     else:
         return render_template('findthread.html')
 

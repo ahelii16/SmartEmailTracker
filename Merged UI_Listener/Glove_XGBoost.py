@@ -3,7 +3,9 @@
 
 # # Few-Shot Learning Email Classification with Pre-Trained Word2Vec Embeddings
 
-# In[2]:
+'''
+Code for retraining the XG boost model
+'''
 
 import os
 import re
@@ -16,48 +18,20 @@ from sklearn.metrics import accuracy_score
 from wordfile import func
 from xgb_inp import EMBEDDINGS_INDEX
 
-
-# In[3]:
-
-'''
-EMBEDDINGS_INDEX = {}
-with open('./glove.6B.300d.txt',encoding='utf-8') as f:
-    for line in f:
-        values = line.split()
-        word = values[0]
-        coeffs = np.asarray(values[1:],dtype='float32')
-        EMBEDDINGS_INDEX[word] = coeffs
-    f.close()
-'''
-
-    # In[4]:
-
-
     # from google.colab import files
     # uploaded = files.upload()
 
 
-    # In[5]:
-
 def train():
-    df = pd.read_csv("./emaildataset.csv", usecols = ['Subject','Body', 'Class'])
+    '''
+    Load the dataset, clean the subject and body, then do data sampling for training the model.
+    '''
+    df = pd.read_csv("./emaildataset.csv", usecols= ['Subject', 'Body', 'Class'])
     df.head()
-
-
-    # In[6]:
-
 
     nlp = spacy.load('en')
 
-
-    # In[7]:
-
-
     my_stop = ["'d", "'ll", "'m", "'re", "'s", "'ve",'a','cc','subject','http', 'gbp', 'usd', 'eur', 'inr', 'cad', 'thanks', "acc", "id", 'account', 'regards', 'hi', 'hello', 'thank you', 'greetings', 'about','above', 'across','after','afterwards','alone','along','am','among', 'amongst','amount','an','and','another','any','anyhow','anyone','anything','anyway','anywhere','are','around','as', 'at','be','became','because','become','becomes','becoming','been','before','beforehand','behind','being','below', 'beside','besides','between','both','bottom','but','by','ca','call','can','could','did', 'do', 'does', 'doing', 'down', 'due', 'during', 'each', 'eight', 'either', 'eleven', 'else', 'elsewhere', 'everyone', 'everything', 'everywhere', 'fifteen', 'fifty', 'first', 'five', 'for', 'former', 'formerly', 'forty', 'four', 'from', 'front', 'further', 'get', 'give', 'go', 'had', 'has', 'have', 'he', 'hence', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'however', 'hundred', 'i', 'if', 'in', 'indeed', 'into', 'is', 'it', 'its', 'itself', 'just', 'keep', 'last', 'latter', 'latterly', 'least', 'less', 'made', 'make', 'many', 'may', 'me', 'meanwhile', 'might', 'mine', 'more', 'moreover', 'move', 'much', 'must', 'my', 'myself', 'name', 'namely', 'neither', 'nevertheless', 'next', 'nine', 'no', 'nobody', 'now', 'nowhere', 'of', 'off', 'often', 'on', 'one', 'onto', 'or', 'other', 'others', 'otherwise', 'our', 'ours', 'ourselves', 'out', 'own', 'part', 'per', 'perhaps', 'please', 'put', 'quite', 'rather', 're', 'really', 'regarding', 'same', 'say', 'see', 'seem', 'seemed', 'seeming', 'seems', 'she', 'should', 'show', 'side', 'since', 'six', 'sixty', 'so', 'some', 'somehow', 'someone', 'something', 'sometime', 'somewhere', 'such', 'take', 'ten', 'than', 'that', 'the', 'their', 'them', 'themselves', 'then', 'thence', 'there', 'thereafter', 'thereby', 'therefore', 'therein', 'thereupon', 'these', 'they', 'third', 'this', 'those', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'top', 'toward', 'towards', 'twelve', 'twenty', 'two', 'under', 'up', 'upon', 'us', 'using', 'various', 'via', 'was', 'we', 'well', 'were', 'whatever', 'whence', 'whenever', 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'whoever', 'whole', 'whom', 'whose', 'will', 'with', 'within', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', '‘d', '‘ll', '‘m', '‘re', '‘s', '‘ve', '’d', '’ll', '’m', '’re', '’s', '’ve']
-
-
-    # In[8]:
-
 
     def get_only_chars(text):
         text = text.replace("-", " ") #replace hyphens with spaces
@@ -85,21 +59,9 @@ def train():
         return doc
 
 
-    # In[9]:
-
-
-    # print(get_only_chars("hi i want info on le 12234."))
-
-
-    # In[10]:
-
-
-    for i in range(df.shape[0]):
+    for _ in range(df.shape[0]):
         # merge subject and body strings
         df['Text'] = (df['Subject'] + " " + df['Body'])
-
-
-    # In[11]:
 
 
     def converter(x):
@@ -108,52 +70,24 @@ def train():
         except AttributeError:
             return None  # or some other value
 
+    
     df['Text'] = df['Text'].apply(converter)
 
-
-    # In[12]:
-
-
-    # text_clean=[]
-
-    # for i in range(df.shape[0]):
-    #     text_clean.append(get_only_chars(df.loc[i]['Text']))
-
-
-    # In[13]:
-
-
     df['Text'] = df['Text'].apply(lambda x: get_only_chars(x))
-
-
-    # In[14]:
-
 
     df = df.drop_duplicates('Text')
 
 
-    # df.sample(frac=1).reset_index(drop=True)
+    ## set the by default to(in case there are no arguments later on, error handling):
 
-
-    # In[17]:
-
-
-    # set the by default to:
-    num_classes = df.Class.unique() # the number of classes we consider (since the dataset has many classes)
-    sample_size = 5 # the number of labeled sampled we’ll require from the user
-
-
-    # In[18]:
+    # num_classes = df.Class.unique() # the number of classes we consider (since the dataset has many classes)
+    # sample_size = 5 # the number of labeled sampled we’ll require from the user
 
 
     smallest_sample_size = min(df['Class'].value_counts())
 
 
-    # In[33]:
-
-
     # Generate samples that contains K samples of each class
-
     def gen_sample(sample_size, num_classes, df):
 
         df = df.sample(frac=1).reset_index(drop=True)
@@ -172,9 +106,7 @@ def train():
         return train, test
 
 
-    # In[34]:
-
-
+    # Encoding categorical variables
     from sklearn.preprocessing import LabelEncoder
 
     le = LabelEncoder()
@@ -198,18 +130,17 @@ def train():
         return np.array(text_vector)
 
 
+
     if not os.path.exists('./pkl_objects'):
         os.mkdir('./pkl_objects')
 
     joblib.dump(le, './pkl_objects/labelencoder.pkl')
 
 
+
     import xgboost
 
-
-    # In[54]:
-
-
+    # Return accuracy score of ML model
     def return_score_xgb(sample_size, num_classes, df):
 
         train, test = gen_sample(sample_size, num_classes, df=df)
@@ -222,7 +153,7 @@ def train():
         x_train_mean = np.array([transform_sentence(x, EMBEDDINGS_INDEX) for x in x_train])
         x_test_mean = np.array([transform_sentence(x, EMBEDDINGS_INDEX) for x in x_test])
 
-    #     XG Boost
+        # XG Boost
         clf = xgboost.XGBClassifier()
         clf.fit(x_train_mean, y_train)
         # eval_set = [(x_train_mean, y_train), (x_test_mean, y_test)]
