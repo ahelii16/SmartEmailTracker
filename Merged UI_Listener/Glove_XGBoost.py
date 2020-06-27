@@ -5,34 +5,28 @@
 
 # In[2]:
 
-
+import os
+import re
+import spacy
 import pandas as pd
 import numpy as np
-from random import seed
-from random import sample
-from wordfile import func
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-import re
 import joblib
-from sklearn.decomposition import PCA
 from sklearn.metrics import accuracy_score
-from scipy import spatial
-import os
-import spacy
-from word2vec_XGB import embeddings_index
+
+from wordfile import func
+from xgb_inp import EMBEDDINGS_INDEX
 
 
 # In[3]:
 
 '''
-embeddings_index = {}
+EMBEDDINGS_INDEX = {}
 with open('./glove.6B.300d.txt',encoding='utf-8') as f:
     for line in f:
         values = line.split()
         word = values[0]
         coeffs = np.asarray(values[1:],dtype='float32')
-        embeddings_index[word] = coeffs
+        EMBEDDINGS_INDEX[word] = coeffs
     f.close()
 '''
 
@@ -70,14 +64,14 @@ def train():
         text = text.replace("\t", " ")
         text = text.replace("\n", " ")
 
-        text=text.rstrip()
+        text = text.rstrip()
         text = re.sub(r'[^a-zA-Z]', ' ', text)
         t = ""
 
         for i in text.lower().split():
             if func(i) is not None:
                 t += func(i) + " "
-            else :
+            else:
                 t += i + " "
 
         t = t.rstrip()
@@ -169,7 +163,7 @@ def train():
         train = df_1[df_1["Class"] == np.unique(df_1['Class'])[0]].sample(sample_size)
         train_index = train.index.tolist()
 
-        for i in range(1,num_classes):
+        for i in range(1, num_classes):
             train_2 = df_1[df_1["Class"] == np.unique(df_1['Class'])[i]].sample(sample_size)
             train = pd.concat([train, train_2], axis=0)
             train_index.extend(train_2.index.tolist())
@@ -187,23 +181,23 @@ def train():
     df['Class'] = le.fit_transform(df['Class'])
 
 
-    def transform_sentence(text, embeddings_index):
+    def transform_sentence(text, EMBEDDINGS_INDEX):
 
-        def preprocess_text(raw_text, model=embeddings_index):
+        def preprocess_text(raw_text, model=EMBEDDINGS_INDEX):
 
             raw_text = raw_text.split()
-            return list(filter(lambda x: x in embeddings_index.keys(), raw_text))
+            return list(filter(lambda x: x in EMBEDDINGS_INDEX.keys(), raw_text))
 
         tokens = preprocess_text(text)
 
         if not tokens:
             return np.zeros(300)
 
-        c = [embeddings_index[i] for i in tokens]
-        text_vector = np.mean(c, axis=0)
+        vec = [EMBEDDINGS_INDEX[i] for i in tokens]
+        text_vector = np.mean(vec, axis=0)
         return np.array(text_vector)
 
-    
+
     if not os.path.exists('./pkl_objects'):
         os.mkdir('./pkl_objects')
 
@@ -220,24 +214,24 @@ def train():
 
         train, test = gen_sample(sample_size, num_classes, df=df)
 
-        X_train = train['Text'].values
+        x_train = train['Text'].values
         y_train = train['Class'].values
-        X_test = test['Text'].values
+        x_test = test['Text'].values
         y_test = test['Class'].values
 
-        X_train_mean = np.array([transform_sentence(x, embeddings_index) for x in X_train])
-        X_test_mean = np.array([transform_sentence(x, embeddings_index) for x in X_test])
+        x_train_mean = np.array([transform_sentence(x, EMBEDDINGS_INDEX) for x in x_train])
+        x_test_mean = np.array([transform_sentence(x, EMBEDDINGS_INDEX) for x in x_test])
 
     #     XG Boost
         clf = xgboost.XGBClassifier()
-        clf.fit(X_train_mean, y_train)
-        # eval_set = [(X_train_mean, y_train), (X_test_mean, y_test)]
-        # clf.fit(X_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)
+        clf.fit(x_train_mean, y_train)
+        # eval_set = [(x_train_mean, y_train), (x_test_mean, y_test)]
+        # clf.fit(x_train_mean, y_train, early_stopping_rounds=10, eval_metric="merror", eval_set=eval_set, verbose=True)
 
 
         joblib.dump(clf, './pkl_objects/clf.pkl')
 
-        y_pred = clf.predict(X_test_mean)
+        y_pred = clf.predict(x_test_mean)
 
         # evaluate predictions
         accuracy = accuracy_score(y_pred, y_test)
@@ -259,5 +253,4 @@ def train():
     all_accuracy = {0: []}
 
     for num_samples in range(1, 41):
-        all_accuracy[0].append(return_score_xgb(num_samples,len(df.Class.unique()), df))
-
+        all_accuracy[0].append(return_score_xgb(num_samples, len(df.Class.unique()), df))
