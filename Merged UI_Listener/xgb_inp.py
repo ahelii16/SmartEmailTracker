@@ -107,8 +107,7 @@ def get_only_chars(text):
 
     doc = NLP(text)
     normalized = " ".join(token.lemma_ for token in doc)
-    doc = " ".join(token.orth_ for token in NLP(normalized)
-                   if not token.is_punct | token.is_space)
+    doc = " ".join(token.orth_ for token in NLP(normalized) if not token.is_punct | token.is_space)
     return doc
 
 
@@ -118,7 +117,7 @@ def transform_sentence(text, EMBEDDINGS_INDEX):
     """
     def preprocess_text(raw_text, model=EMBEDDINGS_INDEX):
         """
-        text preprocessing
+        text vectorization
         """
         raw_text = raw_text.split()
         return list(filter(lambda x: x in EMBEDDINGS_INDEX.keys(), raw_text))
@@ -154,6 +153,13 @@ def find_num(sub):
         res = int(nums[0])
     return str(res)
 
+def is_empty_sent(cd):
+    """
+    error handling for invalid sentence
+    """
+    all_zeros = not cd.any()
+    return all_zeros
+
 
 def inp(emailto, emailfrom, subj, bod):
     """
@@ -162,12 +168,16 @@ def inp(emailto, emailfrom, subj, bod):
     text = subj + " " + bod
     tid = str(find_num(text))
     text = get_only_chars(text)
-    x_test_mean = np.array([transform_sentence(text, EMBEDDINGS_INDEX)])
+    X_test_mean = np.array([transform_sentence(text, model)])
+    
+    if is_empty_sent(X_test_mean) is True:
+        l = ["Unable to read email.Please ensure that it is in English!"]
+        return np.array(l)[0], tid
 
-    y_pred = CLF.predict(x_test_mean)
+    y_pred = clf.predict(X_test_mean)
+
     out = LE.inverse_transform(y_pred)
     return out[0], tid
-
 
 #k, ID = inp("fvf", "defrfg", "payment processed 123456",
 #            "hi, the payment for acc 1234 for usd 3456 was paid successfully.")
