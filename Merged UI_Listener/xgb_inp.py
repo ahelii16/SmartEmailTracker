@@ -122,19 +122,20 @@ def find_id(sub):
         return res
         
     def func(sub, nums):
+        end_idx = 0
         for i in nums:
             start_idx = sub.find(i)
-            if "trans id" in sub[start_idx - 10 : start_idx]:
+            if "trans id" in sub[max(0, start_idx - 10) : start_idx]:
                 return i,True
-            elif "transaction id" in sub[start_idx - 16 : start_idx]:
+            elif "transaction id" in sub[max(0, start_idx - 16) : start_idx]:
                 return i,True
-            elif "number" in sub[start_idx - 8 : start_idx]:
+            elif "number" in sub[max(0, start_idx - 8) : start_idx]:
                 return i,True
-            elif "no." in sub[start_idx - 6 : start_idx]:
+            elif "no." in sub[max(0, start_idx - 5) : start_idx]:
                 return i,True
-            elif "num" in sub[start_idx - 6 : start_idx]:
+            elif "num" in sub[max(0, start_idx - 5) : start_idx]:
                 return i,True
-            elif "id" in sub[start_idx - 6 : start_idx]:
+            elif "id" in sub[max(0, start_idx - 4) : start_idx]:
                 return i,True
         return "",False
     
@@ -142,6 +143,7 @@ def find_id(sub):
     if boolean is True:
         return num_str
     return None
+
 
 def find_amt(s):
     """
@@ -153,31 +155,33 @@ def find_amt(s):
     s = s.lower()
     for t in text.split():
         try:
+            t = " " + t + " "
             nums.append(t)
         except ValueError:
             pass
     if not nums:
         res = None
         return res
-        
-    def func(sub, nums):
+    def func(s, nums):
+        end_idx = 0
         for i in nums:
-            start_idx = sub.find(i)
+            start_idx = s.find(i)
             end_idx = start_idx + len(i)
-            if "usd" in sub[start_idx - 5 : start_idx] or "usd" in sub[end_idx : end_idx + 5]:
+            if "usd" in s[max(0, start_idx - 5) : start_idx] or "usd" in s[end_idx : min(len(s) - 1, end_idx + 5)]:
                 return i,True
-            elif "cad" in sub[start_idx - 5 : start_idx] or "cad" in sub[end_idx : end_idx + 5]:
+            elif "cad" in s[max(0, start_idx - 5) : start_idx] or "cad" in s[end_idx : min(len(s) - 1, end_idx + 5)]:
                 return i,True
-            elif "inr" in sub[start_idx - 5 : start_idx] or "inr" in sub[end_idx : end_idx + 5]:
+            elif "inr" in s[max(0, start_idx - 5) : start_idx] or "inr" in s[end_idx : min(len(s) - 1, end_idx + 5)]:
                 return i,True
-            elif "gbp" in sub[start_idx - 5 : start_idx] or "gbp" in sub[end_idx : end_idx + 5]:
+            elif "gbp" in s[max(0, start_idx - 5) : start_idx] or "gbp" in s[end_idx : min(len(s) - 1, end_idx + 5)]:
                 return i,True
-            elif "usd" in sub[start_idx - 5 : start_idx] or "usd" in sub[end_idx : end_idx + 5]:
+            elif "usd" in s[max(0, start_idx - 5) : start_idx] or "usd" in s[end_idx : min(len(s) - 1, end_idx + 5)]:
                 return i,True
-            elif "rs" in sub[start_idx - 4 : start_idx] or "rs" in sub[end_idx : end_idx + 4]:
+            elif "rs" in s[max(0, start_idx - 4) : start_idx] or "rs" in s[end_idx : min(len(s) - 1, end_idx + 4)]:
                 return i,True
-            elif "rupees" in sub[start_idx - 8 : start_idx] or "rupees" in sub[end_idx : end_idx + 8]:
+            elif "rupees" in s[max(0, start_idx - 8) : start_idx] or "rupees" in s[end_idx : min(len(s) - 1, end_idx + 8)]:
                 return i,True
+            
         return "",False
     
     num_str, boolean = func(s, nums)
