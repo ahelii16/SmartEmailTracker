@@ -136,22 +136,86 @@ LE = joblib.load('./pkl_objects/labelencoder.pkl')
 CLF = joblib.load('./pkl_objects/clf.pkl')
 
 
-def find_num(sub):
+def find_id(sub):
     """
-    extract transaction id from email subject
+    extract transaction id from email (subject + body)
     """
     nums = []
     res = ''
-    for word in sub.split():
+    text = re.sub(r'[^0-9]', ' ', sub)
+    sub = sub.lower()
+    for t in text.split():
         try:
-            nums.append(float(word))
+            nums.append(t)
         except ValueError:
             pass
     if not nums:
-        res = '000000'
-    else:
-        res = int(nums[0])
-    return str(res)
+        res = None
+        return res
+        
+    def func(sub, nums):
+        for i in nums:
+            start_idx = sub.find(i)
+            if "trans id" in sub[start_idx - 10 : start_idx]:
+                return i,True
+            elif "transaction id" in sub[start_idx - 16 : start_idx]:
+                return i,True
+            elif "number" in sub[start_idx - 8 : start_idx]:
+                return i,True
+            elif "no." in sub[start_idx - 6 : start_idx]:
+                return i,True
+            elif "num" in sub[start_idx - 6 : start_idx]:
+                return i,True
+            elif "id" in sub[start_idx - 6 : start_idx]:
+                return i,True
+        return "",False
+    
+    num_str, boolean = func(sub, nums)
+    if boolean is True:
+        return num_str
+    return None
+
+def find_amt(s):
+    """
+    extract transaction amount from email (subject + body)
+    """
+    nums = []
+    res = ''
+    text = re.sub(r'[^0-9]', ' ', s)
+    s = s.lower()
+    for t in text.split():
+        try:
+            nums.append(t)
+        except ValueError:
+            pass
+    if not nums:
+        res = None
+        return res
+        
+    def func(sub, nums):
+        for i in nums:
+            start_idx = sub.find(i)
+            end_idx = start_idx + len(i)
+            if "usd" in sub[start_idx - 5 : start_idx] or "usd" in sub[end_idx : end_idx + 5]:
+                return i,True
+            elif "cad" in sub[start_idx - 5 : start_idx] or "cad" in sub[end_idx : end_idx + 5]:
+                return i,True
+            elif "inr" in sub[start_idx - 5 : start_idx] or "inr" in sub[end_idx : end_idx + 5]:
+                return i,True
+            elif "gbp" in sub[start_idx - 5 : start_idx] or "gbp" in sub[end_idx : end_idx + 5]:
+                return i,True
+            elif "usd" in sub[start_idx - 5 : start_idx] or "usd" in sub[end_idx : end_idx + 5]:
+                return i,True
+            elif "rs" in sub[start_idx - 4 : start_idx] or "rs" in sub[end_idx : end_idx + 4]:
+                return i,True
+            elif "rupees" in sub[start_idx - 8 : start_idx] or "rupees" in sub[end_idx : end_idx + 8]:
+                return i,True
+        return "",False
+    
+    num_str, boolean = func(s, nums)
+    if boolean is True:
+        return num_str
+    return None
 
 def is_empty_sent(cd):
     """
@@ -166,7 +230,9 @@ def inp(emailto, emailfrom, subj, bod):
     returns predicted class, transaction id from subject
     """
     text = subj + " " + bod
-    tid = str(find_num(text))
+    t_id = find_id(text)
+    t_amt = find_amt(text)
+
     text = get_only_chars(text)
     X_test_mean = np.array([transform_sentence(text, model)])
     
@@ -177,7 +243,7 @@ def inp(emailto, emailfrom, subj, bod):
     y_pred = clf.predict(X_test_mean)
 
     out = LE.inverse_transform(y_pred)
-    return out[0], tid
+    return out[0], t_id, t_amt
 
 #k, ID = inp("fvf", "defrfg", "payment processed 123456",
 #            "hi, the payment for acc 1234 for usd 3456 was paid successfully.")
