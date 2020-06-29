@@ -70,7 +70,7 @@ def train():
         except AttributeError:
             return None  # or some other value
 
-    
+
     df['Text'] = df['Text'].apply(converter)
 
     df['Text'] = df['Text'].apply(lambda x: get_only_chars(x))
@@ -99,6 +99,7 @@ def train():
 
         for i in range(1, num_classes):
             train_2 = df_1[df_1["Class"] == np.unique(df_1['Class'])[i]].sample(sample_size)
+            #train_2 = df_1[df_1["Class"] == np.unique(df_1['Class'])[i]].sample(sample_size, replace = True)
             train = pd.concat([train, train_2], axis=0)
             train_index.extend(train_2.index.tolist())
 

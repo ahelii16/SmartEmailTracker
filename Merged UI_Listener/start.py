@@ -24,6 +24,7 @@ from listener_xg import handle_new_email
 from Glove_XGBoost import train
 
 
+
 date_ = datetime.today().strftime('%Y-%m-%d')
 
 
@@ -160,7 +161,45 @@ def upload_file():
     """
     return render_template('upload.html')
 
+@app.route('/retrain')
+def retrain():
+    """
+    retrain model only if at least 40 mails of new classes
+    """
+    #define 3 sets of classes
+    org_classes = {'Complete', 'Failed', 'Request', 'General', 'Pending', 'Processing'}
+    new_classes = set()
+    new_classes_40 = set()
+    ctr = 0
+    for mail in mails.query.all():
+        mail.m_class = str(mail.m_class).capitalize()
+        if mail.m_class not in org_classes:
+            new_classes.add(mail.m_class)
+    db.session.commit()
+    for mail in mails.query.all():
+        if mail.m_class in new_classes and mails.query.filter(mails.m_class == mail.m_class).count() > 39:
+            new_classes_40.add(mail.m_class)
+    with open('emaildataset.csv', 'a') as f:
+        f.write('\n')
+        f.close()
+    with open('emaildataset.csv', 'a') as f:
+        out = csv.writer(f)
+        for mail in mails.query.all():
+            if mail.m_class in org_classes or mail.m_class in new_classes_40:
+                ctr += 1
+                out.writerow([mail.mfrom, mail.mto, mail.msubject, mail.mbody, mail.ID, mail.mdate, mail.m_class])
+                db.session.delete(mail)
+                db.session.commit()
+        f.close()
+    if ctr > 0:
+        msg = '' + str(ctr) + ' mail(s) sent for retraining successfully!'
+        train()
+    else:
+        msg = 'Less than 40 emails of new classes - model not retrained.'
+    return render_template('retrained.html', message=msg)
 
+
+'''
 @app.route('/retrain')
 def retrain():
     """
@@ -184,7 +223,7 @@ def retrain():
         # run model again
         train()
     return render_template('retrained.html', message=msg)
-
+'''
 
 @app.route('/show')
 @login_required
