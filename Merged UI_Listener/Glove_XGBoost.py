@@ -20,7 +20,7 @@ from sklearn.preprocessing import LabelEncoder
 # from random import sample
 
 from wordfile import func
-from xgb_inp import EMBEDDINGS_INDEX
+from xgb_inp import Embeddings_Index
 
 
 seed(40)
@@ -147,20 +147,20 @@ def train():
     df['Class'] = l_e.fit_transform(df['Class'])
 
 
-    def transform_sentence(text, EMBEDDINGS_INDEX):
+    def transform_sentence(text, Embeddings_Index):
 
-        # def preprocess_text(raw_text, model=EMBEDDINGS_INDEX):
+        # def preprocess_text(raw_text, model=Embeddings_Index):
         def preprocess_text(raw_text):
 
             raw_text = raw_text.split()
-            return list(filter(lambda x: x in EMBEDDINGS_INDEX.keys(), raw_text))
+            return list(filter(lambda x: x in Embeddings_Index.keys(), raw_text))
 
         tokens = preprocess_text(text)
 
         if not tokens:
             return np.zeros(300)
 
-        vec = [EMBEDDINGS_INDEX[i] for i in tokens]
+        vec = [Embeddings_Index[i] for i in tokens]
         text_vector = np.mean(vec, axis=0)
         return np.array(text_vector)
 
@@ -182,8 +182,8 @@ def train():
         x_test = test_set['Text'].values
         y_test = test_set['Class'].values
 
-        x_train_mean = np.array([transform_sentence(x, EMBEDDINGS_INDEX) for x in x_train])
-        x_test_mean = np.array([transform_sentence(x, EMBEDDINGS_INDEX) for x in x_test])
+        x_train_mean = np.array([transform_sentence(x, Embeddings_Index) for x in x_train])
+        x_test_mean = np.array([transform_sentence(x, Embeddings_Index) for x in x_test])
 
         # XG Boost
         clf = xgboost.XGBClassifier()
