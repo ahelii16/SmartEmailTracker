@@ -146,6 +146,12 @@ def find_id(sub):
                 return i, True
             elif "id" in sub[max(0, start_idx - 4) : start_idx]:
                 return i, True
+            elif "transaction" in sub[max(0, start_idx - 13) : start_idx]:
+                return i, True
+            elif "trans" in sub[max(0, start_idx - 7) : start_idx]:
+                return i, True
+            elif "payment" in sub[max(0, start_idx - 9) : start_idx]:
+                return i, True
         return "", False
 
     num_str, boolean = sub_func(sub, nums)
