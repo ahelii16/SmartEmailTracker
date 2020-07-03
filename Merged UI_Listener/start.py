@@ -282,7 +282,7 @@ def welcome():
             msg = 'Empty email or invalid attachment - no prediction!'
             return render_template('retrained.html', message=msg)
 
-        m_class, ID = inp(inputvalues['To'], inputvalues['From'],
+        m_class, ID, amt = inp(inputvalues['To'], inputvalues['From'],
                           inputvalues['Subject'], inputvalues['Message'])
         mclass = m_class
         tid = ID
