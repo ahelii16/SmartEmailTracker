@@ -25,7 +25,7 @@ from Glove_XGBoost import train
 
 
 
-date_ = datetime.today().strftime('%Y-%m-%d')
+date_ = datetime.today().ctime()
 
 
 app = Flask(__name__)
