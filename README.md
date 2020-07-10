@@ -67,7 +67,7 @@ Command: python listener_xg.py
  - NOTE: If any file is found not to be showing, please write the absolute path for that file.
  - Abbreviations, industry specific keywords and definitions can be specificied as per need in wordfile.py (Merged UI_Listener directory).
 
-## Sample email format assumed:
+## 📝 Sample email format assumed:
 
 To: Rahul@CitiBankPune.com 
 
