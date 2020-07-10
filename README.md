@@ -1,8 +1,8 @@
-# ⚡️SmartEmailTracker
+# ⚡️AI for Decision Making: SmartEmailTracker
 
-## AI for Decision Making: An email management tool for task-based classification of incoming email stream
+## An email management tool for task-based classification of incoming email stream
 
-The current project has lots of content in emails post which the ops user has to perform some manual operation like keeping track of processed transactions, failed and pending transactions, status update requests etc. Using artificial intelligence and machine learning decision making matrix we could automate the processes. The system aims do the following:
+The current project has lots of content in emails post which the ops user has to perform some manual operation for keeping track of them. Using artificial intelligence and machine learning decision making matrix we could automate the processes. The system aims do the following:
 
 - Reading the email content with certain subject line and body: The emails can be directly typed into the UI or uploaded as a PDF, TXT, handwritten or typed image file. They are then treated as an email, the content is extracted out of it and the system is trained to build its decision making capability.
 
@@ -13,8 +13,9 @@ The current project has lots of content in emails post which the ops user has to
 - Once the emails have been entered into the Database(can be viewed from Show All button), the email thread pertaining to a particular transaction ID can be viewed from the Email Thread button on top.
 
 ## Technology Used
-For ML model: Python, Keras, Tensorflow, Scikit Learn, Pandas, Numpy, Spacy, Gensim Word2Vec model, pre-trained Glove embeddings, Matplotlib, Tesseract, PDFMiner
-For app development: HTML, CSS, Bootstrap, Flask, SQLAlchemy
+- For ML model: Python, Keras, Tensorflow, Scikit Learn, Pandas, Numpy, Spacy, Gensim Word2Vec model, pre-trained Glove embeddings, Matplotlib, Tesseract, PDFMiner
+
+- For app development: HTML, CSS, Bootstrap, Flask, SQLAlchemy
 
 <p align="center">
   For details on all the ML models tried and tested, model comparisons, UI features and better understanding of system workflow, please refer to <a href="https://docs.google.com/document/d/1qj_gYU47MPSgorbo-ho6osTHv2lS3V2bhjiXhigURFA/edit?usp=sharing">this document</a>.
