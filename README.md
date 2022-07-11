@@ -2,6 +2,8 @@
 
 ## An email management tool for task-based classification of incoming email stream
 
+<a href="https://drive.google.com/file/d/1fnwsbhr8xFbEvE1aP1Bk9kkOSJNOG7UD/view"> How and Why We Did This! </a>
+
 The current project has lots of content in emails post which the ops user has to perform some manual operation for keeping track of them. Using artificial intelligence and machine learning decision making matrix we could automate the processes. The system aims do the following:
 
 - Reading the email content with certain subject line and body: The emails can be directly <b>typed into the UI</b> or <b>uploaded as a PDF, TXT, handwritten or typed image</b> file. They are then treated as an email, the content is extracted out of it and the system is trained to build its decision making capability.
