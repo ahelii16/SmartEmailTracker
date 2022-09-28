@@ -35,7 +35,7 @@ matplotlib==3.2.2
 mccabe==0.6.1
 murmurhash==1.0.2
 nltk==3.5
-numpy==1.19.0
+numpy==1.22.0
 pandas==1.0.5
 pathtools==0.1.2
 pdfminer==20191125
